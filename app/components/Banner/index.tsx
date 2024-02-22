@@ -1,0 +1,40 @@
+'use client';
+import Image from "next/image";
+import Slider from "react-slick";
+
+const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+};
+
+const banners = [
+    '/banner-1.png',
+    '/banner-2.png',
+    '/banner-3.png',
+    '/banner-4.png',
+    '/banner-5.png',
+];
+
+export default function Banner(){
+    return <div className="w-full">
+        <div className="container mx-auto">
+            <Slider {...settings}>
+                {
+                    banners.map((item, i) => 
+                    <Image
+                        src={item}
+                        alt="Vercel Logo"
+                        className="mx-auto object-contain"
+                        width={1280}
+                        height={480}
+                        priority
+                        key={i}
+                    />)
+                }
+            </Slider>
+        </div>
+    </div>
+}
