@@ -8,7 +8,7 @@ import "./globals.css";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
-import Providers from './providers'
+import QueryProviders from "./home/QueryProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-white`}>
-      <Providers>
+      <QueryProviders>
         <Header />
         <div className="w-full bg-gray-100">
             {children}
         </div>
         <Footer />
-      </Providers>
+      </QueryProviders>
       <ToastContainer />
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getProducts } from "../utils/data-query/getProducts";
+import { getProductsQueryOptions } from "../utils/data-query/getProductsQuery";
 import ProductCard from "./ProductCard";
 
 export default function ProductSection() {
@@ -11,23 +11,11 @@ export default function ProductSection() {
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: ["products"],
-        queryFn: (param) => getProducts({pageParam: param.pageParam}),
-        initialPageParam: 1,
-        refetchOnWindowFocus: false,
-        getNextPageParam: (lastPage, allPages) => {
-            const morePagesExist =
-              allPages.flatMap((page) => page.data).length !==
-              lastPage.meta.total;
-            if (morePagesExist) {
-              return allPages.length + 1;
-            }
-            return undefined;
-        },
-        select: (data) => ({
-            ...data,
-            pages: data.pages.flatMap((page) => page.data),
-        }),
+        queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey,
+        queryFn: (param) => getProductsQueryOptions.getProductsQueryFn({pageParam: param.pageParam}),
+        initialPageParam: getProductsQueryOptions.getProductsQueryInitialPageParam,
+        getNextPageParam: (lastPage, allPages) => getProductsQueryOptions.getProductsQueryNextPageParam(lastPage, allPages),
+        select: (data) => getProductsQueryOptions.getProductsQuerySelect(data),
     })
 
     return <InfiniteScroll

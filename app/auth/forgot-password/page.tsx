@@ -8,10 +8,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { axiosPublic } from "@/app/utils/axios";
-import { api_routes } from "@/app/utils/routes";
+import { api_routes } from "@/app/utils/api_routes";
 import { useToast } from "@/app/hooks/useToast";
 import { MdEmail } from "react-icons/md";
 import { TbPasswordMobilePhone } from "react-icons/tb";
+import { page_routes } from "@/app/utils/page_routes";
 
 const schema = yup
   .object({
@@ -71,7 +72,7 @@ export default function ForgotPassword() {
         </div>
         <div className="rounded-md bg-white w-full px-5 py-4 border border-gray-300 mt-3">
             <div className="text-center">
-                <Link href='/auth/login' className="text-center text-gray-500 text-md">Remember your passowrd? <span className=" font-bold text-black">Login</span></Link>
+                <Link href={page_routes.auth.login} className="text-center text-gray-500 text-md">Remember your passowrd? <span className=" font-bold text-black">Login</span></Link>
             </div>
         </div>
     </> 

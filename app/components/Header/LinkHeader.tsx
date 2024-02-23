@@ -1,3 +1,4 @@
+import { page_routes } from "@/app/utils/page_routes";
 import Link from "next/link";
 import { MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
 
@@ -5,11 +6,11 @@ export default function LinkHeader() {
     return <div className="container mx-auto">
         <div className="w-full flex flex-wrap justify-between items-center gap-3 py-3">
             <div className="flex flex-wrap items-center gap-5">
-                <Link className=" font-semibold" href='/'>Home</Link>
-                <Link className=" font-semibold" href='/about-us'>About Us</Link>
-                <Link className=" font-semibold" href='/'>Products</Link>
-                <Link className=" font-semibold" href='/'>Blogs</Link>
-                <Link className=" font-semibold" href='/contact-us'>Contact Us</Link>
+                <Link className=" font-semibold" href={page_routes.home}>Home</Link>
+                <Link className=" font-semibold" href={page_routes.about}>About Us</Link>
+                <Link className=" font-semibold" href={page_routes.products}>Products</Link>
+                <Link className=" font-semibold" href={page_routes.blogs}>Blogs</Link>
+                <Link className=" font-semibold" href={page_routes.contact}>Contact Us</Link>
             </div>
             <div className="flex flex-wrap items-center gap-7">
                 <div className="flex flex-wrap items-center gap-3">

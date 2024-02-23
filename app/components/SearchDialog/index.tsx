@@ -10,7 +10,7 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import debounce from 'lodash.debounce'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ReactTyped } from "react-typed";
-import { getGlobalSearch } from "@/app/utils/data-query/getGlobalSearch"
+import { getGlobalSearchQueryOptions } from "@/app/utils/data-query/getGlobalSearchQuery"
 
 const TypedString = ["Containers", "Silver Pouch", "Parcel Sheet", "Bag", "Tissue", "Meal Tray", "Paper Cup", "Tape", "Cutlery", "Gloves", "Mask"];
 
@@ -24,24 +24,12 @@ export default function SearchDialog(){
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: ["global_search", search],
-        queryFn: (param) => getGlobalSearch({pageParam: param.pageParam, search}),
-        initialPageParam: 1,
-        refetchOnWindowFocus: false,
+        queryKey: getGlobalSearchQueryOptions.getGlobalSearchQueryKey(search),
+        queryFn: (param) => getGlobalSearchQueryOptions.getGlobalSearchQueryFn({pageParam: param.pageParam, search}),
+        initialPageParam: getGlobalSearchQueryOptions.getGlobalSearchQueryInitialPageParam,
         enabled: isOpen && search.length>0,
-        getNextPageParam: (lastPage, allPages) => {
-            const morePagesExist =
-              allPages.flatMap((page) => page.data).length !==
-              lastPage.meta.total;
-            if (morePagesExist) {
-              return allPages.length + 1;
-            }
-            return undefined;
-        },
-        select: (data) => ({
-            ...data,
-            pages: data.pages.flatMap((page) => page.data),
-        }),
+        getNextPageParam: (lastPage, allPages) => getGlobalSearchQueryOptions.getGlobalSearchQueryNextPageParam(lastPage, allPages),
+        select: (data) => getGlobalSearchQueryOptions.getGlobalSearchQuerySelect(data),
     })
 
     const searchHandler = debounce(async (e: string) => {

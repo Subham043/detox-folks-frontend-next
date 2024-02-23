@@ -2,7 +2,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import CategoryCard from "./CategoryCard";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getCategories } from "../utils/data-query/getCategories";
+import { getCategoriesQueryOptions } from "../utils/data-query/getCategoriesQuery";
 
 export default function Categories() {
     const {
@@ -11,23 +11,11 @@ export default function Categories() {
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: ["categories"],
-        queryFn: (param) => getCategories({pageParam: param.pageParam}),
-        initialPageParam: 1,
-        refetchOnWindowFocus: false,
-        getNextPageParam: (lastPage, allPages) => {
-            const morePagesExist =
-              allPages.flatMap((page) => page.data).length !==
-              lastPage.meta.total;
-            if (morePagesExist) {
-              return allPages.length + 1;
-            }
-            return undefined;
-        },
-        select: (data) => ({
-            ...data,
-            pages: data.pages.flatMap((page) => page.data),
-        }),
+        queryKey: getCategoriesQueryOptions.getCategoriesQueryKey,
+        queryFn: (param) => getCategoriesQueryOptions.getCategoriesQueryFn({pageParam: param.pageParam}),
+        initialPageParam: getCategoriesQueryOptions.getCategoriesQueryInitialPageParam,
+        getNextPageParam: (lastPage, allPages) => getCategoriesQueryOptions.getCategoriesQueryNextPageParam(lastPage, allPages),
+        select: (data) => getCategoriesQueryOptions.getCategoriesQuerySelect(data),
     })
 
     return <div className="w-full py-10">

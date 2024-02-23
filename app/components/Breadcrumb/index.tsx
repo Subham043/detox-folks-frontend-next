@@ -1,3 +1,4 @@
+import { page_routes } from "@/app/utils/page_routes";
 import Link from "next/link";
 
 type BreadcrumbProps = {
@@ -9,7 +10,7 @@ export default function Breadcrumb({name}:BreadcrumbProps){
         <div className="container mx-auto">
             <div className=" text-center">
                 <h2 className=" text-4xl font-bold text-white">{name}</h2>
-                <p className=" mt-2 text-white text-lg"><Link href='/' className=" text-gray-200">Home</Link> &gt; {name}</p>
+                <p className=" mt-2 text-white text-lg"><Link href={page_routes.home} className=" text-gray-200">Home</Link> &gt; {name}</p>
             </div>
         </div>
     </div>

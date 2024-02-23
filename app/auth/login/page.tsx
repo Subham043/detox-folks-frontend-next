@@ -12,6 +12,7 @@ import { useToast } from "@/app/hooks/useToast";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrLogin } from "react-icons/gr";
+import { page_routes } from "@/app/utils/page_routes";
 
 const schema = yup
     .object({
@@ -79,12 +80,12 @@ export default function Login() {
                 <IconButton Icon={GrLogin} text="LOGIN" loading={loading} />
             </form>
             <div className="text-center">
-                <Link href='/auth/forgot-password' className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-black">Reset Here</span></Link>
+                <Link href={page_routes.auth.forgot_password} className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-black">Reset Here</span></Link>
             </div>
         </div>
         <div className="rounded-md bg-white w-full px-5 py-4 border border-gray-300 mt-3">
             <div className="text-center">
-                <Link href='/auth/register' className="text-center text-gray-500 text-md">Don&apos;t Have Any Account? <span className=" font-bold text-black">Register Here</span></Link>
+                <Link href={page_routes.auth.register} className="text-center text-gray-500 text-md">Don&apos;t Have Any Account? <span className=" font-bold text-black">Register Here</span></Link>
             </div>
         </div>
     </> 

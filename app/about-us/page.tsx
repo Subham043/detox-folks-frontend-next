@@ -1,6 +1,6 @@
 import Breadcrumb from "@/app/components/Breadcrumb";
 import { axiosPublic } from "@/app/utils/axios";
-import { api_routes } from "@/app/utils/routes";
+import { api_routes } from "@/app/utils/api_routes";
 import { AboutSectionType } from "@/app/utils/types";
 import Image from "next/image";
 

@@ -1,15 +1,5 @@
-import { ToastOptions, toast } from "react-toastify";
-
-const toastConfig:ToastOptions = {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-}
+import { toast } from "react-toastify";
+import { toastConfig } from "../utils/constants";
 
 export function useToast(){
     const toastSuccess = (msg:string) => {toast.dismiss() ; toast.success(msg, toastConfig)};

@@ -1,3 +1,4 @@
+import { page_routes } from "@/app/utils/page_routes";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
@@ -7,7 +8,7 @@ export default function MainFooter() {
     return <div className="container mx-auto ">
             <div className=" pt-10 pb-3 flex justify-center items-start gap-3">
                 <div className=" w-1/4">
-                    <Link className=" text-center" href='/'>
+                    <Link className=" text-center" href={page_routes.home}>
                         <Image
                             src="https://server-api.parcelcounter.in/storage/general_website_settings_logo/jptM6LCFtgFNp4Z4qu7l2YIXKSJPrmg8Gwz5MbdO.png"
                             alt="Vercel Logo"
@@ -18,16 +19,16 @@ export default function MainFooter() {
                         />
                     </Link> 
                     <div className="flex flex-wrap justify-center items-center gap-3 py-6">
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href='/'>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page_routes.home}>
                             <FaFacebookF className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href='/'>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page_routes.home}>
                             <FaInstagram className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href='/'>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page_routes.home}>
                             <FaLinkedin className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href='/'>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page_routes.home}>
                             <FaYoutube className=" text-md" />
                         </Link>
                     </div>
@@ -42,20 +43,20 @@ export default function MainFooter() {
                 </div>
                 <div className=" w-1/5">
                     <h4 className=" text-2xl font-bold mb-5 text-gray-800">Quick Links</h4>
-                    <Link className=" text-md mb-5 block" href='/'>Home</Link>
-                    <Link className=" text-md mb-5 block" href='/'>About Us</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Products</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Blogs</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Contact Us</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.home}>Home</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.about}>About Us</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.products}>Products</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.blogs}>Blogs</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.contact}>Contact Us</Link>
                 </div>
                 <div className=" w-1/5">
                     <h4 className=" text-2xl font-bold mb-5 text-gray-800">Legal Links</h4>
-                    <Link className=" text-md mb-5 block" href='/'>Privacy Policy</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Cookies Policy</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Refund Policy</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Shopping Policy</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Disclaimer</Link>
-                    <Link className=" text-md mb-5 block" href='/'>Terms & Conditions</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Privacy Policy</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Cookies Policy</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Refund Policy</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Shopping Policy</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Disclaimer</Link>
+                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Terms & Conditions</Link>
                 </div>
                 <div className=" w-1/4">
                     <h4 className=" text-2xl font-bold mb-5 text-gray-800">Contact Us</h4> 

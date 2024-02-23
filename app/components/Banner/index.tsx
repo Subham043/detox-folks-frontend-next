@@ -19,7 +19,7 @@ const banners = [
 ];
 
 export default function Banner(){
-    return <div className="w-full">
+    return <div className="w-full pt-5">
         <div className="container mx-auto">
             <Slider {...settings}>
                 {
