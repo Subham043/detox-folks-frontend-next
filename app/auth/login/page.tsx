@@ -13,6 +13,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrLogin } from "react-icons/gr";
 import { page_routes } from "@/app/utils/page_routes";
+import { signIn } from "next-auth/react"
 
 const schema = yup
     .object({
@@ -30,39 +31,36 @@ export default function Login() {
 
     const {
         handleSubmit,
-        control,
-        setValue,
         register,
         getValues,
         reset,
-        setError,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async () => {
         setLoading(true);
         try {
-            // const res = await signIn('credentials', {
-            //     redirect: false,
-            //     email: data.email,
-            //     password: data.password,
-            // });
-            // if (!res?.error) {
-            //     fetchCart()
-            //     if(showLogin){
-            //         hideLogin();
-            //     }else{
-            //         router.push(callbackUrl);
-            //     }
-            //     reset({
-            //         email: "",
-            //         password: "",
-            //     });
-            // } else {
-            //     toastError("Invalid Credentials");
-            // }
+            const res = await signIn('credentials', {
+                redirect: false,
+                email: getValues().email,
+                password: getValues().password,
+            });
+            if (!res?.error) {
+                // fetchCart()
+                // if(showLogin){
+                //     hideLogin();
+                // }else{
+                    router.push(callbackUrl);
+                // }
+                reset({
+                    email: "",
+                    password: "",
+                });
+            } else {
+                toastError("Invalid Credentials");
+            }
         } catch (error: any) {
             console.log(error);
         } finally {
