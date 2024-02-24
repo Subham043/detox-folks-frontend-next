@@ -1,5 +1,6 @@
 import { api_routes } from "@/app/utils/api_routes";
 import { axiosPublic } from "@/app/utils/axios";
+import { page_routes } from "@/app/utils/page_routes";
 import NextAuth, { NextAuthOptions, Session } from "next-auth"
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -82,10 +83,10 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-        signIn: "/login",
-        newUser: "/register", // New users will be directed here on first sign in (leave the property out if not of interest)
+        signIn: page_routes.auth.login,
+        newUser: page_routes.auth.register, // New users will be directed here on first sign in (leave the property out if not of interest)
         // signOut: "/signout",
-        error: "/login", // Error code passed in query string as ?error=
+        error: page_routes.auth.login, // Error code passed in query string as ?error=
         // verifyRequest: "/verify-request", // (used for check email message)
     },
     session: {

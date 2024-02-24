@@ -20,7 +20,7 @@ export default function LogoHeader() {
                 <SearchDialog />
             </div>
             <div className="flex flex-wrap items-center gap-5">
-                <button className="flex flex-wrap items-center gap-2">
+                <Link href={page_routes.auth.login} className="flex flex-wrap items-center gap-2">
                     <Image
                         src="/user.png"
                         alt="Vercel Logo"
@@ -32,7 +32,7 @@ export default function LogoHeader() {
                     <p>
                         Login
                     </p>
-                </button>
+                </Link>
                 <button className="flex flex-wrap items-center gap-3">
                     <div className=" bg-gray-100 rounded-full relative flex justify-center items-center w-11 h-11">
                         <FaShoppingBasket />
