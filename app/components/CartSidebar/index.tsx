@@ -3,23 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaShoppingBasket } from "react-icons/fa";
 import CartCard from "./CartCard";
+import { useCartProvider } from "@/app/context/CartProvider";
 
 export default function CartSidebar() {
+    const {cart} = useCartProvider()
+    
     return <>
         <div className="w-full h-full flex flex-col justify-between">
             <div className=" flex justify-center items-center gap-2 px-3 py-3 border-b border-solid border-gray-300">
                 <FaShoppingBasket className="text-xl" />
                 <h4 className=" text-lg font-semibold">
-                    Total Item (2)
+                    Total Item ({cart.cart.length})
                 </h4>
             </div>
             <div className=" flex-1 max-h-[80vh] overflow-hidden overflow-y-auto">
-                <CartCard />
-                <CartCard />
-                <CartCard />
-                <CartCard />
-                <CartCard />
-                <CartCard />
+                {
+                    cart.cart.map((item, i) => <CartCard {...item} key={i} />)
+                }
             </div>
             <div className=" text-center w-full px-3 py-3 border-t border-solid border-gray-300">
                 <Link href={page_routes.home} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-black text-white gap-4">
@@ -27,7 +27,7 @@ export default function CartSidebar() {
                         Proceed To Checkout
                     </span>
                     <span className=" w-auto text-right">
-                        &#8377;100.00
+                        &#8377;{cart.cart_subtotal}
                     </span>
                 </Link>
             </div>
