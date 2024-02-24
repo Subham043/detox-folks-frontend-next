@@ -10,6 +10,9 @@ const routes = {
         login: '/auth/login',
         register: '/auth/register',
         forgot_password: '/auth/forgot-password',
+    },
+    account: {
+        profile: '/account/profile',
     }
 }
 

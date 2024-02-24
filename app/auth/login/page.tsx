@@ -26,7 +26,7 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl") || "/profile";
+    const callbackUrl = searchParams.get("callbackUrl") || page_routes.account.profile;
     const { toastError } = useToast();
 
     const {
