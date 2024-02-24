@@ -1,5 +1,5 @@
 import { api_routes } from "@/app/utils/api_routes";
-import { axiosPublic } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/utils/axios";
 import { page_routes } from "@/app/utils/page_routes";
 import NextAuth, { NextAuthOptions, Session } from "next-auth"
 import { JWT } from "next-auth/jwt";
@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
                 // You can also use the `req` object to obtain additional parameters
                 // (i.e., the request IP address)
                 try {
-                    const response = await axiosPublic.post(api_routes.login, { ...credentials });
+                    const response = await axiosPrivate.post(api_routes.login, { ...credentials });
                     return {...response.data.user, token: response.data.token}
                 } catch (error: any) {
                     return null;
@@ -77,7 +77,7 @@ export const authOptions: NextAuthOptions = {
             session: Session;
             token: JWT;
         }){
-            await axiosPublic.post(api_routes.logout, {}, {
+            await axiosPrivate.post(api_routes.logout, {}, {
                 headers: {"Authorization" : `Bearer ${message.token.token}`}
             });
         }
