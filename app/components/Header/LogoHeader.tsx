@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaShoppingBasket } from "react-icons/fa";
 import SearchDialog from "../SearchDialog";
 import { page_routes } from "@/app/utils/page_routes";
+import HeaderLoginButton from "./HeaderLoginButton";
 
 export default function LogoHeader() {
     return <div className="container mx-auto border-b border-gray-200 border-solid">
@@ -20,19 +21,7 @@ export default function LogoHeader() {
                 <SearchDialog />
             </div>
             <div className="flex flex-wrap items-center gap-5">
-                <Link href={page_routes.auth.login} className="flex flex-wrap items-center gap-2">
-                    <Image
-                        src="/user.png"
-                        alt="Vercel Logo"
-                        className=" rounded-full"
-                        width={40}
-                        height={40}
-                        priority
-                    />
-                    <p>
-                        Login
-                    </p>
-                </Link>
+                <HeaderLoginButton />
                 <button className="flex flex-wrap items-center gap-3">
                     <div className=" bg-gray-100 rounded-full relative flex justify-center items-center w-11 h-11">
                         <FaShoppingBasket />
