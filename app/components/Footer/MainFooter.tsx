@@ -1,10 +1,20 @@
+"use client";
+
+import { getLegalsQueryOptions } from "@/app/utils/data-query/getLegalsQuery";
 import { page_routes } from "@/app/utils/page_routes";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdLocationOn, MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
 
 export default function MainFooter() {
+    const {
+        data
+    } = useQuery({
+        queryKey: getLegalsQueryOptions.getLegalsQueryKey,
+        queryFn: getLegalsQueryOptions.getLegalsQueryFn,
+    })
     return <div className="container mx-auto ">
             <div className=" pt-10 pb-3 flex justify-center items-start gap-3">
                 <div className=" w-1/4">
@@ -51,12 +61,9 @@ export default function MainFooter() {
                 </div>
                 <div className=" w-1/5">
                     <h4 className=" text-2xl font-bold mb-5 text-gray-800">Legal Links</h4>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Privacy Policy</Link>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Cookies Policy</Link>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Refund Policy</Link>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Shopping Policy</Link>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Disclaimer</Link>
-                    <Link className=" text-md mb-5 block" href={page_routes.legal}>Terms & Conditions</Link>
+                    {
+                        (data ? data.legal : []).map((item, i) => <Link className=" text-md mb-5 block" href={`${page_routes.legal}/${item.slug}`} key={i}>{item.page_name}</Link>)
+                    }
                 </div>
                 <div className=" w-1/4">
                     <h4 className=" text-2xl font-bold mb-5 text-gray-800">Contact Us</h4> 
