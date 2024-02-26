@@ -2,6 +2,7 @@ import Breadcrumb from "@/app/components/Breadcrumb";
 import ProfileForm from "./ProfileForm";
 import PasswordForm from "./PasswordForm";
 import BillingInformation from "@/app/components/BillingInformation";
+import BillingAddress from "@/app/components/BillingAddress";
 
 export default function Profile() {
     return <>
@@ -21,6 +22,9 @@ export default function Profile() {
                 <div className="flex flex-wrap justify-between items-start mt-5">
                     <div className=" w-[48%] px-5 py-5 bg-white rounded-md box-border">
                         <BillingInformation />
+                    </div>
+                    <div className=" w-[48%] px-5 py-5 bg-white rounded-md box-border">
+                        <BillingAddress />
                     </div>
                 </div>
             </div>

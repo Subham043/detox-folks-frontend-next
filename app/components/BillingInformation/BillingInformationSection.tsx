@@ -8,7 +8,7 @@ export default function BillingInformationSection(){
     const {
         data
     } = useQuery({
-        queryKey: ['billing_informations'],
+        queryKey: getBillingInformationsQueryOptions.getBillingInformationsQueryKey,
         queryFn: getBillingInformationsQueryOptions.getBillingInformationsQueryFn,
     })
     

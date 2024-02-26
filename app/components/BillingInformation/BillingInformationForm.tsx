@@ -78,7 +78,7 @@ export default function BillingInformationForm({setIsOpen, type, data}:BillingIn
             }else{
                 const response = await axiosPublic.post(api_routes.billing_information_update+`/${data.id}`, {...getValues(), is_active:true});
                 toastSuccess(response.data.message);
-                update(response.data.billingInformation)
+                update(response.data.billingInformation as BillingInformationType)
             }
             setIsOpen(false)
         } catch (error: any) {

@@ -1,26 +1,26 @@
 "use client";
 
-import { BillingInformationType } from "@/app/utils/types";
-import { FaUser } from "react-icons/fa";
+import { BillingAddressType } from "@/app/utils/types";
 import { BsThreeDots } from "react-icons/bs";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useState } from "react";
 import { axiosPublic } from "@/app/utils/axios";
 import { api_routes } from "@/app/utils/api_routes";
 import { useToast } from "@/app/hooks/useToast";
-import EditBillingInformationDialog from "./EditBillingInformationDialog";
-import { useBillingInformationMutation } from "@/app/utils/data-query/getBillingInformationsQuery";
+import EditBillingAddressDialog from "./EditBillingAddressDialog";
+import { useBillingAddressMutation } from "@/app/utils/data-query/getBillingAddressesQuery";
+import { IoLocationSharp } from "react-icons/io5";
 
-export default function BillingInformationCard(props:BillingInformationType){
+export default function BillingAddressCard(props:BillingAddressType){
     const [loading, setLoading] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {toastError, toastSuccess} = useToast();
-    const {destroy} = useBillingInformationMutation();
+    const {destroy} = useBillingAddressMutation();
 
     const deleteHandler = async () => {
         setLoading(true)
         try {
-            const response = await axiosPublic.delete(api_routes.billing_information_delete+`/${props.id}`);
+            const response = await axiosPublic.delete(api_routes.billing_address_delete+`/${props.id}`);
             toastSuccess(response.data.message);
             destroy(props.id)
         } catch (error) {
@@ -33,7 +33,7 @@ export default function BillingInformationCard(props:BillingInformationType){
 
     return <div className="py-2 px-3 bg-gray-100 rounded-sm">
         <div className=" flex justify-between items-start gap-1">
-            <h3 className="text-lg font-semibold flex gap-2 items-start"><FaUser className=" mt-1" /> {props.name}</h3>
+            <h3 className="text-lg font-semibold flex gap-2 items-start"><IoLocationSharp className=" mt-1" /> {props.country}</h3>
             <DropdownMenu>
                 <DropdownMenuTrigger>
                     <BsThreeDots />
@@ -44,9 +44,10 @@ export default function BillingInformationCard(props:BillingInformationType){
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
-        <p>{props.email}</p>
-        <p>{props.phone}</p>
-        <p>{props.gst}</p>
-        <EditBillingInformationDialog isOpen={isOpen} setIsOpen={setIsOpen} data={props} />
+        {/* <p>{props.state}</p>
+        <p>{props.city}</p>
+        <p>{props.pin}</p> */}
+        <p>{props.address}</p>
+        <EditBillingAddressDialog isOpen={isOpen} setIsOpen={setIsOpen} data={props} />
     </div>
 }
