@@ -18,11 +18,11 @@ export default function Categories() {
         select: (data) => getCategoriesQueryOptions.getCategoriesQuerySelect(data),
     })
 
-    return <div className=" w-full border rounded-md overflow-hidden border-black">
-        <div className="py-3 bg-black w-full text-center">
+    return <div className=" w-full border rounded-sm overflow-hidden border-neutral-700">
+        <div className="py-2 bg-neutral-700 w-full text-center">
             <h4 className=" text-xl font-semibold text-white">Categories</h4>
         </div>
-        <div id="categoryCardBodyDiv" className="bg-white w-full max-h-96 overflow-hidden overflow-y-auto">
+        <div id="categoryCardBodyDiv" className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto">
             <InfiniteScroll
                 dataLength={data ? data.pages.length : 0}
                 next={fetchNextPage}
@@ -34,11 +34,11 @@ export default function Categories() {
                 
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
-                    <div className=" w-full shrink-0 bg-gray-200 border-b border-gray-300">
+                    <div className=" w-full shrink-0 bg-neutral-300 border-b border-gray-300">
                         <CategoryCard name='All' image='/disposables.webp' slug='' />
                     </div>
                     {
-                        (data ? data.pages : []).map((item, i) => <div className=" w-full shrink-0 border-b border-gray-300" key={i}>
+                        (data ? data.pages : []).map((item, i) => <div className=" bg-neutral-100 w-full shrink-0 border-b border-gray-300" key={i}>
                             <CategoryCard name={item.name} image={item.image} slug={item.slug} />
                         </div>)
                     }

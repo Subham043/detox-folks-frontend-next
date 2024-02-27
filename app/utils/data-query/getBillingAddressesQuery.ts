@@ -52,7 +52,6 @@ export const useBillingAddressMutation:BillingAddressMutationHookType = () => {
                     }
                 }
             }
-            console.log(updateData)
             return data;
         });
     }

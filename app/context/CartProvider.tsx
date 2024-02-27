@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { CartType as CartDataType, CartChargeType, CartTaxType, CartCouponType } from "@/app/utils/types";
 import { useQuery } from "@tanstack/react-query";
-import { getCartQueryOptions } from "../utils/data-query/getCartQuery";
+import { getCartQueryOptions, useCartMutation } from "../utils/data-query/getCartQuery";
 
 export type CartType = {
     cart: CartDataType[];
@@ -20,7 +20,7 @@ export type CartType = {
 type CartContextType = {
     cart: CartType;
     cartLoading: boolean;
-    // updateCart: (cartData: CartType) => void;
+    updateCart: (cartData: CartType) => void;
     fetchCart: () => void;
 }
 
@@ -44,7 +44,7 @@ const cartDefaultValues: CartContextType = {
       total_price: 0, 
       total_tax: 0
     },
-    // updateCart: (cartData: CartType) => {},
+    updateCart: (cartData: CartType) => {},
     fetchCart: () => {},
     cartLoading: false
 };
@@ -59,15 +59,22 @@ export default function CartProvider({
     children: React.ReactNode;
   }>) {
     const { status } = useSession();
+    const {update} = useCartMutation();
     const {
         data,
         isLoading,
-        refetch
+        refetch,
     } = useQuery({
         queryKey: getCartQueryOptions.getCartQueryKey,
         queryFn: getCartQueryOptions.getCartQueryFn,
         enabled: status==='authenticated'
     })
+
+    const updateCart = async (cartData: CartType) => {
+      if(status==='authenticated'){
+        update(cartData);
+      }
+    }
 
     return <CartContext.Provider value={{
         cart: (status==='authenticated' && data) ? data : {
@@ -89,7 +96,8 @@ export default function CartProvider({
           total_tax: 0
         },
         cartLoading: isLoading,
-        fetchCart: refetch
+        fetchCart: refetch,
+        updateCart
       }}>
           {children}
       </CartContext.Provider>
