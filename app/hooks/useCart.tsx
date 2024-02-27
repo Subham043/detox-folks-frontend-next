@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useState } from "react";
 import { ProductPriceType } from "../utils/types";
 import { useSession } from "next-auth/react";

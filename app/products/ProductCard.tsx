@@ -1,14 +1,12 @@
 import Image from "next/image";
-import { FaBasketShopping } from "react-icons/fa6";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/ui/popover";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import ProductCardCartBtn from "./ProductCardCartBtn";
+import { useCart } from "../hooks/useCart";
+import { ProductType } from "../utils/types";
 
-type CategoryCardProps = {
-    name: string;
-    slug: string;
-    image: string;
-}
-export default function ProductCard({name, image, slug}:CategoryCardProps) {
+export default function ProductCard({ id, name, image, slug, product_prices, min_cart_quantity, cart_quantity_interval, cart_quantity_specification }:ProductType) {
+    const {quantity, cartLoading, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id, product_prices, min_cart_quantity, cart_quantity_interval});
     return <div className=" w-full px-3 text-center mb-3">
         <div className=" bg-white px-3 py-4 rounded-sm">
             <Image src={image} width={200} height={200} alt="" className="mx-auto mb-2" />
@@ -19,7 +17,7 @@ export default function ProductCard({name, image, slug}:CategoryCardProps) {
                 </PopoverTrigger>
                 <PopoverContent>Place content for the popover here.</PopoverContent>
             </Popover>
-            <button className=" mt-2 mx-auto w-full bg-black text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaBasketShopping /> <span>ADD</span></button>
+            <ProductCardCartBtn quantity={quantity} min_cart_quantity={min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
         </div>
     </div>
 }

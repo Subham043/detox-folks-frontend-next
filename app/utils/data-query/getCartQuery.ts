@@ -1,7 +1,7 @@
 import { axiosPublic } from "../axios";
 import { api_routes } from "../api_routes";
 import { CartType } from "@/app/context/CartProvider";
-import getQueryClient from "./getQueryClient";
+import { useQueryClient } from "@tanstack/react-query";
 
 type CartMutationHookType = () => {
     update: (updateData:CartType)=>void;
@@ -20,11 +20,19 @@ export const getCartQueryOptions = {
 }
 
 export const useCartMutation:CartMutationHookType = () => {
-    const queryClient = getQueryClient()
+    const queryClient = useQueryClient()
 
     const update:(updateData:CartType)=>void = (updateData:CartType) => {
-        queryClient.setQueryData<CartType | undefined>(getCartQueryKey, () => {
-            return {...updateData}
+        queryClient.setQueryData<CartType | undefined>(getCartQueryKey, (data) => {
+            console.log('cache: ', data)
+            console.log('updateData: ', updateData)
+            if(data){
+                const newUpdatedData = {...updateData}
+                return {
+                    ...newUpdatedData
+                }
+            }
+            return data;
         });
     }
 

@@ -30,7 +30,7 @@ export default function ProductSection() {
         <div className="w-full max-w-full flex flex-wrap justify-start items-start">
             {
                 (data ? data.pages : []).map((item, i) => <div className=" w-1/4 shrink-0" key={i}>
-                    <ProductCard name={item.name} image={item.image} slug={item.slug} />
+                    <ProductCard {...item} />
                 </div>)
             }
         </div>

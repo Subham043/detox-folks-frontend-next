@@ -59,7 +59,6 @@ export default function CartProvider({
     children: React.ReactNode;
   }>) {
     const { status } = useSession();
-    const {update} = useCartMutation();
     const {
         data,
         isLoading,
@@ -69,6 +68,8 @@ export default function CartProvider({
         queryFn: getCartQueryOptions.getCartQueryFn,
         enabled: status==='authenticated'
     })
+
+    const {update} = useCartMutation();
 
     const updateCart = async (cartData: CartType) => {
       if(status==='authenticated'){
