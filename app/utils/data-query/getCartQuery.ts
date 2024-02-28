@@ -24,8 +24,6 @@ export const useCartMutation:CartMutationHookType = () => {
 
     const update:(updateData:CartType)=>void = (updateData:CartType) => {
         queryClient.setQueryData<CartType | undefined>(getCartQueryKey, (data) => {
-            console.log('cache: ', data)
-            console.log('updateData: ', updateData)
             if(data){
                 const newUpdatedData = {...updateData}
                 return {

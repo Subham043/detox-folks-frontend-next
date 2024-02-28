@@ -73,12 +73,13 @@ export default function CartProvider({
 
     const updateCart = async (cartData: CartType) => {
       if(status==='authenticated'){
-        update(cartData);
+        const data = {...cartData}
+        update({...data});
       }
     }
 
     return <CartContext.Provider value={{
-        cart: (status==='authenticated' && data) ? data : {
+        cart: (status==='authenticated' && data) ? {...data} : {
           cart:[], 
           cart_charges:[], 
           tax: {

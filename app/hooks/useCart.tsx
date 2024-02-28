@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ProductPriceType } from "../utils/types";
 import { useSession } from "next-auth/react";
 import { useToast } from "./useToast";
@@ -33,18 +33,18 @@ export function useCart({
     const { status } = useSession();
     const { toastSuccess, toastError } = useToast();
 
-    const cart_product_item = useCallback(
-        () => cart.cart.filter(item=>item.product.id===id),
-        [id, cart.cart],
+    const cart_product_item = useMemo(
+      () => cart.cart.filter(item=>item.product.id===id),
+      [id, cart],
     )
 
     useEffect(() => {
-        setQuantity(cart_product_item().length===0 ? 0 : cart_product_item()[0].quantity)
+        setQuantity(cart_product_item.length===0 ? 0 : cart_product_item[0].quantity)
         return () => {}
-    }, [cart.cart, id])
+    }, [cart.cart, cart_product_item, id])
 
     const incrementQuantity = () => {
-        const cart_product = cart_product_item();
+        const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
         const price = price_des_quantity.filter(item=>(quantity+cart_quantity_interval)>=item.min_quantity).length>0 ? price_des_quantity.filter(item=>(quantity+cart_quantity_interval)>=item.min_quantity)[0] : price_des_quantity[price_des_quantity.length-1];
@@ -67,7 +67,7 @@ export function useCart({
     };
     
     const changeQuantity = (value:number) => {
-        const cart_product = cart_product_item();
+        const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
         const price = price_des_quantity.filter(item=>(value)>=item.min_quantity).length>0 ? price_des_quantity.filter(item=>(value)>=item.min_quantity)[0] : price_des_quantity[price_des_quantity.length-1];
@@ -81,7 +81,7 @@ export function useCart({
     };
     
     const decrementQuantity = () => {
-        const cart_product = cart_product_item();
+        const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
         const price = price_des_quantity.filter(item=>(Math.max(0, quantity-cart_quantity_interval))>=item.min_quantity).length>0 ? price_des_quantity.filter(item=>(Math.max(0, quantity-cart_quantity_interval))>=item.min_quantity)[0] : price_des_quantity[price_des_quantity.length-1];
@@ -126,7 +126,18 @@ export function useCart({
               });
               const old_cart = cart.cart;
               old_cart[cartItemIndex] = response.data.cart;
-              updateCart({cart: [...old_cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+              const updatedCartValue = {
+                cart: [...old_cart], 
+                cart_charges: [...response.data.cart_charges], 
+                coupon_applied: response.data.coupon_applied, 
+                tax: response.data.tax, 
+                cart_subtotal:response.data.cart_subtotal, 
+                discount_price: response.data.discount_price, 
+                total_charges: response.data.total_charges, 
+                total_price: response.data.total_price, 
+                total_tax: response.data.total_tax
+              }
+              updateCart({...updatedCartValue});
               // toastSuccess("Item quantity updated in cart.");
             } catch (error: any) {
               console.log(error);
