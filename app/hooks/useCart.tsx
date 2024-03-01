@@ -41,9 +41,85 @@ export function useCart({
     useEffect(() => {
         setQuantity(cart_product_item.length===0 ? 0 : cart_product_item[0].quantity)
         return () => {}
-    }, [cart.cart, cart_product_item, id])
+    }, [cart_product_item])
 
-    const incrementQuantity = () => {
+    const loginHandler = useCallback((msg:string) => {
+      toastError(msg);
+      // displayLogin();
+    }, [toastError])
+
+    const addItemCart = useCallback(async (data: CartInput) => {
+      if(status==='authenticated'){
+          setCartItemLoading(true);
+          try {
+            const response = await axiosPublic.post(api_routes.cart_create, data);
+            updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+            toastSuccess("Item added to cart.");
+          } catch (error: any) {
+            console.log(error);
+            toastError("Something went wrong. Please try again later!");
+          }finally{
+            setCartItemLoading(false);
+          }
+      }else{
+        loginHandler("Please log in to add the item to cart.");
+      }
+  }, [cart, loginHandler, status, toastError, toastSuccess, updateCart])
+  
+  const updateItemCart = useCallback(async ({cartItemId, ...data}: CartInput & {cartItemId:number}) => {
+      if(status==='authenticated'){
+          setCartItemLoading(true);
+          try {
+            const response = await axiosPublic.post(api_routes.cart_update + `/${cartItemId}`, data);
+            var cartItemIndex = cart.cart.findIndex(function(c) { 
+              return c.id == cartItemId; 
+            });
+            const old_cart = cart.cart;
+            old_cart[cartItemIndex] = response.data.cart;
+            const updatedCartValue = {
+              cart: [...old_cart], 
+              cart_charges: [...response.data.cart_charges], 
+              coupon_applied: response.data.coupon_applied, 
+              tax: response.data.tax, 
+              cart_subtotal:response.data.cart_subtotal, 
+              discount_price: response.data.discount_price, 
+              total_charges: response.data.total_charges, 
+              total_price: response.data.total_price, 
+              total_tax: response.data.total_tax
+            }
+            updateCart({...updatedCartValue});
+            // toastSuccess("Item quantity updated in cart.");
+          } catch (error: any) {
+            console.log(error);
+            toastError("Something went wrong. Please try again later!");
+          }finally{
+            setCartItemLoading(false);
+          }
+      }else{
+        loginHandler("Please log in to update the item in cart.");
+      }
+  }, [cart, loginHandler, status, toastError, updateCart])
+
+  const deleteItemCart = useCallback(async (data: number) => {
+    if(status==='authenticated'){
+        setCartItemLoading(true);
+        try {
+          const response = await axiosPublic.delete(api_routes.cart_delete + `/${data}`);
+            const removedItemArray = cart.cart.filter(item => item.id !== data);
+            updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
+            toastSuccess("Item removed from cart.");
+        } catch (error: any) {
+          console.log(error);
+          toastError("Something went wrong. Please try again later!");
+        }finally{
+          setCartItemLoading(false);
+        }
+    }else{
+      loginHandler("Please log in to remove the item from cart.");
+    }
+  }, [cart, loginHandler, status, toastError, toastSuccess, updateCart])
+
+    const incrementQuantity = useCallback(() => {
         const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
@@ -64,9 +140,9 @@ export function useCart({
                 amount: (quantity+cart_quantity_interval)*price.discount_in_price,
             })
         }
-    };
+    }, [addItemCart, cart_product_item, cart_quantity_interval, id, min_cart_quantity, product_prices, quantity, updateItemCart]);
     
-    const changeQuantity = (value:number) => {
+    const changeQuantity = useCallback((value:number) => {
         const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
@@ -78,9 +154,9 @@ export function useCart({
             quantity: value,
             amount: (value)*price.discount_in_price,
         })
-    };
+    }, [cart_product_item, id, product_prices, updateItemCart]);
     
-    const decrementQuantity = () => {
+    const decrementQuantity = useCallback(() => {
         const cart_product = cart_product_item;
         const priceArr = [...product_prices];
         const price_des_quantity = priceArr.sort(function(a, b){return b.min_quantity - a.min_quantity});
@@ -96,83 +172,7 @@ export function useCart({
         }else{
             deleteItemCart(cart_product[0].id)
         }
-    };
-
-    const addItemCart = async (data: CartInput) => {
-        if(status==='authenticated'){
-            setCartItemLoading(true);
-            try {
-              const response = await axiosPublic.post(api_routes.cart_create, data);
-              updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
-              toastSuccess("Item added to cart.");
-            } catch (error: any) {
-              console.log(error);
-              toastError("Something went wrong. Please try again later!");
-            }finally{
-              setCartItemLoading(false);
-            }
-        }else{
-          loginHandler("Please log in to add the item to cart.");
-        }
-    }
-    
-    const updateItemCart = async ({cartItemId, ...data}: CartInput & {cartItemId:number}) => {
-        if(status==='authenticated'){
-            setCartItemLoading(true);
-            try {
-              const response = await axiosPublic.post(api_routes.cart_update + `/${cartItemId}`, data);
-              var cartItemIndex = cart.cart.findIndex(function(c) { 
-                return c.id == cartItemId; 
-              });
-              const old_cart = cart.cart;
-              old_cart[cartItemIndex] = response.data.cart;
-              const updatedCartValue = {
-                cart: [...old_cart], 
-                cart_charges: [...response.data.cart_charges], 
-                coupon_applied: response.data.coupon_applied, 
-                tax: response.data.tax, 
-                cart_subtotal:response.data.cart_subtotal, 
-                discount_price: response.data.discount_price, 
-                total_charges: response.data.total_charges, 
-                total_price: response.data.total_price, 
-                total_tax: response.data.total_tax
-              }
-              updateCart({...updatedCartValue});
-              // toastSuccess("Item quantity updated in cart.");
-            } catch (error: any) {
-              console.log(error);
-              toastError("Something went wrong. Please try again later!");
-            }finally{
-              setCartItemLoading(false);
-            }
-        }else{
-          loginHandler("Please log in to update the item in cart.");
-        }
-    }
-    
-    const deleteItemCart = async (data: number) => {
-        if(status==='authenticated'){
-            setCartItemLoading(true);
-            try {
-              const response = await axiosPublic.delete(api_routes.cart_delete + `/${data}`);
-                const removedItemArray = cart.cart.filter(item => item.id !== data);
-                updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, tax: response.data.tax, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_tax: response.data.total_tax});
-                toastSuccess("Item removed from cart.");
-            } catch (error: any) {
-              console.log(error);
-              toastError("Something went wrong. Please try again later!");
-            }finally{
-              setCartItemLoading(false);
-            }
-        }else{
-          loginHandler("Please log in to remove the item from cart.");
-        }
-    }
-
-    const loginHandler = (msg:string) => {
-        toastError(msg);
-        // displayLogin();
-    }
+    }, [cart_product_item, cart_quantity_interval, deleteItemCart, id, product_prices, quantity, updateItemCart]);
 
     return {
         quantity,
