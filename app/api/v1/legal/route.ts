@@ -1,10 +1,10 @@
-import { api_routes } from "@/app/utils/api_routes";
-import { axiosPrivate } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/_libs/utils/axios";
+import { api } from "@/app/_libs/utils/routes/api";
 import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        const response = await axiosPrivate.get(api_routes.legal);
+        const response = await axiosPrivate.get(api.legal);
         return NextResponse.json({
             ...response.data
         }, {

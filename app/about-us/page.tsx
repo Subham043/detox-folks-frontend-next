@@ -1,11 +1,11 @@
-import Breadcrumb from "@/app/components/Breadcrumb";
-import AboutSection from "./AboutSection";
+import Breadcrumb from "@/app/_libs/components/Breadcrumb";
+import AboutSection from "./_components/AboutSection";
 import {
     dehydrate,
     HydrationBoundary,
 } from '@tanstack/react-query'
-import getQueryClient from "../utils/data-query/getQueryClient";
-import { getAboutQueryOptions } from "../utils/data-query/getAboutQuery";
+import getQueryClient from "../_libs/utils/query/getQueryClient";
+import { getAboutQueryOptions } from "../_libs/utils/query/getAboutQuery";
 
 export default async function About() {
     const queryClient = getQueryClient()

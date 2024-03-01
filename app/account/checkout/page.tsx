@@ -1,6 +1,6 @@
-import Breadcrumb from "@/app/components/Breadcrumb";
-import CheckoutCart from "./CheckoutCart";
-import CheckoutOrder from "./CheckoutOrder";
+import Breadcrumb from "@/app/_libs/components/Breadcrumb";
+import CheckoutCart from "./_components/CheckoutCart";
+import CheckoutOrder from "./_components/CheckoutOrder";
 
 export default function Checkout() {
     return <>

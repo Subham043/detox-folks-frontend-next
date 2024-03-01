@@ -1,10 +1,10 @@
-import { api_routes } from "@/app/utils/api_routes";
-import { axiosPrivate } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/_libs/utils/axios";
+import { api } from "@/app/_libs/utils/routes/api";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, { params }: { params: { slug: string } }) {
     try {
-        const response = await axiosPrivate.get(api_routes.legal + `/${params.slug}`);
+        const response = await axiosPrivate.get(api.legal + `/${params.slug}`);
         return NextResponse.json({
             ...response.data
         }, {

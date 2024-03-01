@@ -1,13 +1,13 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { api_routes } from "@/app/utils/api_routes";
-import { axiosPrivate } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/_libs/utils/axios";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { api } from "@/app/_libs/utils/routes/api";
+import { authOptions } from "@/app/_libs/utils/contants/authOptions";
 
 export async function GET() {
     const session = await getServerSession(authOptions)
     try {
-        const response = await axiosPrivate.get(api_routes.cart_all, {
+        const response = await axiosPrivate.get(api.cart_all, {
             headers: {
                 Authorization: session!==null ? `Bearer ${session.user.token}` : ''
             }

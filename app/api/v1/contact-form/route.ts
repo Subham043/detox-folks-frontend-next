@@ -1,11 +1,11 @@
-import { api_routes } from "@/app/utils/api_routes";
-import { axiosPrivate } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/_libs/utils/axios";
+import { api } from "@/app/_libs/utils/routes/api";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
     try {
         const body = await request.json()
-        const response = await axiosPrivate.post(api_routes.enquiry, {...body});
+        const response = await axiosPrivate.post(api.enquiry, {...body});
         return NextResponse.json({
             ...response.data
         }, {

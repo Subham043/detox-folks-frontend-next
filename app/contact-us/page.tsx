@@ -1,7 +1,7 @@
-import Breadcrumb from "@/app/components/Breadcrumb";
+import Breadcrumb from "@/app/_libs/components/Breadcrumb";
 import { MdLocationOn, MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
-import ContactCard from "./ContactCard";
-import ContactForm from "./ContactForm";
+import ContactCard from "./_components/ContactCard";
+import ContactForm from "./_components/ContactForm";
 
 export default function Contact() {
     return (

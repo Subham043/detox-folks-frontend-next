@@ -1,12 +1,12 @@
-import { api_routes } from "@/app/utils/api_routes";
-import { axiosPrivate } from "@/app/utils/axios";
+import { axiosPrivate } from "@/app/_libs/utils/axios";
+import { api } from "@/app/_libs/utils/routes/api";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
     const { search } = new URL(request.url)
 
     try {
-        const response = await axiosPrivate.get(api_routes.global_search + search);
+        const response = await axiosPrivate.get(api.global_search + search);
         return NextResponse.json({
             ...response.data
         }, {

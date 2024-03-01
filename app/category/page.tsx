@@ -1,7 +1,7 @@
-import Breadcrumb from "../components/Breadcrumb";
-import { getCategoriesQueryOptions } from "../utils/data-query/getCategoriesQuery";
-import getQueryClient from "../utils/data-query/getQueryClient";
-import Categories from "./Categories";
+import Breadcrumb from "../_libs/components/Breadcrumb";
+import { getCategoriesQueryOptions } from "../_libs/utils/query/getCategoriesQuery";
+import getQueryClient from "../_libs/utils/query/getQueryClient";
+import Categories from "./_components/Categories";
 import {
     dehydrate,
     HydrationBoundary,

@@ -1,7 +1,7 @@
 "use client";
 
-import CartProvider from "./context/CartProvider";
-import QueryProviders from "./home/QueryProviders";
+import CartProvider from "./_libs/context/CartProvider";
+import QueryProviders from "./_home/QueryProviders";
 import { SessionProvider } from "next-auth/react";
 
 export default function Providers({

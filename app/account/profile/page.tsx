@@ -1,8 +1,8 @@
-import Breadcrumb from "@/app/components/Breadcrumb";
-import ProfileForm from "./ProfileForm";
-import PasswordForm from "./PasswordForm";
-import BillingInformation from "@/app/components/BillingInformation";
-import BillingAddress from "@/app/components/BillingAddress";
+import Breadcrumb from "@/app/_libs/components/Breadcrumb";
+import ProfileForm from "./_components/ProfileForm";
+import PasswordForm from "./_components/PasswordForm";
+import BillingInformation from "@/app/_libs/components/BillingInformation";
+import BillingAddress from "@/app/_libs/components/BillingAddress";
 
 export default function Profile() {
     return <>

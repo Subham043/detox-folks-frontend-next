@@ -1,11 +1,11 @@
-import Banner from "@/app/components/Banner";
-import Categories from "./home/Categories";
+import Banner from "@/app/_libs/components/Banner";
+import Categories from "./_home/Categories";
 import {
   dehydrate,
   HydrationBoundary,
 } from '@tanstack/react-query'
-import getQueryClient from "./utils/data-query/getQueryClient";
-import { getCategoriesQueryOptions } from "./utils/data-query/getCategoriesQuery";
+import getQueryClient from "./_libs/utils/query/getQueryClient";
+import { getCategoriesQueryOptions } from "./_libs/utils/query/getCategoriesQuery";
 
 export default async function Home() {
   const queryClient = getQueryClient()

@@ -1,8 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import Breadcrumb from "@/app/components/Breadcrumb";
-import { getLegalQueryOptions } from "@/app/utils/data-query/getLegalQuery";
+import Breadcrumb from "@/app/_libs/components/Breadcrumb";
+import { getLegalQueryOptions } from "@/app/_libs/utils/query/getLegalQuery";
 
 type LegalSectionProps = { slug: string };
 
