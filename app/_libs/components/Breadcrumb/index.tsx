@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 type BreadcrumbProps = {
     name: string;

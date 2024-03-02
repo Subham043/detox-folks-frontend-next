@@ -1,4 +1,4 @@
-import { page } from "@/app/_libs/utils/routes/page";
+import { page } from "@/app/_libs/utils/routes/pages";
 import { GlobalSearchType } from "@/app/_libs/utils/types";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { CartType } from "@/app/_libs/utils/types";
 import Image from "next/image";
 import Link from "next/link";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 type CartCardPropsType = CartType;
 

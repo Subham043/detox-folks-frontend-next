@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { MdLocationOn, MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 export default function MainFooter() {
     const {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import SearchDialog from "../SearchDialog";
 import HeaderLoginButton from "./HeaderLoginButton";
 import HeaderCartButton from "./HeaderCartButton";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 export default function LogoHeader() {
     return <div className="container mx-auto border-b border-gray-200 border-solid">

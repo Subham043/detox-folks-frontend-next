@@ -15,7 +15,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { GrLogin } from "react-icons/gr";
 import { api } from "@/app/_libs/utils/routes/api";
-import { page } from "@/app/_libs/utils/routes/page";
+import { page } from "@/app/_libs/utils/routes/pages";
 
 const schema = yup
   .object({

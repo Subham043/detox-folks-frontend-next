@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation'
-import { page } from '../_libs/utils/routes/page';
+import { page } from '../_libs/utils/routes/pages';
 import { authOptions } from '../_libs/utils/contants/authOptions';
 
 export default async function AuthLayout({

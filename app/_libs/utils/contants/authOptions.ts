@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { JWT } from "next-auth/jwt";
 import { axiosPrivate } from "../axios";
 import { api } from "../routes/api";
-import { page } from "../routes/page";
+import { page } from "../routes/pages";
 
 
 export const authOptions: NextAuthOptions = {

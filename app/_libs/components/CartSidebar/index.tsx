@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaShoppingBasket } from "react-icons/fa";
 import CartCard from "./CartCard";
 import { useCartProvider } from "@/app/_libs/context/CartProvider";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 export default function CartSidebar() {
     const {cart} = useCartProvider()

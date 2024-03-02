@@ -12,7 +12,7 @@ import { useToast } from "@/app/_libs/hooks/useToast";
 import { MdEmail } from "react-icons/md";
 import { TbPasswordMobilePhone } from "react-icons/tb";
 import { api } from "@/app/_libs/utils/routes/api";
-import { page } from "@/app/_libs/utils/routes/page";
+import { page } from "@/app/_libs/utils/routes/pages";
 
 const schema = yup
   .object({

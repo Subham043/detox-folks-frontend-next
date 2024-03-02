@@ -13,7 +13,7 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrLogin } from "react-icons/gr";
 import { signIn } from "next-auth/react"
-import { page } from "@/app/_libs/utils/routes/page";
+import { page } from "@/app/_libs/utils/routes/pages";
 
 const schema = yup
     .object({

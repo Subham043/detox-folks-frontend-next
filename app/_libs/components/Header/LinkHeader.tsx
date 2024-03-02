@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 export default function LinkHeader() {
     return <div className="container mx-auto">

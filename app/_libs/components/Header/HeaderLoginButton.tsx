@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useRouter } from "next/navigation";
 import { useToast } from "@/app/_libs/hooks/useToast";
 import { useState } from "react";
-import { page } from "../../utils/routes/page";
+import { page } from "../../utils/routes/pages";
 
 export default function HeaderLoginButton() {
     const {status, data} = useSession();
