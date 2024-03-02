@@ -5,19 +5,21 @@ import { getQueryInitialPageParam, getQueryNextPageParam, getQuerySelect, getQue
 import { api } from "../routes/api";
 
 const getProductsQueryKey = ["products"];
-const getProductsInfiniteQueryKey = ["products_infinite"];
+const getProductsInfiniteQueryKey = (category_id:string, sub_category_id:string) => ["products_infinite", category_id, sub_category_id];
 const getProductsQueryInitialPageParam = getQueryInitialPageParam;
 
 const getProductsQueryFn: (params: {
-    pageParam?: any
+    pageParam?: any, category_id: string, sub_category_id:string
 })=>Promise<ProductResponseType> = async ({
-    pageParam = 1
+    pageParam = 1, category_id, sub_category_id
 }: {
-    pageParam?: any
+    pageParam?: any, category_id: string, sub_category_id:string
 }) => {
+    const category_filter = category_id.length>0 ? `&filter[has_categories]=${category_id}` : '';
+    const sub_category_filter = sub_category_id.length>0 ? `&filter[has_sub_categories]=${sub_category_id}` : '';
     const response = await axiosPublic.get(
         api.products +
-        `?page=${pageParam}&total=${getQueryTotalCount}&sort=name`
+        `?page=${pageParam}&total=${getQueryTotalCount}&sort=name${category_filter}${sub_category_filter}`
     );
     return response.data as ProductResponseType;
 }

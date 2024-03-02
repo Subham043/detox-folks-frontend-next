@@ -1,6 +1,6 @@
 import { IoInformationCircleSharp } from "react-icons/io5";
-import { Popover, PopoverContent, PopoverTrigger } from "../../_libs/components/ui/popover";
-import { CartType, ProductPriceType } from "../../_libs/utils/types";
+import { Popover, PopoverContent, PopoverTrigger } from "../../../_libs/components/ui/popover";
+import { CartType, ProductPriceType } from "../../../_libs/utils/types";
 import { FaCheck } from "react-icons/fa6";
 
 const PriceFactor = ({

@@ -1,15 +1,22 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getProductsQueryOptions } from "../../_libs/utils/query/getProductsQuery";
+import { getProductsQueryOptions } from "../../../_libs/utils/query/getProductsQuery";
 import ProductCard from "./ProductCard";
-import { SearchParamsType } from "../../_libs/utils/types";
 
 export default function ProductSection({
     searchParams
   }: {
-    searchParams?: SearchParamsType;
+    searchParams?: { 
+        category: string | undefined,
+        category_id: string | undefined,
+        sub_category: string | undefined,
+        sub_category_id: string | undefined,
+    };
   }) {
+
+    const category_id = searchParams && searchParams.category_id && searchParams.category_id.length!==0 ? searchParams.category_id : ''; 
+    const sub_category_id = searchParams && searchParams.sub_category_id && searchParams.sub_category_id.length!==0 ? searchParams.sub_category_id : '';
 
     const {
         fetchNextPage,
@@ -17,8 +24,8 @@ export default function ProductSection({
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey,
-        queryFn: (param) => getProductsQueryOptions.getProductsQueryFn({pageParam: param.pageParam}),
+        queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id),
+        queryFn: (param) => getProductsQueryOptions.getProductsQueryFn({pageParam: param.pageParam, category_id, sub_category_id}),
         initialPageParam: getProductsQueryOptions.getProductsQueryInitialPageParam,
         getNextPageParam: (lastPage, allPages) => getProductsQueryOptions.getProductsQueryNextPageParam(lastPage, allPages),
         select: (data) => getProductsQueryOptions.getProductsQuerySelect(data),

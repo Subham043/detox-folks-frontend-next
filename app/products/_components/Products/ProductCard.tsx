@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ProductCardCartBtn from "./ProductCardCartBtn";
-import { useCart } from "../../_libs/hooks/useCart";
-import { ProductType } from "../../_libs/utils/types";
+import { useCart } from "../../../_libs/hooks/useCart";
+import { ProductType } from "../../../_libs/utils/types";
 import ProductCardPrice from "./ProductCardPrice";
 
 export default function ProductCard({ id, name, image, slug, product_prices, min_cart_quantity, cart_quantity_interval, cart_quantity_specification }:ProductType) {
