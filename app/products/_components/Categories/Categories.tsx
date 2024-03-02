@@ -8,6 +8,7 @@ import { useSearchParams } from 'next/navigation'
 export default function Categories() {
     const searchParams = useSearchParams()
     const categoryParam = searchParams.get('category')
+    
     const {
         fetchNextPage,
         hasNextPage,
@@ -37,7 +38,7 @@ export default function Categories() {
                 
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
-                    <div className={` w-full shrink-0 ${(categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300`}>
+                    <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300`}>
                         <CategoryCard name='All' image='/disposables.webp' id='' slug="" />
                     </div>
                     {

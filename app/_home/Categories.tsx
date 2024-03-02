@@ -16,7 +16,7 @@ export default function Categories() {
             <div className="w-full flex flex-wrap justify-start items-start">
                 {
                     (data ? data.data : []).map((item, i) => <div className=" w-1/5" key={i}>
-                        <CategoryCard name={item.name} image={item.image} slug={item.slug} />
+                        <CategoryCard name={item.name} image={item.image} slug={item.slug} id={item.id} />
                     </div>)
                 }
             </div>

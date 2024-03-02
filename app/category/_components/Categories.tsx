@@ -32,7 +32,7 @@ export default function Categories() {
                     
                     {
                         (data ? data.pages : []).map((item, i) => <div className=" w-1/5" key={i}>
-                            <CategoryCard name={item.name} image={item.image} slug={item.slug} />
+                            <CategoryCard name={item.name} image={item.image} slug={item.slug} id={item.id} />
                         </div>)
                     }
                 </div>
