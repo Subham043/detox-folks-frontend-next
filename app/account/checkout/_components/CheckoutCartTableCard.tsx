@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function CheckoutCartTableCard() {
     return <>
-        <tr className="border-b dark:border-neutral-500">
+        <tr className=" border-b dark:border-neutral-500">
             <td className="whitespace-nowrap border-r px-6 py-4">
                 <div className="flex flex-wrap justify-start items-center gap-2">
                     <Image src='https://server-api.parcelcounter.in/storage/products/GSQFXX0vKcFDPhafuJDAHAMRGf1RGble0RL1uWfI.png' alt="" width={70} height={70} />

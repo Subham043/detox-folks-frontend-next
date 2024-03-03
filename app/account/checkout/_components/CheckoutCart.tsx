@@ -2,8 +2,8 @@ import CheckoutCartTableCard from "./CheckoutCartTableCard";
 
 export default function CheckoutCart() {
     return <>
-        <div className="flex flex-col overflow-x-auto">
-            <div className="sm:-mx-6 lg:-mx-8">
+        <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
+            <div className="sm:-mx-12 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                     <div className="overflow-x-auto">
                         <table className="min-w-full border text-left text-sm font-light">

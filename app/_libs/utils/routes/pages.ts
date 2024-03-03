@@ -13,6 +13,7 @@ const routes = {
     },
     account: {
         profile: '/account/profile',
+        checkout: '/account/checkout',
     }
 }
 

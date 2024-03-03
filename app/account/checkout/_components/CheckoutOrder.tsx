@@ -1,5 +1,3 @@
-import { BiSelectMultiple } from "react-icons/bi";
-
 export default function CheckoutOrder() {
     return <>
         <div className="flex flex-col overflow-x-auto">
@@ -41,7 +39,6 @@ export default function CheckoutOrder() {
                         </table>
                     </div>
                     <div className="text-center mt-2 px-1">
-                        <button className=" mb-2 w-full bg-black text-sm text-white text-center px-5 py-3 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><BiSelectMultiple /> <span>Place Order</span></button>
                         <p className=" text-sm text-red-400">
                             You have realized a minimum savings of 20% - 25% on your standard purchase when compared to retail price.
                         </p>
