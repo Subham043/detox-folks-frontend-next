@@ -9,6 +9,8 @@ import ShareProduct from "./ShareProduct";
 import { getProductQueryOptions } from "@/app/_libs/utils/query/getProductQuery";
 import { useCart } from "@/app/_libs/hooks/useCart";
 import ProductCardCartBtn from "./ProductCartBtn";
+import ProductSection from "../../_components/Products/ProductSection";
+import ProductSlider from "./ProductSlider";
 
 type ProductDetailCardProps = { slug: string };
 
@@ -28,7 +30,7 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
             <div className="container mx-auto">
                 <div className="flex flex-wrap justify-between items-start mt-10">
                     <div className=" w-[48%] px-10 py-10 bg-white rounded-md box-border sticky top-10">
-                        <iframe className="w-full border-none h-[350px]" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5026155884916!2d77.5720984750164!3d12.939657687372815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15d352e5431b%3A0x5f069f718b19f2e5!2sDetoxfolks%20Private%20Limited!5e0!3m2!1sen!2sin!4v1697790476586!5m2!1sen!2sin" aria-hidden="false" tabIndex={0}></iframe>
+                        <ProductSlider images={data!.product_images.map(item => item.image)} />
                     </div>
                     <div className=" w-[48%] px-10 py-10 bg-white rounded-md box-border">
                         <h3 className=" text-2xl text-black font-semibold mb-2">{data?.name}</h3>
@@ -39,6 +41,10 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                         <ShareProduct name={data!.name} slug={data!.slug} />
                         <ProductDetailTabs description={data ? data.description : ''} product_specifications={data ? data.product_specifications : []} />
                     </div>
+                </div>
+                <div className="w-full mt-8">
+                    <h5 className="my-5 text-center text-3xl font-semibold">Related Items</h5>
+                    <ProductSection searchParams={{category: undefined, category_id:data!.categories.map(item => item.id).join('_'), sub_category: undefined, sub_category_id:data!.sub_categories.map(item => item.id).join('_')}} />
                 </div>
             </div>
         </div>
