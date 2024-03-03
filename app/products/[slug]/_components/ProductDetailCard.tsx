@@ -8,6 +8,7 @@ import ProductSubCategories from "./ProductSubCategories";
 import ShareProduct from "./ShareProduct";
 import { getProductQueryOptions } from "@/app/_libs/utils/query/getProductQuery";
 import { useCart } from "@/app/_libs/hooks/useCart";
+import ProductCardCartBtn from "./ProductCartBtn";
 
 type ProductDetailCardProps = { slug: string };
 
@@ -19,8 +20,9 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
         queryKey: getProductQueryOptions.getProductQueryKey(slug),
         queryFn: () => getProductQueryOptions.getProductQueryFn(slug),
     })
-    console.log(data)
-    const {quantity, cartLoading, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: data!.id, product_prices: data!.product_prices, min_cart_quantity: data!.min_cart_quantity, cart_quantity_interval: data!.cart_quantity_interval});
+
+    const {quantity, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: data!.id, product_prices: data!.product_prices, min_cart_quantity: data!.min_cart_quantity, cart_quantity_interval: data!.cart_quantity_interval});
+    
     return <>
         <div className="w-full py-10">
             <div className="container mx-auto">
@@ -31,6 +33,7 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                     <div className=" w-[48%] px-10 py-10 bg-white rounded-md box-border">
                         <h3 className=" text-2xl text-black font-semibold mb-2">{data?.name}</h3>
                         <ProductPrice product_prices={data!.product_prices} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
+                        <ProductCardCartBtn quantity={quantity} min_cart_quantity={data!.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
                         <ProductCategories categories={data ? data.categories : []} />
                         <ProductSubCategories sub_categories={data ? data.sub_categories : []} />
                         <ShareProduct name={data!.name} slug={data!.slug} />
