@@ -15,7 +15,7 @@ const PriceFactor = ({
 }) => {
     return <Popover>
         <PopoverTrigger asChild>
-            <button className=" text-neutral-600 font-medium w-full flex justify-center items-center gap-1"><span>₹{price} / {cart_quantity_specification}</span> <IoInformationCircleSharp /></button>
+            <button className=" text-neutral-600 font-medium w-full flex justify-center items-center gap-1"><span>₹{price} / {cart_quantity_specification}</span> <IoInformationCircleSharp className="mt-0.5" /></button>
         </PopoverTrigger>
         <PopoverContent className="p-0">
             <div className="p-1">
@@ -29,8 +29,8 @@ const PriceFactor = ({
                             {
                                 product_prices.map((item, i) => {
                                     return cart_product_item.length>0 && item.min_quantity===cart_product_item[0].product_price.min_quantity ? 
-                                    <li key={i}><p className="text-sm flex gap-1 items-start text-red-400"><FaCheck className=" text-base mt-1" /> <span>Buy {item.min_quantity}  {cart_quantity_specification} or more at ₹{item.discount_in_price} / {cart_quantity_specification}</span></p></li>:
-                                    <li key={i}><p className="text-sm flex gap-1 items-start"><IoInformationCircleSharp className=" text-base mt-1" /> <span>Buy {item.min_quantity}  {cart_quantity_specification} or more at ₹{item.discount_in_price} / {cart_quantity_specification}</span></p></li>
+                                    <li key={i}><p className="text-sm flex gap-1 items-start text-red-400"><FaCheck className=" text-base mt-0.5" /> <span>Buy {item.min_quantity}  {cart_quantity_specification} or more at ₹{item.discount_in_price} / {cart_quantity_specification}</span></p></li>:
+                                    <li key={i}><p className="text-sm flex gap-1 items-start"><IoInformationCircleSharp className=" text-base mt-0.5" /> <span>Buy {item.min_quantity}  {cart_quantity_specification} or more at ₹{item.discount_in_price} / {cart_quantity_specification}</span></p></li>
                                 }) 
                             }
                         </ul>

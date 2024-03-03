@@ -38,7 +38,7 @@ export default function SearchDialog(){
         setSearch(e);
     }, 500);
 
-    return <Dialog onOpenChange={(open)=>setIsOpen(open)}>
+    return <Dialog open={isOpen} onOpenChange={(open)=>{setIsOpen(open); setSearch('')}}>
         <DialogTrigger asChild>
             <button className=" flex justify-between items-center flex-1 px-3 py-3 rounded-lg border-black border-solid border bg-gray-100">
                 <p className=" text-gray-600 text-sm">Search <ReactTyped strings={TypedString} typeSpeed={60} backSpeed={70} loop /></p>
@@ -61,7 +61,7 @@ export default function SearchDialog(){
                         scrollableTarget="searchCardBodyDiv"
                     >
                         {
-                            (data ? data.pages : []).map((item, i) => <SearchCard {...item} key={i} />)
+                            (data ? data.pages : []).map((item, i) => <SearchCard {...item} setIsOpen={setIsOpen} key={i} />)
                         }
                     </InfiniteScroll>
                     {(data ? data.pages : []).length===0 && <p className="w-full text-center">Type to search <ReactTyped strings={TypedString} typeSpeed={60} backSpeed={70} loop /></p>}
