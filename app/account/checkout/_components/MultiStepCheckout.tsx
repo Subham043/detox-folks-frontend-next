@@ -9,6 +9,9 @@ import BillingInformation from '@/app/_libs/components/BillingInformation';
 import BillingAddress from '@/app/_libs/components/BillingAddress';
 import PaymantCard from './PaymantCard';
 import { useCartProvider } from '@/app/_libs/context/CartProvider';
+import { axiosPublic } from '@/app/_libs/utils/axios';
+import { api } from '@/app/_libs/utils/routes/api';
+import { useToast } from '@/app/_libs/hooks/useToast';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -160,6 +163,8 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
 }
 
 export default function MultiStepCheckout() {
+    const {fetchCart} = useCartProvider()
+    const {toastSuccess, toastError} = useToast();
     const [activeStep, setActiveStep] = useState<number>(0);
     const [selectedBillingInformation, setSelectedBillingInformation] = useState<number|undefined>();
     const [selectedBillingAddress, setSelectedBillingAddress] = useState<number|undefined>();
@@ -168,7 +173,34 @@ export default function MultiStepCheckout() {
     const [includeGst, setIncludeGst] = useState<boolean>(false);
 
     const paymentHandler = async () => {
-
+        try {
+            const response = await axiosPublic.post(api.place_order, {
+              billing_address_id: selectedBillingAddress, 
+              billing_information_id: selectedBillingInformation, 
+              order_mode: 'WEBSITE', 
+              mode_of_payment: selectedPaymentMode, 
+              accept_terms: acceptTerms ? 1 : 0, 
+              include_gst: includeGst ? 1 : 0
+            });
+            if(selectedPaymentMode==='Cash On Delivery'){
+              fetchCart();
+              toastSuccess(response.data.message);
+            //   router.push('/orders');
+            }
+            if(selectedPaymentMode==='Online - Phonepe'){
+              window.open(response.data?.order?.payment?.phone_pe_payment_link);
+            }
+            if(selectedPaymentMode==='Online - Razorpay'){
+              window.open(response.data?.order?.payment?.razorpay_payment_link);
+            }
+          } catch (error: any) {
+            console.log(error);
+            if (error?.response?.data?.message) {
+              toastError(error?.response?.data?.message);
+            }
+          } finally {
+            // setLoading(false);
+          }
     }
 
     return <div className='w-full'>

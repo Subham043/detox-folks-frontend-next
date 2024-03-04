@@ -17,12 +17,6 @@ export default function BillingAddressSection({selectionAvailable, selectedItem,
         if(selectionAvailable && setSelectedItem && data && data.data.length>0){
             setSelectedItem(data.data[0].id)
         }
-      
-        return () => {
-            if(selectionAvailable && setSelectedItem){
-                setSelectedItem(undefined)
-            }
-        }
     }, [data, selectionAvailable])
 
     return <div className=" flex flex-wrap gap-5 justify-between items-start mb-5">
