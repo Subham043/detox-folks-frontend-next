@@ -33,16 +33,13 @@ const CheckOutStep = ({setActiveStep}:{setActiveStep: Dispatch<SetStateAction<nu
         <div className=' px-5'>
             <CheckoutCart />
         </div>
-        <div className=' border-t border-dashed border-gray-400 pt-3'>
+        {cart.cart.length>0 && <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-5 pb-5'>
-                {
-                    cart.cart.length>0 && 
-                    <div className={` flex flex-wrap justify-end items-center mt-2`}>
-                        <button onClick={()=>setActiveStep(1)} className=" w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
-                    </div>
-                }
+                <div className={` flex flex-wrap justify-end items-center mt-2`}>
+                    <button onClick={()=>setActiveStep(1)} className=" w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
+                </div>
             </div>
-        </div>
+        </div>}
     </div>
 }
 
