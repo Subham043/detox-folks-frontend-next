@@ -14,6 +14,7 @@ const routes = {
     account: {
         profile: '/account/profile',
         checkout: '/account/checkout',
+        orders: '/account/orders',
     }
 }
 

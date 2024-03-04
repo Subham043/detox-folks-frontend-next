@@ -62,7 +62,7 @@ export default function HeaderLoginButton() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuItem><Link href={page.account.profile} className="w-full">Profile</Link></DropdownMenuItem>
-                    <DropdownMenuItem><Link href={page.account.profile} className="w-full">Orders</Link></DropdownMenuItem>
+                    <DropdownMenuItem><Link href={page.account.orders} className="w-full">Orders</Link></DropdownMenuItem>
                     <DropdownMenuItem><button onClick={onLogout} className="w-full text-left" disabled={loading}>Logout</button></DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
