@@ -4,14 +4,14 @@ import { BillingInformationType } from "@/app/_libs/utils/types";
 import { FaUser } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { axiosPublic } from "@/app/_libs/utils/axios";
 import { useToast } from "@/app/_libs/hooks/useToast";
 import EditBillingInformationDialog from "./EditBillingInformationDialog";
 import { useBillingInformationMutation } from "@/app/_libs/utils/query/getBillingInformationsQuery";
 import { api } from "../../utils/routes/api";
 
-export default function BillingInformationCard(props:BillingInformationType){
+export default function BillingInformationCard(props:BillingInformationType & {selectionAvailable:boolean, selectedItem?:number|undefined, setSelectedItem?:Dispatch<SetStateAction<number|undefined>>}){
     const [loading, setLoading] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const {toastError, toastSuccess} = useToast();
@@ -31,7 +31,13 @@ export default function BillingInformationCard(props:BillingInformationType){
         }
     }
 
-    return <div className="py-2 px-3 bg-gray-100 rounded-sm">
+    const selectionHandler = (data:number) => {
+        if(props.selectionAvailable && props.setSelectedItem){
+            props.setSelectedItem(data)
+        }
+    }
+
+    return <button onClick={()=>selectionHandler(props.id)} className={`py-2 px-3 bg-gray-100 rounded-sm text-left w-full ${(props.selectionAvailable && props.selectedItem && props.selectedItem===props.id) ? 'border border-dashed border-gray-500' : 'cursor-pointer'} `}>
         <div className=" flex justify-between items-start gap-1">
             <h3 className="text-lg font-semibold flex gap-2 items-start"><FaUser className=" mt-1" /> {props.name}</h3>
             <DropdownMenu>
@@ -39,6 +45,7 @@ export default function BillingInformationCard(props:BillingInformationType){
                     <BsThreeDots />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
+                    {props.selectionAvailable && <DropdownMenuItem><button disabled={!props.selectionAvailable} onClick={()=>selectionHandler(props.id)} className="w-full text-left">Select</button></DropdownMenuItem>}
                     <DropdownMenuItem><button className="w-full text-left" onClick={()=>setIsOpen(true)}>Edit</button></DropdownMenuItem>
                     <DropdownMenuItem><button disabled={loading} onClick={deleteHandler} className="w-full text-left">Delete</button></DropdownMenuItem>
                 </DropdownMenuContent>
@@ -48,5 +55,5 @@ export default function BillingInformationCard(props:BillingInformationType){
         <p>{props.phone}</p>
         <p>{props.gst}</p>
         <EditBillingInformationDialog isOpen={isOpen} setIsOpen={setIsOpen} data={props} />
-    </div>
+    </button>
 }

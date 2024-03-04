@@ -1,6 +1,9 @@
+import { useCartProvider } from "@/app/_libs/context/CartProvider";
 import CheckoutCartTableCard from "./CheckoutCartTableCard";
 
 export default function CheckoutCart() {
+    const {cart} = useCartProvider()
+
     return <>
         <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
             <div className="sm:-mx-12 lg:-mx-8">
@@ -15,11 +18,9 @@ export default function CheckoutCart() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <CheckoutCartTableCard />
-                                <CheckoutCartTableCard />
-                                <CheckoutCartTableCard />
-                                <CheckoutCartTableCard />
-                                <CheckoutCartTableCard />
+                                {
+                                    cart.cart.map((item,i) => <CheckoutCartTableCard {...item} key={i} />)
+                                }
                             </tbody>
                         </table>
                     </div>

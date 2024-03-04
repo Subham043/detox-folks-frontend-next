@@ -1,4 +1,10 @@
+"use client";
+
+import { useCartProvider } from "@/app/_libs/context/CartProvider"
+
 export default function CheckoutOrder() {
+    const {cart} = useCartProvider()
+
     return <>
         <div className="flex flex-col overflow-x-auto">
             <div className="sm:-mx-6 lg:-mx-8">
@@ -16,7 +22,7 @@ export default function CheckoutOrder() {
                                         <h3 className=" text-base font-semibold">Sub Total</h3>
                                     </td>
                                     <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                        <h3 className=" text-base font-semibold">₹73</h3>
+                                        <h3 className=" text-base font-semibold">₹{cart.cart_subtotal}</h3>
                                     </td>
                                 </tr>
                                 <tr className="border dark:border-neutral-500">
@@ -32,7 +38,7 @@ export default function CheckoutOrder() {
                                         <h3 className=" text-base font-semibold">Total</h3>
                                     </td>
                                     <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                        <h3 className=" text-base font-semibold">₹73</h3>
+                                        <h3 className=" text-base font-semibold">₹{cart.total_price}</h3>
                                     </td>
                                 </tr>
                             </tbody>
