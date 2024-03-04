@@ -11,7 +11,7 @@ export default async function Category() {
     const queryClient = getQueryClient()
 
     await queryClient.prefetchInfiniteQuery({
-        queryKey: getCategoriesQueryOptions.getCategoriesQueryKey,
+        queryKey: getCategoriesQueryOptions.getCategoriesInfiniteQueryKey,
         queryFn: () => getCategoriesQueryOptions.getCategoriesQueryFn({pageParam: 1}),
         initialPageParam: getCategoriesQueryOptions.getCategoriesQueryInitialPageParam,
     })

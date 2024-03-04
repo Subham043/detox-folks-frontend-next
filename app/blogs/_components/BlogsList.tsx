@@ -11,7 +11,7 @@ export default function BlogsList() {
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: getBlogsQueryOptions.getBlogsQueryKey,
+        queryKey: getBlogsQueryOptions.getBlogsInfiniteQueryKey,
         queryFn: (param) => getBlogsQueryOptions.getBlogsQueryFn({pageParam: param.pageParam}),
         initialPageParam: getBlogsQueryOptions.getBlogsQueryInitialPageParam,
         getNextPageParam: (lastPage, allPages) => getBlogsQueryOptions.getBlogsQueryNextPageParam(lastPage, allPages),

@@ -4,11 +4,10 @@ import { api } from "@/app/_libs/utils/routes/api";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(request: Request, { params }: { params: { slug: string } }) {
     const session = await getServerSession(authOptions)
-    const { search } = new URL(request.url)
     try {
-        const response = await axiosPrivate.get(api.place_order_paginate + search, {
+        const response = await axiosPrivate.get(api.place_order_detail + `/${params.slug}`, {
             headers: {
                 Authorization: session!==null ? `Bearer ${session.user.token}` : ''
             }

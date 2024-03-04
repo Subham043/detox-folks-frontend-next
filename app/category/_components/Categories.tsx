@@ -11,7 +11,7 @@ export default function Categories() {
         isFetchingNextPage,
         data
     } = useInfiniteQuery({
-        queryKey: getCategoriesQueryOptions.getCategoriesQueryKey,
+        queryKey: getCategoriesQueryOptions.getCategoriesInfiniteQueryKey,
         queryFn: (param) => getCategoriesQueryOptions.getCategoriesQueryFn({pageParam: param.pageParam}),
         initialPageParam: getCategoriesQueryOptions.getCategoriesQueryInitialPageParam,
         getNextPageParam: (lastPage, allPages) => getCategoriesQueryOptions.getCategoriesQueryNextPageParam(lastPage, allPages),

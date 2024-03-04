@@ -11,7 +11,7 @@ export default async function Blogs() {
     const queryClient = getQueryClient()
 
     await queryClient.prefetchInfiniteQuery({
-        queryKey: getBlogsQueryOptions.getBlogsQueryKey,
+        queryKey: getBlogsQueryOptions.getBlogsInfiniteQueryKey,
         queryFn: () => getBlogsQueryOptions.getBlogsQueryFn({pageParam: 1}),
         initialPageParam: getBlogsQueryOptions.getBlogsQueryInitialPageParam,
     })

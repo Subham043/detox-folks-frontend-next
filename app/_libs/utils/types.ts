@@ -372,6 +372,7 @@ export interface OrderProductType<> {
     quantity: number;
     slug: string
     brief_description: string;
+    unit: string;
     name: string;
     image: string;
     created_at: string;
@@ -381,6 +382,7 @@ export interface OrderProductType<> {
 export interface OrderType<> {
     id: number;
     name: string;
+    order_mode: string;
     email: string;
     phone: number;
     city: string;

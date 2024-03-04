@@ -16,7 +16,7 @@ export default async function BlogDetail({ params }: { params: { slug: string } 
     })
 
     await queryClient.prefetchInfiniteQuery({
-        queryKey: getBlogsQueryOptions.getBlogsQueryKey,
+        queryKey: getBlogsQueryOptions.getBlogsInfiniteQueryKey,
         queryFn: () => getBlogsQueryOptions.getBlogsQueryFn({pageParam: 1}),
         initialPageParam: getBlogsQueryOptions.getBlogsQueryInitialPageParam,
     })
