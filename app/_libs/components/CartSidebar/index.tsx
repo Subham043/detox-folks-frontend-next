@@ -17,7 +17,10 @@ export default function CartSidebar() {
             </div>
             <div className=" flex-1 max-h-[80vh] overflow-hidden overflow-y-auto">
                 {
-                    cart.cart.map((item, i) => <CartCard {...item} key={i} />)
+                    cart.cart.length>0 ? cart.cart.map((item, i) => <CartCard {...item} key={i} />):
+                    <div className=" text-center">
+                        <p>No items are there in cart. Kindly add one!</p>
+                    </div>
                 }
             </div>
             <div className=" text-center w-full px-3 py-3 border-t border-solid border-gray-300">

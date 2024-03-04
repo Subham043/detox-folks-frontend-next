@@ -5,6 +5,7 @@ export default function CheckoutCart() {
     const {cart} = useCartProvider()
 
     return <>
+        <h3 className=" text-xl text-black font-semibold mb-5">Order Summary</h3>
         <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
             <div className="sm:-mx-12 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
@@ -19,7 +20,12 @@ export default function CheckoutCart() {
                             </thead>
                             <tbody>
                                 {
-                                    cart.cart.map((item,i) => <CheckoutCartTableCard {...item} key={i} />)
+                                    cart.cart.length>0 ? cart.cart.map((item,i) => <CheckoutCartTableCard {...item} key={i} />) :
+                                    <tr className=" border-b dark:border-neutral-500">
+                                        <td className="whitespace-nowrap border-r px-6 py-4 text-center" colSpan={3}>
+                                           <p>No items are there in cart. Kindly add one!</p>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
