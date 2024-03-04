@@ -6,7 +6,7 @@ import {
 import LegalSection from "./LegalSection";
 import { getLegalQueryOptions } from "@/app/_libs/utils/query/getLegalQuery";
 
-export default async function About({ params }: { params: { slug: string } }) {
+export default async function Legal({ params }: { params: { slug: string } }) {
     const queryClient = getQueryClient()
 
     await queryClient.prefetchQuery({
