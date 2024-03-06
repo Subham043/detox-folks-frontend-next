@@ -31,7 +31,6 @@ export default function PopularBlogs() {
                 refreshFunction={fetchNextPage}
                 className="w-full max-w-full"
                 scrollableTarget="popularBlogCardBodyDiv"
-                
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                     {

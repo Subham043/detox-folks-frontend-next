@@ -19,7 +19,7 @@ export default function BlogsList() {
     })
 
     return <div className="w-full py-10">
-        <div className="container mx-auto">
+        <div className="container mx-auto" id="blogListBodyDiv">
             <InfiniteScroll
                 dataLength={data ? data.pages.length : 0}
                 next={fetchNextPage}
@@ -27,6 +27,7 @@ export default function BlogsList() {
                 loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
                 refreshFunction={fetchNextPage}
                 className="w-full"
+                scrollableTarget="blogListBodyDiv"
             >
                 <div className="w-full flex flex-wrap justify-center items-start">
                     

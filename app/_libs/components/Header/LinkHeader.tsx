@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
 import { page } from "../../utils/routes/pages";
+import SearchDialog from "../SearchDialog";
+import HeaderCartButton from "./HeaderCartButton";
 
 export default function LinkHeader() {
     return <div className="container mx-auto">
-        <div className="w-full flex flex-wrap justify-between items-center gap-3 py-3">
+        <div className="w-full flex-wrap justify-between items-center gap-3 py-3 hidden lg:flex">
             <div className="flex flex-wrap items-center gap-5">
                 <Link className=" font-semibold" href={page.home}>Home</Link>
                 <Link className=" font-semibold" href={page.about}>About Us</Link>
@@ -28,6 +30,10 @@ export default function LinkHeader() {
                     </div>
                 </div>
             </div>
+        </div>
+        <div className="w-full flex-wrap justify-between items-center gap-3 py-3 flex lg:hidden">
+            <SearchDialog />
+            <HeaderCartButton />
         </div>
     </div>
 }

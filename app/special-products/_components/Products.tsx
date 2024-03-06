@@ -24,21 +24,23 @@ export default function Products({
         select: (data) => getProductsQueryOptions.getProductsQuerySelect(data),
     })
 
-    return <InfiniteScroll
-        dataLength={data ? data.pages.length : 0}
-        next={fetchNextPage}
-        hasMore={hasNextPage ? hasNextPage: false}
-        loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-        refreshFunction={fetchNextPage}
-        className="w-full max-w-full"
-        
-    >
-        <div className="w-full max-w-full flex flex-wrap justify-start items-start">
-            {
-                (data ? data.pages : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5 shrink-0" key={i}>
-                    <ProductCard {...item} />
-                </div>)
-            }
-        </div>
-    </InfiniteScroll>
+    return <div className="w-full" id="specialProductPageBodyDiv">
+        <InfiniteScroll
+            dataLength={data ? data.pages.length : 0}
+            next={fetchNextPage}
+            hasMore={hasNextPage ? hasNextPage: false}
+            loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
+            refreshFunction={fetchNextPage}
+            className="w-full max-w-full"
+            scrollableTarget="specialProductPageBodyDiv"
+        >
+            <div className="w-full max-w-full flex flex-wrap justify-start items-start">
+                {
+                    (data ? data.pages : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5 shrink-0" key={i}>
+                        <ProductCard {...item} />
+                    </div>)
+                }
+            </div>
+        </InfiniteScroll>
+    </div>
 }

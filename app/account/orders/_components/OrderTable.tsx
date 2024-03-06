@@ -20,7 +20,7 @@ export default function OrderTable() {
 
     return <>
         <div className="w-full py-10">
-            <div className="container mx-auto">
+            <div className="container mx-auto" id="orderTableBodyDiv">
                 <InfiniteScroll
                     dataLength={data ? data.pages.length : 0}
                     next={fetchNextPage}
@@ -28,6 +28,7 @@ export default function OrderTable() {
                     loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
                     refreshFunction={fetchNextPage}
                     className="w-full"
+                    scrollableTarget="orderTableBodyDiv"
                 >
                     <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
                         <div className="sm:-mx-12 lg:-mx-8">
