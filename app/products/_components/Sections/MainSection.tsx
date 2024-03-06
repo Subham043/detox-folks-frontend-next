@@ -37,16 +37,16 @@ export default async function MainSection({
             const categoryData = categoryQueryData as CategoryType;
             if(categoryData.sub_categories.length===0){
                 await queryClient.prefetchInfiniteQuery({
-                    queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id),
-                    queryFn: () => getProductsQueryOptions.getProductsQueryFn({pageParam: 1, category_id, sub_category_id}),
+                    queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id, ''),
+                    queryFn: () => getProductsQueryOptions.getProductsQueryFn({pageParam: 1, category_id, sub_category_id, custom_filter:''}),
                     initialPageParam: getProductsQueryOptions.getProductsQueryInitialPageParam,
                 })
             }
         }
     }else{
         await queryClient.prefetchInfiniteQuery({
-            queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id),
-            queryFn: () => getProductsQueryOptions.getProductsQueryFn({pageParam: 1, category_id, sub_category_id}),
+            queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id, ''),
+            queryFn: () => getProductsQueryOptions.getProductsQueryFn({pageParam: 1, category_id, sub_category_id, custom_filter:''}),
             initialPageParam: getProductsQueryOptions.getProductsQueryInitialPageParam,
         })
     }
