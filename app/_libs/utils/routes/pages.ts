@@ -3,6 +3,7 @@ const routes = {
     about: '/about-us',
     category: '/category',
     products: '/products',
+    special_products: '/special-products',
     blogs: '/blogs',
     contact: '/contact-us',
     legal: '/legal',

@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query'
 import getQueryClient from "./_libs/utils/query/getQueryClient";
 import { getCategoriesQueryOptions } from "./_libs/utils/query/getCategoriesQuery";
+import ProductSection from "./_home/ProductSection";
 
 export default async function Home() {
   const queryClient = getQueryClient()
@@ -20,6 +21,9 @@ export default async function Home() {
         <HydrationBoundary state={dehydrate(queryClient)}>
           <Categories />
         </HydrationBoundary>
+        <ProductSection slug="is_featured" />
+        <ProductSection slug="is_new" />
+        <ProductSection slug="is_on_sale" />
       </>
   );
 }

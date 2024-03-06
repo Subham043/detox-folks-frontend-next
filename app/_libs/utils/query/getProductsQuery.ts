@@ -4,7 +4,7 @@ import { ProductResponseType } from "../types";
 import { getQueryInitialPageParam, getQueryNextPageParam, getQuerySelect, getQueryTotalCount } from "../contants/queryOptions";
 import { api } from "../routes/api";
 
-const getProductsQueryKey = ["products"];
+const getProductsQueryKey = (filter:string) => ["products", filter];
 const getProductsInfiniteQueryKey = (category_id:string, sub_category_id:string, custom_filter:string) => ["products_infinite", category_id, sub_category_id, custom_filter];
 const getProductsQueryInitialPageParam = getQueryInitialPageParam;
 
