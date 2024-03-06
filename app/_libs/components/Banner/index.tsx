@@ -4,10 +4,13 @@ import Slider from "react-slick";
 
 const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    autoplaySpeed: 3000,
+    autoplay: true,
+    pauseOnHover: true
 };
 
 const banners = [
