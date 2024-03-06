@@ -18,8 +18,12 @@ export default async function Category() {
 
     return <>
         <Breadcrumb name="Category" />
-        <HydrationBoundary state={dehydrate(queryClient)}>
-            <Categories />
-        </HydrationBoundary>
+        <div className="w-full py-10">
+            <div className="container mx-auto">
+                <HydrationBoundary state={dehydrate(queryClient)}>
+                    <Categories />
+                </HydrationBoundary>
+            </div>
+        </div>
     </>
 }

@@ -16,7 +16,7 @@ export default function OrderDetail({ slug }: {  slug: number }) {
                 <div className="w-full max-w-full flex flex-wrap justify-center items-center">
                     <div className=" w-full bg-white border border-neutral-200 rounded-md px-3 py-3">
                         <div className=" flex flex-wrap justify-between items-start mb-5">
-                            <div className="w-1/3 pr-3">
+                            <div className="w-full mb-5 lg:mb-0 lg:w-1/3 lg:pr-3">
                                 <div className="w-full bg-neutral-100 rounded-md px-3 py-3">
                                     <table className="w-full">
                                         <tbody className="w-full">
@@ -40,7 +40,7 @@ export default function OrderDetail({ slug }: {  slug: number }) {
                                     </table>
                                 </div>
                             </div>
-                            <div className="w-1/3">
+                            <div className="w-full mb-5 lg:mb-0 lg:w-1/3">
                                 <div className="w-full bg-neutral-100 rounded-md px-3 py-3">
                                     <table className="w-full">
                                         <tbody className="w-full">
@@ -68,7 +68,7 @@ export default function OrderDetail({ slug }: {  slug: number }) {
                                     </table>
                                 </div>
                             </div>
-                            <div className="w-1/3 pl-3">
+                            <div className="w-full lg:w-1/3 lg:pl-3">
                                 <div className="w-full bg-neutral-100 rounded-md px-3 py-3">
                                     <h4 className="text-base font-semibold mb-2">Delivery Location</h4>
                                     <p className="text-neutral-600 mb-2">{data?.name}<br/> {data?.email}, {data?.phone}</p>
@@ -76,7 +76,7 @@ export default function OrderDetail({ slug }: {  slug: number }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
+                        <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
                             <div className="sm:-mx-12 lg:-mx-8">
                                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                                     <div className="overflow-x-auto">

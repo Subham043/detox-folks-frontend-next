@@ -24,7 +24,7 @@ export default function Categories() {
             </div>
             <div className="w-full flex flex-wrap justify-start items-start">
                 {
-                    (data ? data.data : []).map((item, i) => <div className=" w-1/5" key={i}>
+                    (data ? data.data : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5" key={i}>
                         <CategoryCard name={item.name} image={item.image} slug={item.slug} id={item.id} />
                     </div>)
                 }

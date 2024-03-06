@@ -31,7 +31,7 @@ export default function BlogsList() {
                 <div className="w-full flex flex-wrap justify-center items-start">
                     
                     {
-                        (data ? data.pages : []).map((item, i) => <div className=" w-1/4" key={i}>
+                        (data ? data.pages : []).map((item, i) => <div className="w-1/2 lg:w-1/4" key={i}>
                             <BlogCard {...item} />
                         </div>)
                     }

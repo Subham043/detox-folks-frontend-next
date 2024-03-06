@@ -9,7 +9,7 @@ export default function Testimonials(){
             </h3>
         </div>
         <div className="w-full max-w-full flex flex-wrap justify-center items-start gap-5">
-            <div className=" w-2/3">
+            <div className=" w-full md:w-2/3 lg:w-2/3">
                 <TestimonialSlider />
             </div>
         </div>

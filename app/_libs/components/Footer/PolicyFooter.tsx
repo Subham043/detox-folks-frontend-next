@@ -14,9 +14,9 @@ export default function PolicyFooter() {
 
     return <div className="w-full bg-zinc-300">
         <div className="container mx-auto">
-            <div className=" py-10 flex justify-between items-start gap-3">
+            <div className=" py-10 flex flex-wrap justify-between items-start gap-3">
                 {
-                    (data ? data.feature : []).map((item, i) => <div className=" w-1/4" key={i}>
+                    (data ? data.feature : []).map((item, i) => <div className=" w-full lg:w-1/4" key={i}>
                         <div className=" flex flex-wrap items-center gap-4 mb-2">
                             <Image
                                 src={item.image}

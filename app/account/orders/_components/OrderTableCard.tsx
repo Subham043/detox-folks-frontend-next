@@ -12,7 +12,7 @@ export default function OrderTableCard({id, products, total_price, created_at, s
             <td className="whitespace-nowrap border-r px-6 py-4">
                 <Link href={`${page.account.orders}/${id}`} className=" text-base font-semibold">ORDER#{id}</Link>
             </td>
-            <td className=" border-r px-6 py-4 text-left">
+            <td className=" border-r px-6 py-4 text-left hidden lg:table-cell">
                 <Link href={`${page.account.orders}/${id}`} className=" text-base font-semibold line-clamp-2">{productNames}</Link>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
@@ -21,10 +21,10 @@ export default function OrderTableCard({id, products, total_price, created_at, s
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <p className=" text-base font-semibold">{statuses[statuses.length-1].status}</p>
             </td>
-            <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+            <td className="whitespace-nowrap border-r px-6 py-4 text-center hidden lg:table-cell">
                 <p className=" text-base font-semibold">{payment.mode}</p>
             </td>
-            <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+            <td className="whitespace-nowrap border-r px-6 py-4 text-center hidden lg:table-cell">
                 <p className=" text-base font-semibold">{payment.status}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">

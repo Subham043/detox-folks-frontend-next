@@ -24,7 +24,7 @@ export default function BlogSection({slug}:BlogSectionProps) {
                     <div className=" flex-1">
                         <BlogMainDetail data={data} />
                     </div>
-                    <div className="w-1/4 shrink-0 sticky top-8">
+                    <div className="w-full lg:w-1/4 shrink-0 sticky top-8">
                         <PopularBlogs />
                     </div>
                 </div>

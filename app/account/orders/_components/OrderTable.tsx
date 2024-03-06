@@ -37,11 +37,11 @@ export default function OrderTable() {
                                         <thead className="border bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                                             <tr>
                                                 <th scope="col" className="border-r px-6 py-4">Order ID</th>
-                                                <th scope="col" className="border-r px-6 py-4 text-center">Products</th>
+                                                <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Products</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Amount</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Order Status</th>
-                                                <th scope="col" className="border-r px-6 py-4 text-center">Payment Mode</th>
-                                                <th scope="col" className="border-r px-6 py-4 text-center">Payment Status</th>
+                                                <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Payment Mode</th>
+                                                <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Payment Status</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Placed On</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Action</th>
                                             </tr>

@@ -15,7 +15,7 @@ export default function Products({slug}:{slug:string}){
     return <div className="w-full max-w-full">
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                     {
-                        (data ? data.data : []).map((item, i) => <div className=" w-1/5 shrink-0" key={i}>
+                        (data ? data.data : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5 shrink-0" key={i}>
                             <ProductCard {...item} />
                         </div>)
                     }

@@ -21,7 +21,7 @@ export default function BillingAddressSection({selectionAvailable, selectedItem,
 
     return <div className=" flex flex-wrap gap-5 justify-between items-start mb-5">
             {
-                (data ? data.data : []).length>0 ? (data ? data.data : []).map((item, i) => <div className=" w-[48%]" key={i}>
+                (data ? data.data : []).length>0 ? (data ? data.data : []).map((item, i) => <div className="w-full lg:w-[48%]" key={i}>
                     <BillingAddressCard {...item} selectionAvailable={selectionAvailable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
                 </div>) :
                 <div className=" text-center w-full">
