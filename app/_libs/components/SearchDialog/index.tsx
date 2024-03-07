@@ -7,23 +7,25 @@ import {
 } from "@/app/_libs/components/ui/dialog"
 import { FaSearch } from "react-icons/fa"
 import SearchCard from "./SearchCard"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import debounce from 'lodash.debounce'
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { ReactTyped } from "react-typed";
 import { getGlobalSearchQueryOptions } from "@/app/_libs/utils/query/getGlobalSearchQuery"
+import InfiniteScroll from "react-infinite-scroller";
 
 const TypedString = ["Containers", "Silver Pouch", "Parcel Sheet", "Bag", "Tissue", "Meal Tray", "Paper Cup", "Tape", "Cutlery", "Gloves", "Mask"];
 
 export default function SearchDialog(){
     const [search, setSearch] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const scrollRef = useRef(null)
 
     const {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getGlobalSearchQueryOptions.getGlobalSearchQueryKey(search),
@@ -32,6 +34,10 @@ export default function SearchDialog(){
         enabled: isOpen && search.length>0,
         getNextPageParam: (lastPage, allPages) => getGlobalSearchQueryOptions.getGlobalSearchQueryNextPageParam(lastPage, allPages),
         select: (data) => getGlobalSearchQueryOptions.getGlobalSearchQuerySelect(data),
+    })
+
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
     })
 
     const searchHandler = debounce(async (e: string) => {
@@ -51,14 +57,15 @@ export default function SearchDialog(){
                     <FaSearch />
                     <input type="text" onChange={(event) => searchHandler(event.target.value)} className=" text-gray-600 text-sm flex-1 px-4 py-4 bg-gray-100 focus-within:outline-none focus:outline-none focus-visible:outline-none" placeholder="Search anything ..."/>
                 </div>
-                <div id="searchCardBodyDiv" className="px-3 py-3 bg-gray-100 w-full max-h-96 overflow-hidden overflow-y-auto">
+                <div className="px-3 py-3 bg-gray-100 w-full max-h-96 overflow-hidden overflow-y-auto" ref={scrollRef}>
                     <InfiniteScroll
-                        dataLength={data ? data.pages.length : 0}
-                        next={fetchNextPage}
-                        hasMore={hasNextPage ? hasNextPage: false}
-                        loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-                        refreshFunction={fetchNextPage}
-                        scrollableTarget="searchCardBodyDiv"
+                        pageStart={1}
+                        initialLoad={true}
+                        loadMore={loadMore}
+                        hasMore={hasNextPage}
+                        loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                        useWindow={false}
+                        getScrollParent={() => scrollRef.current}
                     >
                         {
                             (data ? data.pages : []).map((item, i) => <SearchCard {...item} setIsOpen={setIsOpen} key={i} />)

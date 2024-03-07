@@ -1,8 +1,4 @@
-"use client";
-
-import CartProvider from "./_libs/context/CartProvider";
-import QueryProviders from "./_home/QueryProviders";
-import { SessionProvider } from "next-auth/react";
+import ProviderCollection from "./_home/ProviderCollection";
 
 export default function Providers({
   children,
@@ -10,12 +6,8 @@ export default function Providers({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-        <QueryProviders>
-            <CartProvider>
-              {children}
-            </CartProvider>
-        </QueryProviders>
-    </SessionProvider>
+    <ProviderCollection>
+      {children}
+    </ProviderCollection>
   );
 }

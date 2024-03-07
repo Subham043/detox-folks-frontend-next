@@ -1,14 +1,15 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import CategoryCard from "./CategoryCard";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { getCategoriesQueryOptions } from "../../_libs/utils/query/getCategoriesQuery";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function Categories() {
     const {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getCategoriesQueryOptions.getCategoriesInfiniteQueryKey,
@@ -18,15 +19,17 @@ export default function Categories() {
         select: (data) => getCategoriesQueryOptions.getCategoriesQuerySelect(data),
     })
 
-    return <div className="w-full" id="categoryPageBodyDiv">
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
+    })
+
+    return <div className="w-full">
         <InfiniteScroll
-            dataLength={data ? data.pages.length : 0}
-            next={fetchNextPage}
-            hasMore={hasNextPage ? hasNextPage: false}
-            loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-            refreshFunction={fetchNextPage}
-            className="w-full"
-            scrollableTarget="categoryPageBodyDiv"
+            pageStart={1}
+            initialLoad={false}
+            loadMore={loadMore}
+            hasMore={hasNextPage}
+            loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
         >
             <div className="w-full flex flex-wrap justify-start items-start">
                 

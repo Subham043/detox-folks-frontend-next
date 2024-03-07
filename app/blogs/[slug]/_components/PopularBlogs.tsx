@@ -1,14 +1,18 @@
 "use client";
 import { getBlogsQueryOptions } from "@/app/_libs/utils/query/getBlogsQuery";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import InfiniteScroll from "react-infinite-scroll-component";
 import PopularBlogCard from "./PopularBlogCard";
+import InfiniteScroll from "react-infinite-scroller";
+import { useRef } from "react";
 
 export default function PopularBlogs() {
+    const scrollRef = useRef(null)
+
     const {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getBlogsQueryOptions.getBlogsInfiniteQueryKey,
@@ -18,19 +22,23 @@ export default function PopularBlogs() {
         select: (data) => getBlogsQueryOptions.getBlogsQuerySelect(data),
     })
 
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
+    })
+
     return <div className=" w-full border rounded-sm overflow-hidden border-neutral-700">
         <div className="py-2 bg-neutral-700 w-full text-center">
             <h4 className=" text-xl font-semibold text-white">Popular Blogs</h4>
         </div>
-        <div id="popularBlogCardBodyDiv" className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto">
+        <div className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto" ref={scrollRef}>
             <InfiniteScroll
-                dataLength={data ? data.pages.length : 0}
-                next={fetchNextPage}
-                hasMore={hasNextPage ? hasNextPage: false}
-                loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-                refreshFunction={fetchNextPage}
-                className="w-full max-w-full"
-                scrollableTarget="popularBlogCardBodyDiv"
+                pageStart={1}
+                initialLoad={false}
+                loadMore={loadMore}
+                hasMore={hasNextPage}
+                loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                useWindow={false}
+                getScrollParent={() => scrollRef.current}
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                     {

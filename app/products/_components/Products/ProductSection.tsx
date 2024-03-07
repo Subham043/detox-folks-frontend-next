@@ -1,8 +1,8 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { getProductsQueryOptions } from "../../../_libs/utils/query/getProductsQuery";
 import ProductCard from "./ProductCard";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function ProductSection({
     searchParams
@@ -22,6 +22,7 @@ export default function ProductSection({
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getProductsQueryOptions.getProductsInfiniteQueryKey(category_id, sub_category_id, ''),
@@ -31,15 +32,17 @@ export default function ProductSection({
         select: (data) => getProductsQueryOptions.getProductsQuerySelect(data),
     })
 
-    return <div className="w-full" id="productsPageBodyDiv">
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
+    })
+
+    return <div className="w-full">
         <InfiniteScroll
-            dataLength={data ? data.pages.length : 0}
-            next={fetchNextPage}
-            hasMore={hasNextPage ? hasNextPage: false}
-            loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-            refreshFunction={fetchNextPage}
-            className="w-full max-w-full"
-            scrollableTarget="productsPageBodyDiv"
+            pageStart={1}
+            initialLoad={false}
+            loadMore={loadMore}
+            hasMore={hasNextPage}
+            loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
         >
             <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                 {

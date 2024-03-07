@@ -2,13 +2,14 @@
 import { getOrdersQueryOptions } from "@/app/_libs/utils/query/getOrdersQuery"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import OrderTableCard from "./OrderTableCard";
-import InfiniteScroll from "react-infinite-scroll-component";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function OrderTable() {
     const {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getOrdersQueryOptions.getOrdersInfiniteQueryKey,
@@ -18,17 +19,19 @@ export default function OrderTable() {
         select: (data) => getOrdersQueryOptions.getOrdersQuerySelect(data),
     })
 
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
+    })
+
     return <>
         <div className="w-full py-10">
-            <div className="container mx-auto" id="orderTableBodyDiv">
+            <div className="container mx-auto">
                 <InfiniteScroll
-                    dataLength={data ? data.pages.length : 0}
-                    next={fetchNextPage}
-                    hasMore={hasNextPage ? hasNextPage: false}
-                    loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-                    refreshFunction={fetchNextPage}
-                    className="w-full"
-                    scrollableTarget="orderTableBodyDiv"
+                    pageStart={1}
+                    initialLoad={true}
+                    loadMore={loadMore}
+                    hasMore={hasNextPage}
+                    loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
                 >
                     <div className="flex flex-col sm:overflow-x-auto md:overflow-x-hidden">
                         <div className="sm:-mx-12 lg:-mx-8">

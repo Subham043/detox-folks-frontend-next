@@ -1,18 +1,21 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import CategoryCard from "./CategoryCard";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { getCategoriesQueryOptions } from "../../../_libs/utils/query/getCategoriesQuery";
 import { useSearchParams } from 'next/navigation'
+import { useRef } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function Categories() {
     const searchParams = useSearchParams()
     const categoryParam = searchParams.get('category')
+    const scrollRef = useRef(null)
     
     const {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        isFetching,
         data
     } = useInfiniteQuery({
         queryKey: getCategoriesQueryOptions.getCategoriesInfiniteQueryKey,
@@ -22,20 +25,23 @@ export default function Categories() {
         select: (data) => getCategoriesQueryOptions.getCategoriesQuerySelect(data),
     })
 
+    const loadMore = () => !isFetchingNextPage && fetchNextPage({
+        cancelRefetch: true
+    })
+
     return <div className=" w-full border rounded-sm overflow-hidden border-neutral-700">
         <div className="py-2 bg-neutral-700 w-full text-center">
             <h4 className=" text-xl font-semibold text-white">Categories</h4>
         </div>
-        <div id="categoryCardBodyDiv" className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto">
+        <div className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto" ref={scrollRef}>
             <InfiniteScroll
-                dataLength={data ? data.pages.length : 0}
-                next={fetchNextPage}
-                hasMore={hasNextPage ? hasNextPage: false}
-                loader={(isFetchingNextPage) && <div className="text-center py-1">Loading...</div>}
-                refreshFunction={fetchNextPage}
-                className="w-full max-w-full"
-                scrollableTarget="categoryCardBodyDiv"
-                
+                pageStart={1}
+                initialLoad={false}
+                loadMore={loadMore}
+                hasMore={hasNextPage}
+                loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                useWindow={false}
+                getScrollParent={() => scrollRef.current}
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                     <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300`}>
