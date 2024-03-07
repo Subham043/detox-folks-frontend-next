@@ -10,7 +10,7 @@ type PopularBlogCardProps = {
 }
 export default function PopularBlogCard({name, image, slug, description_unfiltered}:PopularBlogCardProps) {
     return <Link href={page.blogs + `/${slug}`} className=" w-full flex items-center px-2 py-2 text-left gap-2">
-        <Image src={image} width={90} height={90} alt="" className="mx-auto" />
+        <Image src={image} width={90} height={90} alt={name} title={name} className="mx-auto" />
         <div className="flex-1">
             <h3 className="text-gray-700 font-semibold text-base">{name}</h3>
             <p className=" text-sm text-neutral-500 mb-2 line-clamp-2">{description_unfiltered}</p>

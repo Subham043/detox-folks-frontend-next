@@ -11,7 +11,7 @@ export default function CheckoutCartTableCard({product, product_price, amount}:C
         <tr className=" border-b dark:border-neutral-500">
             <td className="whitespace-nowrap border-r px-6 py-4">
                 <div className="flex flex-wrap justify-start items-center gap-2">
-                    <Image src={product.image} alt="" width={70} height={70} />
+                    <Image src={product.image} alt={product.name} title={product.name} width={70} height={70} />
                     <div className=" flex-1">
                         <h3 className=" text-base font-semibold">{product.name}</h3>
                         <p className=" text-neutral-500 font-semibold">₹{product_price.discount_in_price}/{product.cart_quantity_specification}</p>

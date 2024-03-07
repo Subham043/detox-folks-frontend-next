@@ -18,7 +18,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
           <button onClick={()=>setSelectedPaymentMode('Online - Phonepe')} className={`w-full border-b border-gray-300 text-left ${selectedPaymentMode==='Online - Phonepe' ? 'bg-gray-100' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
-                  <Image src={phonepe} alt="" width={70} height={60} />
+                  <Image src={phonepe} alt="phonepe" width={70} height={60} />
                   <div className=" flex-1">
                     <h4 className=" text-lg font-semibold">Phonepe</h4>
                     <p className=" text-neutral-500">After clicking “ Place Order ”, you will be redirected to Phonepe (Cards, UPI, NetBanking, Wallets) to complete your purchase securely</p>
@@ -29,7 +29,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
           <button onClick={()=>setSelectedPaymentMode('Online - Razorpay')} className={`w-full border-b border-gray-300 text-left  ${selectedPaymentMode==='Online - Razorpay' ? 'bg-gray-100' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
-                  <Image src={razorpay} alt="" width={70} height={60} />
+                  <Image src={razorpay} alt="razoray" width={70} height={60} />
                   <div className=" flex-1">
                     <h4 className=" text-lg font-semibold">Razorpay</h4>
                     <p className=" text-neutral-500">After clicking “ Place Order ”, you will be redirected to Razorpay (Cards, UPI, NetBanking, Wallets) to complete your purchase securely</p>
@@ -40,7 +40,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
           <button onClick={()=>setSelectedPaymentMode('Cash On Delivery')} className={`w-full text-left  ${selectedPaymentMode==='Cash On Delivery' ? 'bg-gray-100' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
-                  <Image src={cash} alt="" width={70} height={60} />
+                  <Image src={cash} alt="cash" width={70} height={60} />
                   <div className=" flex-1">
                     <h4 className=" text-lg font-semibold">Cash On Delivery</h4>
                     <p className=" text-neutral-500">Pay with cash upon delivery</p>

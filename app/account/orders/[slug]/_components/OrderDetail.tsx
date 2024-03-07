@@ -94,7 +94,7 @@ export default function OrderDetail({ slug }: {  slug: number }) {
                                                     data && data.products.length>0 ? data.products.map((item,i) => <tr className=" border-b dark:border-neutral-500" key={i}>
                                                         <td className="whitespace-nowrap border-r px-6 py-4">
                                                             <div className="flex flex-wrap justify-start items-center gap-2">
-                                                                <Image src={item.image} alt="" width={70} height={70} />
+                                                                <Image src={item.image} alt={item.name} title={item.name} width={70} height={70} />
                                                                 <div className=" flex-1">
                                                                     <h3 className=" text-base font-semibold">{item.name}</h3>
                                                                 </div>

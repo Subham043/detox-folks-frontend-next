@@ -15,7 +15,7 @@ export default function TestimonialCard({name, message, star, image}:Testimonial
             </div>
             <div className=" w-full relative flex justify-center items-center">
                 <div className=" w-20 h-20 bg-gray-300 flex justify-center items-center rounded-full">
-                    <Image src={image} alt="" width={100} height={100} className=" w-16 h-16 rounded-full mx-auto" />
+                    <Image src={image} alt={name} title={name} width={100} height={100} className=" w-16 h-16 rounded-full mx-auto" />
                 </div>
             </div>
         </div>

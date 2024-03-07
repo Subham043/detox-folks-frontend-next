@@ -12,7 +12,7 @@ export default function BlogCard({slug, image, name, description_unfiltered, cre
     return <div className="w-full px-2 py-2">
         <div className="w-full overflow-hidden bg-white rounded-md">
             <Link href={`${page.blogs}/${slug}`} className="w-full">
-                <Image src={image} alt={name} width={400} height={100} className="w-full rounded-md" />
+                <Image src={image} alt={name} title={name} width={400} height={100} className="w-full rounded-md" />
                 <div className="w-full px-3 py-3">
                     <div className=" flex justify-start items-center gap-2 mb-3">
                         <IoCalendar className=" text-lg" />
