@@ -11,6 +11,7 @@ export default function AboutSection() {
         queryKey: getAboutQueryOptions.getAboutQueryKey,
         queryFn: getAboutQueryOptions.getAboutQueryFn,
     })
+    
     return <div className="w-full py-10">
             <div className="container mx-auto">
                 <div className="flex flex-wrap justify-between items-center">

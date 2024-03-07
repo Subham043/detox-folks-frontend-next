@@ -6,6 +6,10 @@ import {
 import LegalSection from "./LegalSection";
 import { getLegalQueryOptions } from "@/app/_libs/utils/query/getLegalQuery";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export default async function Legal({ params }: { params: { slug: string } }) {
     const queryClient = getQueryClient()
 

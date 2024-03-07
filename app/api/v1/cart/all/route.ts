@@ -4,6 +4,10 @@ import { NextResponse } from "next/server";
 import { api } from "@/app/_libs/utils/routes/api";
 import { authOptions } from "@/app/_libs/utils/contants/authOptions";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export async function GET() {
     const session = await getServerSession(authOptions)
     try {

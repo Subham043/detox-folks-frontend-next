@@ -2,6 +2,10 @@ import Breadcrumb from "@/app/_libs/components/Breadcrumb";
 import ProductSection from "../_components/ProductSection";
 import { notFound } from "next/navigation";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 async function getData({slug}:{ slug: string }) {
 
     switch (slug) {

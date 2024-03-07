@@ -1,6 +1,10 @@
 import Breadcrumb from "../_libs/components/Breadcrumb";
 import MainSection from "./_components/Sections/MainSection";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export default function Products({
     searchParams
   }: {

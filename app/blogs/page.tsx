@@ -7,6 +7,10 @@ import {
 } from '@tanstack/react-query'
 import BlogsList from "./_components/BlogsList";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export default async function Blogs() {
     const queryClient = getQueryClient()
 

@@ -4,6 +4,10 @@ import { api } from "@/app/_libs/utils/routes/api";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export async function GET() {
     const session = await getServerSession(authOptions)
     try {

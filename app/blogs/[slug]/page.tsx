@@ -7,6 +7,10 @@ import { getBlogQueryOptions } from "@/app/_libs/utils/query/getBlogQuery";
 import BlogSection from "./_components/BlogSection";
 import { getBlogsQueryOptions } from "@/app/_libs/utils/query/getBlogsQuery";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export default async function BlogDetail({ params }: { params: { slug: string } }) {
     const queryClient = getQueryClient()
 

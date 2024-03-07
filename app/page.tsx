@@ -9,6 +9,10 @@ import { getCategoriesQueryOptions } from "./_libs/utils/query/getCategoriesQuer
 import ProductSection from "./_home/ProductSection";
 import Testimonials from "./_home/Testimonials";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 export default async function Home() {
   const queryClient = getQueryClient()
 
