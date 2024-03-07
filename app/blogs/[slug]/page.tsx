@@ -6,6 +6,7 @@ import {
 import { getBlogQueryOptions } from "@/app/_libs/utils/query/getBlogQuery";
 import BlogSection from "./_components/BlogSection";
 import { getBlogsQueryOptions } from "@/app/_libs/utils/query/getBlogsQuery";
+import { notFound } from "next/navigation";
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -18,6 +19,8 @@ export default async function BlogDetail({ params }: { params: { slug: string } 
         queryKey: getBlogQueryOptions.getBlogQueryKey(params.slug),
         queryFn: () => getBlogQueryOptions.getBlogQueryFn(params.slug),
     })
+    
+    if(queryClient.getQueryData(getBlogQueryOptions.getBlogQueryKey(params.slug))===undefined) notFound();
 
     await queryClient.prefetchInfiniteQuery({
         queryKey: getBlogsQueryOptions.getBlogsInfiniteQueryKey,
