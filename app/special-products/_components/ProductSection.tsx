@@ -19,7 +19,7 @@ export default async function ProductSection({
         <HydrationBoundary state={dehydrate(queryClient)}>
             <div className="w-full py-10">
                 <div className="container mx-auto">
-                    <div className="w-full max-w-full flex flex-wrap justify-between items-start gap-5">
+                    <div className="w-full max-w-full flex flex-wrap justify-between items-start">
                         <div className=" w-full">
                             <Products slug={slug} />
                         </div>

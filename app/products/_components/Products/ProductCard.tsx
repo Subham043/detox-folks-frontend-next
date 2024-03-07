@@ -8,7 +8,7 @@ import { page } from "@/app/_libs/utils/routes/pages";
 
 export default function ProductCard({ id, name, image, slug, product_prices, min_cart_quantity, cart_quantity_interval, cart_quantity_specification }:ProductType) {
     const {quantity, cartLoading, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id, product_prices, min_cart_quantity, cart_quantity_interval});
-    return <div className=" w-full px-3 text-center mb-3">
+    return <div className=" w-full px-1 text-center mb-3">
         <div className=" bg-white px-3 py-4 rounded-sm">
             <Link href={`${page.products}/${slug}`}>
                 <Image src={image} width={200} height={200} alt="" className="mx-auto mb-2" />

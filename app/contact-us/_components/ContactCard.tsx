@@ -7,7 +7,7 @@ type ContactCardProps = {
 };
 
 export default function ContactCard({Icon, title, description}:ContactCardProps){
-    return <div className="w-full mb-5 last:mb-0 lg:mb-0 lg:w-[32%] px-10 py-10 bg-white rounded-md box-border min-h-60">
+    return <div className="w-full mb-5 last:mb-0 lg:mb-0 lg:w-[32%] px-3 lg:px-10 py-5 lg:py-10 bg-white rounded-md box-border min-h-fit lg:min-h-60">
         <div className="text-center">
             <div className=" bg-black rounded-full relative flex justify-center items-center w-11 h-11 mx-auto">
                 <Icon className=" text-white text-2xl" />

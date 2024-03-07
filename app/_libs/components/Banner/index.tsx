@@ -3,6 +3,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 
 const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,

@@ -31,10 +31,10 @@ export default function Categories() {
             hasMore={hasNextPage}
             loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
         >
-            <div className="w-full flex flex-wrap justify-start items-start">
+            <div className="w-full flex flex-wrap justify-start items-start gap-y-5">
                 
                 {
-                    (data ? data.pages : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5" key={i}>
+                    (data ? data.pages : []).map((item, i) => <div className=" w-1/2 md:w-1/3 lg:w-1/5 px-2 sm:px-0" key={i}>
                         <CategoryCard name={item.name} image={item.image} slug={item.slug} id={item.id} />
                     </div>)
                 }

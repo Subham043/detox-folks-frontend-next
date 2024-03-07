@@ -34,13 +34,13 @@ export default async function ProductSection({slug}:{slug:string}){
 
     return <div className="w-full pb-10">
         <div className="container mx-auto">
-            <div className="w-full max-w-full flex flex-wrap justify-between items-start gap-3 px-3 mb-5">
+            <div className="w-full max-w-full flex flex-wrap justify-between items-start gap-3 mb-5">
                 <h3 className="w-auto text-2xl font-semibold">
                     {data.title}
                 </h3>
                 <Link href={`${page.special_products}/${data.slug}`} className="w-auto text-sm bg-black text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Show More</span> <FaArrowRightLong /></Link>
             </div>
-            <div className="w-full max-w-full flex flex-wrap justify-between items-start gap-5">
+            <div className="w-full max-w-full flex flex-wrap justify-between items-start">
                 <div className="w-full">
                     <Products slug={data.slug} />
                 </div>

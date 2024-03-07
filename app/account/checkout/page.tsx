@@ -14,7 +14,7 @@ export default function Checkout() {
                     <div className=" w-full mb-5 lg:mb-0 lg:w-[68%] bg-white rounded-md box-border">
                         <MultiStepCheckout />
                     </div>
-                    <div className=" w-full lg:w-[30%] px-5 py-5 bg-white rounded-md box-border sticky top-10">
+                    <div className=" w-full lg:w-[30%] px-3 lg:px-5 py-3 lg:py-5 bg-white rounded-md box-border sticky top-10">
                         <CheckoutOrder />
                     </div>
                 </div>

@@ -11,7 +11,7 @@ const settings = {
 };
 
 export default function ProductSlider({images} : {images:string[]}){
-    return <div className="w-full pt-5">
+    return <div className="w-full">
         <div className="container mx-auto">
             <Slider {...settings}>
                 {

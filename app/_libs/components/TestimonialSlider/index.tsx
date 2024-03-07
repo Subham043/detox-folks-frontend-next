@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getTestimonialQueryOptions } from "../../utils/query/getTestimonialQuery";
 
 const settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
@@ -24,12 +25,10 @@ export default function TestimonialSlider(){
     })
 
     return <div className="w-full">
-        <div className="container mx-auto">
-            <Slider {...settings}>
-                {
-                    (data ? data : []).map((item, i) => <TestimonialCard {...item} key={i} />)
-                }
-            </Slider>
-        </div>
+        <Slider {...settings}>
+            {
+                (data ? data : []).map((item, i) => <TestimonialCard {...item} key={i} />)
+            }
+        </Slider>
     </div>
 }

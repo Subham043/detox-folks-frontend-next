@@ -15,7 +15,7 @@ export default function HeaderCartButton() {
                 <FaShoppingBasket />
                 <span className="w-5 h-5 absolute bg-black text-white rounded-full -top-1.5 -right-0.5 text-sm flex justify-center items-center">{cart.cart.length}</span>
             </div>
-            <div className=" text-left">
+            <div className=" text-left hidden lg:block">
                 <p className=" text-xs">TOTAL PRICE</p>
                 <p className=" text-md font-semibold">&#8377;{cart.cart_subtotal}</p>
             </div>

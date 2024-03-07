@@ -30,11 +30,11 @@ const styleConfig = {
 const CheckOutStep = ({setActiveStep}:{setActiveStep: Dispatch<SetStateAction<number>>}) => {
     const {cart} = useCartProvider()
     return <div className='w-full'>
-        <div className=' px-5'>
+        <div className=' px-3 lg:px-5'>
             <CheckoutCart />
         </div>
         {cart.cart.length>0 && <div className=' border-t border-dashed border-gray-400 pt-3'>
-            <div className=' px-5 pb-5'>
+            <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-end items-center mt-2`}>
                     <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
                 </div>
@@ -49,11 +49,11 @@ const BillingInformationStep = ({setActiveStep, selectedBillingInformation, setS
     setSelectedBillingInformation: Dispatch<SetStateAction<number|undefined>>,
 }) => {
     return <div className='w-full'>
-        <div className=' px-5'>
+        <div className=' px-3 lg:px-5'>
             <BillingInformation title='Select Billing Information' selectionAvailable={true} selectedItem={selectedBillingInformation} setSelectedItem={setSelectedBillingInformation} />
         </div>
         <div className=' border-t border-dashed border-gray-400 pt-3'>
-            <div className=' px-5 pb-5'>
+            <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
                     <button onClick={()=>setActiveStep(0)} className=" w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Order Summary</span></button>
                     {selectedBillingInformation && <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>}
@@ -69,11 +69,11 @@ const BillingAddressStep = ({setActiveStep, selectedBillingAddress, setSelectedB
     setSelectedBillingAddress: Dispatch<SetStateAction<number|undefined>>,
 }) => {
     return <div className='w-full'>
-        <div className=' px-5'>
+        <div className=' px-3 lg:px-5'>
             <BillingAddress title='Select Delivery Address' selectionAvailable={true} selectedItem={selectedBillingAddress} setSelectedItem={setSelectedBillingAddress} />
         </div>
         <div className=' border-t border-dashed border-gray-400 pt-3'>
-            <div className=' px-5 pb-5'>
+            <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
                     <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
                     {selectedBillingAddress && <button onClick={()=>setActiveStep(3)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Payment</span> <FaLongArrowAltRight /></button>}
@@ -94,24 +94,24 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
     paymentHandler: () => Promise<void>
 }) => {
     return <div className='w-full'>
-        <div className=' px-5'>
+        <div className=' px-3 lg:px-5'>
             <PaymantCard
                 selectedPaymentMode={selectedPaymentMode} 
                 setSelectedPaymentMode={setSelectedPaymentMode} 
             />
             <div className=' w-full mb-5'>
                 <label className=" w-full flex flex-wrap justify-start items-center gap-5 mt-5 cursor-pointer">
-                    <input type="checkbox" checked={includeGst} onChange={(e)=>setIncludeGst(e.target.checked)} className=" w-5 h-5" />
+                    <input type="checkbox" checked={includeGst} onChange={(e)=>setIncludeGst(e.target.checked)} className=" w-5 h-5 accent-black" />
                     <p className=" text-neutral-500">Use GST Invoice.</p>
                 </label>
                 <label className=" w-full flex flex-wrap justify-start items-center gap-5 mt-3 cursor-pointer">
-                    <input type="checkbox" checked={acceptTerms} onChange={(e)=>setAcceptTerms(e.target.checked)} className=" w-5 h-5" />
+                    <input type="checkbox" checked={acceptTerms} onChange={(e)=>setAcceptTerms(e.target.checked)} className=" w-5 h-5 accent-black" />
                     <p className=" text-neutral-500">I accept the <span className=" text-black font-semibold">Terms & Conditions</span></p>
                 </label>
             </div>
         </div>
         <div className=' border-t border-dashed border-gray-400 pt-3'>
-            <div className=' px-5 pb-5'>
+            <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
                     <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
                     {acceptTerms && <button onClick={paymentHandler} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><BiSelectMultiple /> <span>Place Order</span></button>}
@@ -201,7 +201,7 @@ export default function MultiStepCheckout() {
     }
 
     return <div className='w-full'>
-        <div className=' px-5 pt-5'>
+        <div className=' px-3 lg:px-5 pt-5 pb-5'>
             <Stepper activeStep={activeStep} styleConfig={styleConfig}>
                 <Step label="Order Summary" />
                 <Step label="Billing Information" />
