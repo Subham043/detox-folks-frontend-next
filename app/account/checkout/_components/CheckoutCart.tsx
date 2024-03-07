@@ -7,7 +7,7 @@ export default function CheckoutCart() {
     return <>
         <h3 className=" text-xl text-black font-semibold mb-5">Order Summary</h3>
         <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
-            <div className="sm:-mx-12 lg:-mx-8">
+            <div className="sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                     <div className="overflow-x-auto">
                         <table className="min-w-full border text-left text-sm font-light">
