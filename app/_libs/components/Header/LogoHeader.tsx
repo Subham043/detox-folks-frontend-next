@@ -12,8 +12,8 @@ export default function LogoHeader() {
             <div className="flex flex-1 flex-wrap items-center gap-12">
                 <Link href={page.home}>
                     <Image
-                        src="https://server-api.parcelcounter.in/storage/general_website_settings_logo/jptM6LCFtgFNp4Z4qu7l2YIXKSJPrmg8Gwz5MbdO.png"
-                        alt="Vercel Logo"
+                        src="/logo.webp"
+                        alt="Parcelcounter Logo"
                         width={150}
                         height={150}
                         priority
@@ -30,8 +30,8 @@ export default function LogoHeader() {
             <div className="flex flex-1 flex-wrap justify-between items-center gap-3">
                 <Link href={page.home}>
                     <Image
-                        src="https://server-api.parcelcounter.in/storage/general_website_settings_logo/jptM6LCFtgFNp4Z4qu7l2YIXKSJPrmg8Gwz5MbdO.png"
-                        alt="Vercel Logo"
+                        src="/logo.webp"
+                        alt="Parcelcounter Logo"
                         width={150}
                         height={150}
                         priority

@@ -20,7 +20,7 @@ export default function PolicyFooter() {
                         <div className=" flex flex-wrap items-center gap-4 mb-2">
                             <Image
                                 src={item.image}
-                                alt="Vercel Logo"
+                                alt={item.title}
                                 className="w-12 h-12 rounded-full object-contain bg-white border-2 border-double border-black"
                                 width={45}
                                 height={45}

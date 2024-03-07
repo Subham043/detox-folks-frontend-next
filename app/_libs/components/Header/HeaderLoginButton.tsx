@@ -36,7 +36,7 @@ export default function HeaderLoginButton() {
             <Link href={page.auth.login} className="flex flex-wrap items-center gap-2">
                 <Image
                     src="/user.png"
-                    alt="Vercel Logo"
+                    alt="Parcelcounter user avatar"
                     className=" rounded-full"
                     width={40}
                     height={40}
@@ -50,7 +50,7 @@ export default function HeaderLoginButton() {
                 <DropdownMenuTrigger className="flex flex-wrap items-center gap-2">
                     <Image
                         src="/user.png"
-                        alt="Vercel Logo"
+                        alt="Parcelcounter user avatar"
                         className=" rounded-full"
                         width={40}
                         height={40}

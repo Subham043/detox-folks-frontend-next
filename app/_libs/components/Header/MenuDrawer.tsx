@@ -45,8 +45,8 @@ export default function MenuDrawer(){
                     <div className="w-full text-center border-b border-dashed pb-5 border-gray-300">
                         <Link href={page.home} className="w-full">
                             <Image
-                                src="https://server-api.parcelcounter.in/storage/general_website_settings_logo/jptM6LCFtgFNp4Z4qu7l2YIXKSJPrmg8Gwz5MbdO.png"
-                                alt="Vercel Logo"
+                                src="/logo.webp"
+                                alt="Parcelcounter Logo"
                                 width={150}
                                 height={150}
                                 className="mx-auto"

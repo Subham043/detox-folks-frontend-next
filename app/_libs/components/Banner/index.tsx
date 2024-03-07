@@ -30,11 +30,11 @@ export default function Banner(){
                     banners.map((item, i) => 
                     <Image
                         src={item}
-                        alt="Vercel Logo"
+                        alt={"Parcelcounter Banner_"+(i+1)}
                         className="mx-auto object-contain"
                         width={1280}
                         height={480}
-                        priority
+                        priority={i===0}
                         key={i}
                     />)
                 }

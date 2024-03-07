@@ -20,12 +20,11 @@ export default function MainFooter() {
                 <div className=" w-full lg:w-1/4">
                     <Link className=" text-center" href={page.home}>
                         <Image
-                            src="https://server-api.parcelcounter.in/storage/general_website_settings_logo/jptM6LCFtgFNp4Z4qu7l2YIXKSJPrmg8Gwz5MbdO.png"
-                            alt="Vercel Logo"
+                            src="/logo.webp"
+                            alt="Parcelcounter Footer Logo"
                             className="mx-auto"
                             width={150}
                             height={150}
-                            priority
                         />
                     </Link> 
                     <div className="flex flex-wrap justify-center items-center gap-3 py-6">
@@ -44,11 +43,10 @@ export default function MainFooter() {
                     </div>
                     <Image
                         src="/payments.webp"
-                        alt="Vercel Logo"
+                        alt="Parcelcounter Payment Options"
                         className="mx-auto"
                         width={190}
                         height={190}
-                        priority
                     />
                 </div>
                 <div className=" w-full lg:w-1/5">
@@ -88,19 +86,17 @@ export default function MainFooter() {
                     <div className="flex flex-wrap justify-start lg:justify-between items-center gap-1 lg:gap-3 mb-5">
                         <Image
                             src="/google-store.png"
-                            alt="Vercel Logo"
+                            alt="Playstore Logo"
                             className="lg:mx-auto"
                             width={145}
                             height={145}
-                            priority
                         />
                         <Image
                             src="/app-store.png"
-                            alt="Vercel Logo"
+                            alt="Appstore Logo"
                             className="lg:mx-auto"
                             width={145}
                             height={145}
-                            priority
                         />
                     </div>
                 </div>

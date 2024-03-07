@@ -18,11 +18,11 @@ export default function ProductSlider({images} : {images:string[]}){
                     images.map((item, i) => 
                     <Image
                         src={item}
-                        alt="Vercel Logo"
+                        alt={"Parcelcounter Product_"+(i+1)}
                         className="mx-auto object-contain"
                         width={1280}
                         height={480}
-                        priority
+                        priority={i===0}
                         key={i}
                     />)
                 }
