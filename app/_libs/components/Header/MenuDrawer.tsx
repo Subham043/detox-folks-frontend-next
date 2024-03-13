@@ -10,15 +10,19 @@ import { LiaBookSolid } from "react-icons/lia";
 import { FaHeadphones } from "react-icons/fa6";
 import { IoBagCheckOutline, IoLogIn, IoLogOutSharp } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "../../hooks/useToast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function MenuDrawer(){
+    const pathname = usePathname();
+	const searchParams = useSearchParams();
     const {status} = useSession();
     const router = useRouter();
     const { toastSuccess } = useToast();
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const [loading, setLoading] = useState(false);
+    const closeSidebar = () => setIsOpen(false)
     const onLogout = async (event: any) => {
         event.preventDefault()
         setLoading(true);
@@ -35,7 +39,8 @@ export default function MenuDrawer(){
             setLoading(false);
         }
     };
-    return <Sheet>
+    useEffect(() => closeSidebar(), [pathname, searchParams]);
+    return <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
             <button className="bg-black text-white px-3 py-2 rounded-sm"><IoMdMenu className="text-xl" /></button>
         </SheetTrigger>

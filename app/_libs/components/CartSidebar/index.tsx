@@ -1,15 +1,25 @@
+"use client";
 import Link from "next/link";
 import { FaShoppingBasket } from "react-icons/fa";
 import CartCard from "./CartCard";
 import { useCartProvider } from "@/app/_libs/context/CartProvider";
 import { page } from "../../utils/routes/pages";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function CartSidebar() {
+    const [isOpen, setIsOpen] = useState<boolean>(false)
     const {cart} = useCartProvider()
+    const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+    const closeSidebar = () => setIsOpen(false)
+
+    useEffect(() => closeSidebar(), [pathname, searchParams]);
     
     return <>
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
                 <button className="flex flex-wrap items-center gap-3">
                     <div className=" bg-gray-100 rounded-full relative flex justify-center items-center w-11 h-11">

@@ -7,19 +7,24 @@ import {
 } from "@/app/_libs/components/ui/dialog"
 import { FaSearch } from "react-icons/fa"
 import SearchCard from "./SearchCard"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import debounce from 'lodash.debounce'
 import { ReactTyped } from "react-typed";
 import { getGlobalSearchQueryOptions } from "@/app/_libs/utils/query/getGlobalSearchQuery"
 import InfiniteScroll from "react-infinite-scroller";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const TypedString = ["Containers", "Silver Pouch", "Parcel Sheet", "Bag", "Tissue", "Meal Tray", "Paper Cup", "Tape", "Cutlery", "Gloves", "Mask"];
 
 export default function SearchDialog(){
+    const pathname = usePathname();
+	const searchParams = useSearchParams();
     const [search, setSearch] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const scrollRef = useRef(null)
+    const closeSidebar = () => setIsOpen(false)
+    useEffect(() => closeSidebar(), [pathname, searchParams]);
 
     const {
         fetchNextPage,
@@ -68,7 +73,7 @@ export default function SearchDialog(){
                         getScrollParent={() => scrollRef.current}
                     >
                         {
-                            (data ? data.pages : []).map((item, i) => <SearchCard {...item} setIsOpen={setIsOpen} key={i} />)
+                            (data ? data.pages : []).map((item, i) => <SearchCard {...item} key={i} />)
                         }
                     </InfiniteScroll>
                     {
