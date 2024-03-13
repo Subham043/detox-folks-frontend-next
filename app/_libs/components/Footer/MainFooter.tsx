@@ -28,16 +28,16 @@ export default function MainFooter() {
                         />
                     </Link> 
                     <div className="flex flex-wrap justify-center items-center gap-3 py-6">
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page.home}>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9 transition-all hover:text-white hover:bg-black" href={page.home}>
                             <FaFacebookF className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page.home}>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9 transition-all hover:text-white hover:bg-black" href={page.home}>
                             <FaInstagram className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page.home}>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9 transition-all hover:text-white hover:bg-black" href={page.home}>
                             <FaLinkedin className=" text-md" />
                         </Link>
-                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9" href={page.home}>
+                        <Link className=" bg-white rounded-full relative flex justify-center items-center w-9 h-9 transition-all hover:text-white hover:bg-black" href={page.home}>
                             <FaYoutube className=" text-md" />
                         </Link>
                     </div>

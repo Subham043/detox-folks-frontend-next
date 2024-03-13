@@ -44,11 +44,11 @@ export default function Categories() {
                 getScrollParent={() => scrollRef.current}
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
-                    <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300`}>
+                    <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300 transition-all hover:bg-gray-200`}>
                         <CategoryCard name='All' image='/disposables.webp' id='' slug="" />
                     </div>
                     {
-                        (data ? data.pages : []).map((item, i) => <div className={` ${categoryParam && categoryParam===item.slug ? 'bg-neutral-300' : 'bg-neutral-100'} w-full shrink-0 border-b border-gray-300`} key={i}>
+                        (data ? data.pages : []).map((item, i) => <div className={` ${categoryParam && categoryParam===item.slug ? 'bg-neutral-300' : 'bg-neutral-100'} w-full shrink-0 border-b border-gray-300 transition-all hover:bg-gray-200`} key={i}>
                             <CategoryCard name={item.name} image={item.image} id={item.id} slug={item.slug} />
                         </div>)
                     }

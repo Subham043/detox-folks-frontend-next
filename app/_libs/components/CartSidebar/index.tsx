@@ -50,7 +50,7 @@ export default function CartSidebar() {
                             }
                         </div>
                         <div className=" text-center w-full px-3 py-3 border-t border-solid border-gray-300">
-                            <Link href={page.account.checkout} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-black text-white gap-4">
+                            <Link href={page.account.checkout} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-black text-white gap-4 transition-all hover:bg-gray-600">
                                 <span className="flex-1 text-left border-r border-solid border-white">
                                     Checkout
                                 </span>

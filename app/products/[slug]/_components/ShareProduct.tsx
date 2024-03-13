@@ -8,9 +8,9 @@ export default function ShareProduct({name, slug}:{
 }) {
     return <p className=" my-4 flex flex-wrap"><span className=" text-lg font-semibold">Share : &nbsp;</span> 
         <span className="flex gap-2">
-            <Link href={`https://www.facebook.com/share.php?u=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}&title=${name}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full"><FaFacebookF /></Link>
-            <Link href={`https://twitter.com/share?text=${name}&url=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full"><FaTwitter /></Link>
-            <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}&title=${name}&source=${name}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full"><FaLinkedin /></Link>
+            <Link href={`https://www.facebook.com/share.php?u=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}&title=${name}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full transition-all hover:text-white hover:bg-black"><FaFacebookF /></Link>
+            <Link href={`https://twitter.com/share?text=${name}&url=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full transition-all hover:text-white hover:bg-black"><FaTwitter /></Link>
+            <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${process.env.NEXT_PUBLIC_MAIN_URL}${page.products}/${slug}&title=${name}&source=${name}`} target="_blank" className=" flex justify-center items-center bg-neutral-200 w-[30px] h-[30px] rounded-full transition-all hover:text-white hover:bg-black"><FaLinkedin /></Link>
         </span>
     </p>
 }

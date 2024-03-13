@@ -43,7 +43,7 @@ const CheckOutStep = ({setActiveStep}:{setActiveStep: Dispatch<SetStateAction<nu
             {cart.cart.length>0 && <div className=' border-t border-dashed border-gray-400 pt-3'>
                 <div className=' px-3 lg:px-5 pb-5'>
                     <div className={` flex flex-wrap justify-end items-center mt-2`}>
-                        <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
+                        <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Billing Address</span> <FaLongArrowAltRight /></button>
                     </div>
                 </div>
             </div>}
@@ -63,8 +63,8 @@ const BillingInformationStep = ({setActiveStep, selectedBillingInformation, setS
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(0)} className=" w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Order Summary</span></button>
-                    {selectedBillingInformation && <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>}
+                    <button onClick={()=>setActiveStep(0)} className=" w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Order Summary</span></button>
+                    {selectedBillingInformation && <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Billing Address</span> <FaLongArrowAltRight /></button>}
                 </div>
             </div>
         </div>
@@ -83,8 +83,8 @@ const BillingAddressStep = ({setActiveStep, selectedBillingAddress, setSelectedB
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
-                    {selectedBillingAddress && <button onClick={()=>setActiveStep(3)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Payment</span> <FaLongArrowAltRight /></button>}
+                    <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
+                    {selectedBillingAddress && <button onClick={()=>setActiveStep(3)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Payment</span> <FaLongArrowAltRight /></button>}
                 </div>
             </div>
         </div>
@@ -122,8 +122,8 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(2)} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
-                    {acceptTerms && <button onClick={paymentHandler} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold">
+                    <button onClick={()=>setActiveStep(2)} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
+                    {acceptTerms && <button onClick={paymentHandler} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600">
                         {paymentLoading ? <Spinner type='small' /> : <><BiSelectMultiple /> <span>Place Order</span></>}
                     </button>}
                 </div>

@@ -10,6 +10,7 @@ import { useToast } from "@/app/_libs/hooks/useToast";
 import EditBillingInformationDialog from "./EditBillingInformationDialog";
 import { useBillingInformationMutation } from "@/app/_libs/utils/query/getBillingInformationsQuery";
 import { api } from "../../utils/routes/api";
+import Spinner from "../Spinner";
 
 export default function BillingInformationCard(props:BillingInformationType & {selectionAvailable:boolean, selectedItem?:number|undefined, setSelectedItem?:Dispatch<SetStateAction<number|undefined>>}){
     const [loading, setLoading] = useState<boolean>(false);
@@ -41,8 +42,8 @@ export default function BillingInformationCard(props:BillingInformationType & {s
         <div className=" flex justify-between items-start gap-1">
             <h3 className="text-lg font-semibold flex gap-2 items-start"><FaUser className=" mt-1" /> {props.name}</h3>
             <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <BsThreeDots />
+                <DropdownMenuTrigger disabled={loading}>
+                    {loading ? <Spinner type="small" color="black" /> : <BsThreeDots />}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     {props.selectionAvailable && <DropdownMenuItem><button disabled={!props.selectionAvailable} onClick={()=>selectionHandler(props.id)} className="w-full text-left">Select</button></DropdownMenuItem>}

@@ -14,7 +14,7 @@ type InputProps = {
 
 export default function Input({Icon, type="text", placeholder, errors, name, register}:InputProps) {
     return <div className=" relative w-full mb-2">
-        <input type={type} placeholder={placeholder} {...register(name)} className=" h-[45px] rounded-sm border border-gray-300 w-full text-[#555] bg-[#f5f5f5] pl-[45px] pr-[20px] pb-[2px]" />
+        <input type={type} placeholder={placeholder} {...register(name)} className=" h-[45px] rounded-sm border border-gray-300 w-full text-[#555] bg-[#f5f5f5] pl-[45px] pr-[20px] pb-[2px] focus-within:outline-black focus:outline-black focus-visible:outline-black" />
         <div className="absolute top-0 h-[45px] w-[45px] text-center flex justify-center items-center">
             <Icon className=" text-[#555] text-lg" />
         </div>
