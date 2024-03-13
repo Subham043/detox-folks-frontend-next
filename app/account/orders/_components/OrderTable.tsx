@@ -10,6 +10,7 @@ export default function OrderTable() {
         hasNextPage,
         isFetchingNextPage,
         isFetching,
+        isRefetching,
         data
     } = useInfiniteQuery({
         queryKey: getOrdersQueryOptions.getOrdersInfiniteQueryKey,
@@ -52,12 +53,12 @@ export default function OrderTable() {
                                         </thead>
                                         <tbody>
                                             {
-                                                (data ? data.pages : []).length>0 ? (data ? data.pages : []).map((item,i) => <OrderTableCard {...item} key={i} />) :
+                                                ((data ? data.pages : []).length>0 ? (data ? data.pages : []).map((item,i) => <OrderTableCard {...item} key={i} />) :
                                                 <tr className=" border-b dark:border-neutral-500">
                                                     <td className="whitespace-nowrap border-r px-6 py-4 text-center" colSpan={8}>
                                                         <p>No orders are there!</p>
                                                     </td>
-                                                </tr>
+                                                </tr>)
                                             }
                                         </tbody>
                                     </table>

@@ -12,6 +12,7 @@ import { useCartProvider } from '@/app/_libs/context/CartProvider';
 import { axiosPublic } from '@/app/_libs/utils/axios';
 import { api } from '@/app/_libs/utils/routes/api';
 import { useToast } from '@/app/_libs/hooks/useToast';
+import { Skeleton } from '@/app/_libs/components/ui/skeleton';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -28,18 +29,24 @@ const styleConfig = {
 }
 
 const CheckOutStep = ({setActiveStep}:{setActiveStep: Dispatch<SetStateAction<number>>}) => {
-    const {cart} = useCartProvider()
+    const {cart, cartLoading} = useCartProvider()
     return <div className='w-full'>
-        <div className=' px-3 lg:px-5'>
-            <CheckoutCart />
-        </div>
-        {cart.cart.length>0 && <div className=' border-t border-dashed border-gray-400 pt-3'>
-            <div className=' px-3 lg:px-5 pb-5'>
-                <div className={` flex flex-wrap justify-end items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
-                </div>
+        {cartLoading ? <>
+            <div className=' px-3 lg:px-5'>
+                <Skeleton className='h-[300px] w-full rounded-md' />
             </div>
-        </div>}
+        </> : <>
+            <div className=' px-3 lg:px-5'>
+                <CheckoutCart />
+            </div>
+            {cart.cart.length>0 && <div className=' border-t border-dashed border-gray-400 pt-3'>
+                <div className=' px-3 lg:px-5 pb-5'>
+                    <div className={` flex flex-wrap justify-end items-center mt-2`}>
+                        <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>Billing Address</span> <FaLongArrowAltRight /></button>
+                    </div>
+                </div>
+            </div>}
+        </>}
     </div>
 }
 

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import TestimonialCard from "./TestimonialCard";
 import { useQuery } from "@tanstack/react-query";
 import { getTestimonialQueryOptions } from "../../utils/query/getTestimonialQuery";
+import TestimonialsLoading from "./TestimonialsLoading";
 
 const settings = {
     arrows: false,
@@ -18,17 +19,20 @@ const settings = {
 
 export default function TestimonialSlider(){
     const {
-        data
+        data,
+        isFetching,
+        isRefetching
     } = useQuery({
         queryKey: getTestimonialQueryOptions.getTestimonialQueryKey,
         queryFn: getTestimonialQueryOptions.getTestimonialQueryFn,
     })
 
     return <div className="w-full">
+        {(isFetching || isRefetching) ? <TestimonialsLoading /> :
         <Slider {...settings}>
             {
                 (data ? data : []).map((item, i) => <TestimonialCard {...item} key={i} />)
             }
-        </Slider>
+        </Slider>}
     </div>
 }

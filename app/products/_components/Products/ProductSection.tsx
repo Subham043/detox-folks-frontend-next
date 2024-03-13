@@ -3,6 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProductsQueryOptions } from "../../../_libs/utils/query/getProductsQuery";
 import ProductCard from "./ProductCard";
 import InfiniteScroll from "react-infinite-scroller";
+import ProductsLoading from "./ProductsLoading";
 
 export default function ProductSection({
     searchParams
@@ -42,7 +43,7 @@ export default function ProductSection({
             initialLoad={false}
             loadMore={loadMore}
             hasMore={hasNextPage}
-            loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+            loader={(isFetching || isFetchingNextPage) ? <ProductsLoading /> : undefined}
         >
             <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                 {
