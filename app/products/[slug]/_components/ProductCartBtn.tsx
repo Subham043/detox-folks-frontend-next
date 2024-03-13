@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBasketShopping } from "react-icons/fa6";
 import debounce from 'lodash.debounce'
+import Spinner from "@/app/_libs/components/Spinner";
 
 type CartQuantityType = {
     quantity:number;
@@ -35,11 +36,17 @@ export default function ProductCardCartBtn({quantity, min_cart_quantity, loading
     return <div className="w-full flex my-3">
         <div className="w-1/2 md:w-1/3">
             {quantity===0 ? 
-                <button title="Add to Cart" disabled={loading} onClick={()=>incrementQuantity()} className=" mx-auto w-full bg-black text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaBasketShopping /> <span>ADD</span></button> :
+                <button title="Add to Cart" disabled={loading} onClick={()=>incrementQuantity()} className=" mx-auto w-full bg-black text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold">
+                    {loading ? <Spinner type="small" />: <><FaBasketShopping /> <span>ADD</span></>}
+                </button> :
                 <div className=" flex flex-wrap justify-center items-center gap-1">
-                    <button title="Quantity Minus" disabled={loading} onClick={()=>decrementQuantity()} className=" inline-block bg-neutral-800 text-white px-3 py-1 text-base font-semibold rounded-sm">-</button>
+                    <button title="Quantity Minus" disabled={loading} onClick={()=>decrementQuantity()} className=" inline-block bg-neutral-800 text-white px-3 py-1 text-base font-semibold rounded-sm">
+                        {loading ? <Spinner type="small" />: <>-</>}
+                    </button>
                     <input type="text" inputMode="numeric" value={qnt} disabled={loading} readOnly={loading} onChange={(e)=>handleChangeQuantity(e.target.value)} className=" min-w-16 inline-block bg-gray-200 px-1 py-1 text-base font-semibold rounded-sm flex-1 text-center" />
-                    <button title="Quantity Plus" disabled={loading} onClick={()=>incrementQuantity()} className=" inline-block bg-neutral-800 text-white px-3 py-1 text-base font-semibold rounded-sm">+</button>
+                    <button title="Quantity Plus" disabled={loading} onClick={()=>incrementQuantity()} className=" inline-block bg-neutral-800 text-white px-3 py-1 text-base font-semibold rounded-sm">
+                        {loading ? <Spinner type="small" />: <>+</>}
+                    </button>
                 </div>
             }
         </div>

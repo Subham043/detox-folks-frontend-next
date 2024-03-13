@@ -13,6 +13,7 @@ import { axiosPublic } from '@/app/_libs/utils/axios';
 import { api } from '@/app/_libs/utils/routes/api';
 import { useToast } from '@/app/_libs/hooks/useToast';
 import { Skeleton } from '@/app/_libs/components/ui/skeleton';
+import Spinner from '@/app/_libs/components/Spinner';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -90,7 +91,7 @@ const BillingAddressStep = ({setActiveStep, selectedBillingAddress, setSelectedB
     </div>
 }
 
-const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler}:{
+const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
     setActiveStep: Dispatch<SetStateAction<number>>,
     selectedPaymentMode: 'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay',
     setSelectedPaymentMode: Dispatch<SetStateAction<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'>>,
@@ -98,7 +99,8 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
     setAcceptTerms: Dispatch<SetStateAction<boolean>>,
     includeGst: boolean,
     setIncludeGst: Dispatch<SetStateAction<boolean>>,
-    paymentHandler: () => Promise<void>
+    paymentHandler: () => Promise<void>,
+    paymentLoading: boolean,
 }) => {
     return <div className='w-full'>
         <div className=' px-3 lg:px-5'>
@@ -120,15 +122,17 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
-                    {acceptTerms && <button onClick={paymentHandler} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><BiSelectMultiple /> <span>Place Order</span></button>}
+                    <button onClick={()=>setActiveStep(2)} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
+                    {acceptTerms && <button onClick={paymentHandler} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-black text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold">
+                        {paymentLoading ? <Spinner type='small' /> : <><BiSelectMultiple /> <span>Place Order</span></>}
+                    </button>}
                 </div>
             </div>
         </div>
     </div>
 }
 
-const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler}:{
+const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
     activeStep:number, 
     setActiveStep: Dispatch<SetStateAction<number>>,
     selectedBillingInformation:number|undefined, 
@@ -142,6 +146,7 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
     includeGst: boolean,
     setIncludeGst: Dispatch<SetStateAction<boolean>>,
     paymentHandler: () => Promise<void>
+    paymentLoading: boolean,
 }) => {
     switch (activeStep) {
         case 0:
@@ -160,6 +165,7 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
                         includeGst={includeGst}
                         setIncludeGst={setIncludeGst}
                         paymentHandler={paymentHandler}
+                        paymentLoading={paymentLoading}
                     />
         default:
             return <CheckOutStep setActiveStep={setActiveStep} />
@@ -175,8 +181,10 @@ export default function MultiStepCheckout() {
     const [selectedPaymentMode, setSelectedPaymentMode] = useState<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'>('Online - Phonepe');
     const [acceptTerms, setAcceptTerms] = useState<boolean>(true);
     const [includeGst, setIncludeGst] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const paymentHandler = async () => {
+        setLoading(true);
         try {
             const response = await axiosPublic.post(api.place_order, {
               billing_address_id: selectedBillingAddress, 
@@ -203,7 +211,7 @@ export default function MultiStepCheckout() {
               toastError(error?.response?.data?.message);
             }
           } finally {
-            // setLoading(false);
+            setLoading(false);
           }
     }
 
@@ -232,6 +240,7 @@ export default function MultiStepCheckout() {
                     includeGst={includeGst}
                     setIncludeGst={setIncludeGst}
                     paymentHandler={paymentHandler}
+                    paymentLoading={loading}
                 />
             </div>
         </div>
