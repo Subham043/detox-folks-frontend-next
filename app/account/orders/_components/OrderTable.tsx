@@ -32,7 +32,7 @@ export default function OrderTable() {
                     initialLoad={true}
                     loadMore={loadMore}
                     hasMore={hasNextPage}
-                    loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                    loader={(isFetching || isFetchingNextPage) ? <div className="loader">Loading ...</div> : undefined}
                 >
                     <div className="flex flex-col overflow-x-auto lg:overflow-x-hidden">
                         <div className="sm:-mx-6 lg:-mx-8">

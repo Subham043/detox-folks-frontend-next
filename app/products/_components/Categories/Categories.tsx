@@ -39,7 +39,7 @@ export default function Categories() {
                 initialLoad={false}
                 loadMore={loadMore}
                 hasMore={hasNextPage}
-                loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                loader={(isFetching || isFetchingNextPage) ? <div className="loader">Loading ...</div> : undefined}
                 useWindow={false}
                 getScrollParent={() => scrollRef.current}
             >

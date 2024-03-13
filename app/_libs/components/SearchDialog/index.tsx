@@ -63,7 +63,7 @@ export default function SearchDialog(){
                         initialLoad={true}
                         loadMore={loadMore}
                         hasMore={hasNextPage}
-                        loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                        loader={(isFetching || isFetchingNextPage) ? <div className="loader">Loading ...</div> : undefined}
                         useWindow={false}
                         getScrollParent={() => scrollRef.current}
                     >
@@ -71,7 +71,10 @@ export default function SearchDialog(){
                             (data ? data.pages : []).map((item, i) => <SearchCard {...item} setIsOpen={setIsOpen} key={i} />)
                         }
                     </InfiniteScroll>
-                    {(data ? data.pages : []).length===0 && <p className="w-full text-center">Type to search <ReactTyped strings={TypedString} typeSpeed={60} backSpeed={70} loop /></p>}
+                    {
+                        isFetching ? <p className="w-full text-center">Loading...</p> : 
+                        ((data ? data.pages : []).length===0 && <p className="w-full text-center">Type to search <ReactTyped strings={TypedString} typeSpeed={60} backSpeed={70} loop /></p>)
+                    }
                 </div>
             </div>
         </DialogContent>

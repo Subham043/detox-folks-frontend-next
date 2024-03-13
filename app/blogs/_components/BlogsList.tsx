@@ -30,7 +30,7 @@ export default function BlogsList() {
                 initialLoad={false}
                 loadMore={loadMore}
                 hasMore={hasNextPage}
-                loader={(isFetching || isFetchingNextPage) ? <div className="loader" key={0}>Loading ...</div> : undefined}
+                loader={(isFetching || isFetchingNextPage) ? <div className="loader">Loading ...</div> : undefined}
             >
                 <div className="w-full flex flex-wrap justify-center items-start">
                     
