@@ -26,7 +26,7 @@ export default function CartSidebar() {
                 <SheetHeader className="h-full flex-1">
                     <div className="w-full flex justify-center items-center gap-2 px-3 py-3 border-b border-solid border-gray-300">
                         <FaShoppingBasket className="text-xl" />
-                        <h4 className=" text-lg font-semibold">
+                        <h4 className=" text-base md:text-lg font-semibold">
                             Total Item ({cart.cart.length})
                         </h4>
                     </div>
@@ -42,7 +42,7 @@ export default function CartSidebar() {
                         <div className=" text-center w-full px-3 py-3 border-t border-solid border-gray-300">
                             <Link href={page.account.checkout} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-black text-white gap-4">
                                 <span className="flex-1 text-left border-r border-solid border-white">
-                                    Proceed To Checkout
+                                    Checkout
                                 </span>
                                 <span className=" w-auto text-right">
                                     &#8377;{cart.cart_subtotal}

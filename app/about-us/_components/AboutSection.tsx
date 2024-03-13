@@ -16,7 +16,7 @@ export default function AboutSection() {
             <div className="container mx-auto">
                 <div className="flex flex-wrap justify-between items-center">
                     <div className=" w-full order-2 lg:w-[48%] lg:order-1">
-                        <h1 className=" text-4xl text-black font-semibold mb-5">{data?.heading}</h1>
+                        <h1 className=" text-2xl md:text-4xl text-black font-semibold mb-2 md:mb-5">{data?.heading}</h1>
                         <div dangerouslySetInnerHTML={{__html:data ? data.description : ''}} />
                     </div>
                     <div className=" w-full order-1 mb-3 lg:w-[48%] lg:order-2 lg:mb-0">

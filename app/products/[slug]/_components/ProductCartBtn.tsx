@@ -33,7 +33,7 @@ export default function ProductCardCartBtn({quantity, min_cart_quantity, loading
     }
 
     return <div className="w-full flex my-3">
-        <div className="w-1/3">
+        <div className="w-1/2 md:w-1/3">
             {quantity===0 ? 
                 <button title="Add to Cart" disabled={loading} onClick={()=>incrementQuantity()} className=" mx-auto w-full bg-black text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><FaBasketShopping /> <span>ADD</span></button> :
                 <div className=" flex flex-wrap justify-center items-center gap-1">

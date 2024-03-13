@@ -13,7 +13,7 @@ const PriceFactor = ({
 
 }) => {
     return <div className="w-full">
-        <h4 className=" text-xl text-neutral-600 font-semibold mb-4"><span>₹{price} / {cart_quantity_specification}</span></h4>
+        <h4 className=" text-lg md:text-xl text-neutral-600 font-semibold mb-4"><span>₹{price} / {cart_quantity_specification}</span></h4>
         <div className=" bg-gray-100 px-2 py-2 rounded-sm mb-5">
             <div className=" border-b border-dashed border-gray-500 pb-2">
                 <p className=" text-sm text-green-600 mb-1">Note: Prices Are Inclusive Of GST.</p>
