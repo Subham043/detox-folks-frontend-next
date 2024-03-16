@@ -33,14 +33,14 @@ export default function CartSidebar() {
             </SheetTrigger>
             <SheetContent className="p-0" side='right'>
                 <SheetHeader className="h-full flex-1">
-                    <div className="w-full flex justify-center items-center gap-2 px-3 py-3 border-b border-solid border-gray-300">
-                        <FaShoppingBasket className="text-xl" />
-                        <h4 className=" text-base md:text-lg font-semibold">
-                            Total Item ({cart.cart.length})
-                        </h4>
-                    </div>
                     <div className="w-full h-full flex flex-col justify-between">
-                        <div className=" flex-1 max-h-[80vh] overflow-hidden overflow-y-auto">
+                        <div className="w-full flex justify-center items-center gap-2 px-3 py-3 border-b border-solid border-gray-300">
+                            <FaShoppingBasket className="text-xl" />
+                            <h4 className=" text-base md:text-lg font-semibold">
+                                Total Item ({cart.cart.length})
+                            </h4>
+                        </div>
+                        <div className=" flex-1 overflow-hidden overflow-y-auto">
                             {
                                 cart.cart.length>0 ? cart.cart.map((item, i) => <CartCard {...item} key={i} />):
                                 <div className=" text-center">

@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Breadcrumb from "../_libs/components/Breadcrumb";
 import { getCategoriesQueryOptions } from "../_libs/utils/query/getCategoriesQuery";
 import getQueryClient from "../_libs/utils/query/getQueryClient";
@@ -10,6 +11,11 @@ import {
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 export const runtime = 'nodejs';
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Category',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 export default async function Category() {
     const queryClient = getQueryClient()

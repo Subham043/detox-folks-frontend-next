@@ -2,6 +2,12 @@ import Breadcrumb from "@/app/_libs/components/Breadcrumb";
 import { MdLocationOn, MdOutlineAlternateEmail, MdOutlinePhoneIphone } from "react-icons/md";
 import ContactCard from "./_components/ContactCard";
 import ContactForm from "./_components/ContactForm";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Contact Us',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 export default function Contact() {
     return (

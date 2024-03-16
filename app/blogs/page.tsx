@@ -6,10 +6,16 @@ import {
     HydrationBoundary,
 } from '@tanstack/react-query'
 import BlogsList from "./_components/BlogsList";
+import { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 export const runtime = 'nodejs';
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Blogs',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 export default async function Blogs() {
     const queryClient = getQueryClient()

@@ -16,6 +16,12 @@ import { MdEmail } from "react-icons/md";
 import { GrLogin } from "react-icons/gr";
 import { api } from "@/app/_libs/utils/routes/api";
 import { page } from "@/app/_libs/utils/routes/pages";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Register',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 const schema = yup
   .object({

@@ -3,6 +3,12 @@ import ProfileForm from "./_components/ProfileForm";
 import PasswordForm from "./_components/PasswordForm";
 import BillingInformation from "@/app/_libs/components/BillingInformation";
 import BillingAddress from "@/app/_libs/components/BillingAddress";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Profile',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 export default function Profile() {
     return <>

@@ -3,7 +3,6 @@
 import IconButton from "@/app/_libs/components/IconButton";
 import Input from "@/app/_libs/components/Input";
 import Link from "next/link";
-import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,10 +12,15 @@ import { useToast } from "@/app/_libs/hooks/useToast";
 import { axiosPublic } from "@/app/_libs/utils/axios";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
-import { GrLogin } from "react-icons/gr";
 import { api } from "@/app/_libs/utils/routes/api";
 import { page } from "@/app/_libs/utils/routes/pages";
 import { TbPasswordMobilePhone } from "react-icons/tb";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Reset Password',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 const schema = yup
   .object({

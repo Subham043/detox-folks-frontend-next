@@ -7,13 +7,8 @@ import Header from "@/app/_libs/components/Header/Header";
 import Footer from "@/app/_libs/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import Providers from "./providers";
-import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metaData:Metadata = {
-  title: 'ParcelCounter'
-}
 
 export default function RootLayout({
   children,

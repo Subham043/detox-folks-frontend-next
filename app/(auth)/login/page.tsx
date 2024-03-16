@@ -14,6 +14,12 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { GrLogin } from "react-icons/gr";
 import { signIn } from "next-auth/react"
 import { page } from "@/app/_libs/utils/routes/pages";
+import { Metadata } from "next";
+
+export const metadata:Metadata = {
+  title: 'ParcelCounter | Login',
+  description: 'ParcelCounter is a leading manufacturer and wholesaler specializing in eco-friendly disposable food containers and kitchenware.',
+}
 
 const schema = yup
     .object({
