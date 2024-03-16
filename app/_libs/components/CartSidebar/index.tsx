@@ -5,18 +5,17 @@ import CartCard from "./CartCard";
 import { useCartProvider } from "@/app/_libs/context/CartProvider";
 import { page } from "../../utils/routes/pages";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function CartSidebar() {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    const {cart} = useCartProvider()
+    const {cart} = useCartProvider();
     const pathname = usePathname();
-	const searchParams = useSearchParams();
 
     const closeSidebar = () => setIsOpen(false)
 
-    useEffect(() => closeSidebar(), [pathname, searchParams]);
+    useEffect(() => closeSidebar(), [pathname]);
     
     return <>
         <Sheet open={isOpen} onOpenChange={setIsOpen}>

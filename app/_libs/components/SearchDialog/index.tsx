@@ -13,18 +13,17 @@ import debounce from 'lodash.debounce'
 import { ReactTyped } from "react-typed";
 import { getGlobalSearchQueryOptions } from "@/app/_libs/utils/query/getGlobalSearchQuery"
 import InfiniteScroll from "react-infinite-scroller";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const TypedString = ["Containers", "Silver Pouch", "Parcel Sheet", "Bag", "Tissue", "Meal Tray", "Paper Cup", "Tape", "Cutlery", "Gloves", "Mask"];
 
 export default function SearchDialog(){
     const pathname = usePathname();
-	const searchParams = useSearchParams();
     const [search, setSearch] = useState<string>('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const scrollRef = useRef(null)
     const closeSidebar = () => setIsOpen(false)
-    useEffect(() => closeSidebar(), [pathname, searchParams]);
+    useEffect(() => closeSidebar(), [pathname]);
 
     const {
         fetchNextPage,

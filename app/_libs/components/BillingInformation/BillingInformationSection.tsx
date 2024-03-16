@@ -17,8 +17,12 @@ export default function BillingInformationSection({selectionAvailable, selectedI
     })
 
     useEffect(() => {
-        if(selectionAvailable && setSelectedItem && data && data.data.length>0){
-            setSelectedItem(data.data[0].id)
+        if(selectionAvailable && setSelectedItem){
+            if(data && data.data.length>0){
+                setSelectedItem(data.data[0].id)
+            }else{
+                setSelectedItem(undefined)
+            }
         }
     }, [data, selectionAvailable])
     

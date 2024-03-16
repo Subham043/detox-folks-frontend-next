@@ -3,7 +3,23 @@ import { getOrderQueryOptions } from "@/app/_libs/utils/query/getOrderQuery";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import OrderDetailLoading from "./OrderDetailLoading";
-export default function OrderDetail({ slug }: {  slug: number }) {
+import { useToast } from "@/app/_libs/hooks/useToast";
+import { useEffect } from "react";
+export default function OrderDetail({ slug, searchParams }: {  
+    slug: number,
+    searchParams?: { 
+        order_placed: string | undefined,
+    }
+}) {
+    const { toastSuccess } = useToast();
+
+    useEffect(() => {
+        if(searchParams && searchParams.order_placed!==undefined && searchParams.order_placed==='true'){
+            toastSuccess("Order placed successfully.");
+        }
+      return () => {}
+    }, [searchParams])
+
     const {
         data,
         isFetching,
