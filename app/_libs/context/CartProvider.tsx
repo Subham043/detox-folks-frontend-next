@@ -66,7 +66,10 @@ export default function CartProvider({
     } = useQuery({
         queryKey: getCartQueryOptions.getCartQueryKey,
         queryFn: getCartQueryOptions.getCartQueryFn,
-        enabled: status==='authenticated'
+        enabled: status==='authenticated',
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        refetchOnMount: true,
     })
 
     const {update} = useCartMutation();

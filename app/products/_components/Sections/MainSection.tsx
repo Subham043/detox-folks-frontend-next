@@ -3,12 +3,12 @@ import { getCategoriesQueryOptions } from "../../../_libs/utils/query/getCategor
 import { getCategoryQueryOptions } from "../../../_libs/utils/query/getCategoryQuery";
 import { getProductsQueryOptions } from "../../../_libs/utils/query/getProductsQuery";
 import getQueryClient from "../../../_libs/utils/query/getQueryClient";
-import Categories from "../Categories/Categories";
 import DisplaySection from "./DisplaySection";
 import {
     dehydrate,
     HydrationBoundary,
   } from '@tanstack/react-query'
+import CategoryContainer from "../Categories/CategoryContainer";
 
 export default async function MainSection({
     searchParams
@@ -63,7 +63,7 @@ export default async function MainSection({
                 <div className="container mx-auto">
                     <div className="w-full max-w-full flex flex-wrap justify-between items-start gap-5">
                         <div className=" w-full lg:w-1/5 shrink-0 lg:sticky lg:top-8">
-                            <Categories />
+                            <CategoryContainer />
                         </div>
                         <div className=" flex-1 shrink-0">
                             <DisplaySection searchParams={searchParams} />

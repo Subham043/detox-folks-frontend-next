@@ -11,8 +11,6 @@ export default function StickyHeader() {
 
     // handle scroll event
     const handleScroll = (elTopOffset:number, elHeight:number) => {
-        console.log('pageYOffset: ', window.pageYOffset)
-        console.log('total: ', (elTopOffset + elHeight))
         if (window.pageYOffset > (elTopOffset + elHeight)) {
             setSticky({ isSticky: true, offset: elHeight });
         }  
