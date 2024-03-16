@@ -27,16 +27,19 @@ export default function Banner(){
         <div className="container mx-auto">
             <Slider {...settings}>
                 {
-                    banners.map((item, i) => 
-                    <Image
-                        src={item}
-                        alt={"Parcelcounter Banner_"+(i+1)}
-                        className="mx-auto object-contain"
-                        width={1280}
-                        height={480}
-                        priority={i===0}
-                        key={i}
-                    />)
+                    banners.map((item, i) => <picture key={i}>
+                        <source srcSet={(item.replace(".png", ".webp")).replace("/banner", "/mobile-banner")} media="(max-width: 600px)" />
+                        <source srcSet={item} media="(max-width: 1920px)" />
+                        <source srcSet={item} />
+                        <Image
+                            src={item}
+                            alt={"Parcelcounter Banner_"+(i+1)}
+                            className="mx-auto object-contain"
+                            width={1280}
+                            height={480}
+                            priority={i===0}
+                        />
+                    </picture>)
                 }
             </Slider>
         </div>
