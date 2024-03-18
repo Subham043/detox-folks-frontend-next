@@ -1,4 +1,4 @@
-const pm2Config = {
+module.exports = {
   apps: [
     {
       name: "PARCELCOUNTER",
@@ -10,5 +10,3 @@ const pm2Config = {
     },
   ],
 };
-
-export default pm2Config;
