@@ -16,6 +16,7 @@ import { MdEmail } from "react-icons/md";
 import { GrLogin } from "react-icons/gr";
 import { api } from "@/app/_libs/utils/routes/api";
 import { page } from "@/app/_libs/utils/routes/pages";
+import { signIn } from "next-auth/react";
 
 const schema = yup
   .object({
@@ -39,13 +40,11 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl") || "/profile";
+    const callbackUrl = searchParams.get("callbackUrl") || page.account.profile;
     const { toastSuccess, toastError, toastInfo } = useToast();
 
     const {
         handleSubmit,
-        control,
-        setValue,
         register,
         getValues,
         reset,
@@ -58,26 +57,25 @@ export default function Register() {
     const onSubmit = async () => {
         setLoading(true);
         try {
-          const response = await axiosPublic.post(api.register, {...getValues()});
-          // toastInfo(response.data.message); 
+          await axiosPublic.post(api.register, {...getValues()});
+          const res = await signIn('credentials', {
+            redirect: false,
+            email: getValues().email,
+            password: getValues().password,
+          }); 
           toastSuccess("Registration completed successfully."); 
-        //   const res = await signIn('credentials', {
-        //     redirect: false,
-        //     email: data.email,
-        //     password: data.password,
-        //   }); 
-        //   if (!res?.error) {
-        //     router.push(callbackUrl);
-        //     reset({
-        //       email: "",
-        //       name: "",
-        //       password: "",
-        //       confirm_password: "",
-        //       phone: "",
-        //     });
-        //   } else {
-        //     toastError("Invalid Credentials");
-        //   }                 
+          if (!res?.error) {
+            router.push(callbackUrl);
+            reset({
+              email: "",
+              name: "",
+              password: "",
+              confirm_password: "",
+              phone: "",
+            });
+          } else {
+            toastError("Invalid Credentials");
+          }                 
         } catch (error: any) {
           console.log(error);
           if (error?.response?.data?.message) {

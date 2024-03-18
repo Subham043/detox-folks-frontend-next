@@ -35,8 +35,6 @@ export default function ResetPassword({ params }: { params: { user_token: string
 
     const {
         handleSubmit,
-        control,
-        setValue,
         register,
         getValues,
         reset,

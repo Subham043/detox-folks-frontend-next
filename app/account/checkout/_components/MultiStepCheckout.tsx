@@ -14,6 +14,8 @@ import { api } from '@/app/_libs/utils/routes/api';
 import { useToast } from '@/app/_libs/hooks/useToast';
 import { Skeleton } from '@/app/_libs/components/ui/skeleton';
 import Spinner from '@/app/_libs/components/Spinner';
+import { useRouter } from 'next/navigation';
+import { page } from '@/app/_libs/utils/routes/pages';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -173,6 +175,7 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
 }
 
 export default function MultiStepCheckout() {
+    const router = useRouter();
     const {fetchCart} = useCartProvider()
     const {toastSuccess, toastError} = useToast();
     const [activeStep, setActiveStep] = useState<number>(0);
@@ -197,7 +200,7 @@ export default function MultiStepCheckout() {
             if(selectedPaymentMode==='Cash On Delivery'){
               fetchCart();
               toastSuccess(response.data.message);
-            //   router.push('/orders');
+              router.push(page.account.orders + `/${response.data?.order?.id}`);
             }
             if(selectedPaymentMode==='Online - Phonepe'){
               window.open(response.data?.order?.payment?.phone_pe_payment_link);

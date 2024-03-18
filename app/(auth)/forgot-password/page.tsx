@@ -26,8 +26,6 @@ export default function ForgotPassword() {
 
     const {
         handleSubmit,
-        control,
-        setValue,
         register,
         getValues,
         reset,
