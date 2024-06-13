@@ -4,8 +4,8 @@ import Slider from "react-slick";
 
 const settings = {
     arrows: false,
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -15,11 +15,12 @@ const settings = {
 };
 
 const banners = [
-    '/banner-1.png',
-    '/banner-2.png',
-    '/banner-3.png',
-    '/banner-4.png',
-    '/banner-5.png',
+    '/banner-0.webp',
+    // '/banner-1.png',
+    // '/banner-2.png',
+    // '/banner-3.png',
+    // '/banner-4.png',
+    // '/banner-5.png',
 ];
 
 export default function Banner(){
