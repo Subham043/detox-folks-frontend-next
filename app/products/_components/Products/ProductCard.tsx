@@ -12,7 +12,7 @@ export default function ProductCard({ id, name, image, slug, product_prices, min
         <div className=" bg-white px-3 py-4 rounded-sm transition-all hover:scale-110 hover:shadow-xl">
             <Link href={`${page.products}/${slug}`}>
                 <Image src={image} width={200} height={200} alt={name} title={name} className="mx-auto mb-2" />
-                <h3 className=" text-gray-700 font-semibold">{name}</h3>
+                <h3 className=" text-[#8c6d52] font-semibold">{name}</h3>
             </Link>
             <ProductCardPrice product_prices={product_prices} cart_product_item={cart_product_item} cart_quantity_specification={cart_quantity_specification} />
             <div className="mt-2">

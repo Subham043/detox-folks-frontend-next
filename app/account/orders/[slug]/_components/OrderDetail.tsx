@@ -76,10 +76,10 @@ export default function OrderDetail({ slug, searchParams }: {
                                                     <th className="text-left pb-2">Sub Total</th>
                                                     <td className="text-right pb-2 text-neutral-600">₹{data?.subtotal}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th className="text-left pb-2">Delivery Charges</th>
-                                                    <td className="text-right pb-2 text-neutral-600">FREE</td>
-                                                </tr>
+                                                {data?.charges.map((item, i) => <tr key={i}>
+                                                    <th className="text-left pb-2">{item.charges_name}</th>
+                                                    <td className="text-right pb-2 text-neutral-600">₹{item.charges_in_amount}</td>
+                                                </tr>)}
                                                 <tr>
                                                     <th className="text-left pb-2">Total</th>
                                                     <td className="text-right pb-2 text-neutral-600">₹{data?.total_price}</td>
@@ -101,7 +101,7 @@ export default function OrderDetail({ slug, searchParams }: {
                                     <div className="inline-block min-w-full sm:px-6 lg:px-8">
                                         <div className="overflow-x-auto">
                                             <table className="min-w-full border text-left text-sm font-light">
-                                                <thead className="border bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                                                <thead className="border bg-[#8c6d52] font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                                                     <tr>
                                                         <th scope="col" className="border-r px-6 py-4">Product</th>
                                                         <th scope="col" className="border-r px-6 py-4 text-center">Price</th>

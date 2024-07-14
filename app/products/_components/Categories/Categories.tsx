@@ -29,8 +29,8 @@ export default function Categories() {
         cancelRefetch: true
     })
 
-    return <div className=" w-full border rounded-sm overflow-hidden border-neutral-700">
-        <div className="py-2 bg-neutral-700 w-full text-center">
+    return <div className=" w-full border rounded-sm overflow-hidden border-[#8c6d52]">
+        <div className="py-2 bg-[#8c6d52] w-full text-center">
             <h4 className=" text-xl font-semibold text-white">Categories</h4>
         </div>
         <div className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto" ref={scrollRef}>
@@ -44,11 +44,11 @@ export default function Categories() {
                 getScrollParent={() => scrollRef.current}
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
-                    <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-neutral-300' : 'bg-neutral-100'} border-b border-gray-300 transition-all hover:bg-gray-200`}>
+                    <div className={` w-full shrink-0 ${(!categoryParam ||categoryParam===null || (categoryParam && categoryParam.length===0)) ? 'bg-[#b8a497] text-white' : 'bg-[#f0eef0] text-gray-700'} border-b border-gray-300 transition-all hover:bg-gray-200 hover:text-gray-700`}>
                         <CategoryCard name='All' image='/disposables.webp' id='' slug="" />
                     </div>
                     {
-                        (data ? data.pages : []).map((item, i) => <div className={` ${categoryParam && categoryParam===item.slug ? 'bg-neutral-300' : 'bg-neutral-100'} w-full shrink-0 border-b border-gray-300 transition-all hover:bg-gray-200`} key={i}>
+                        (data ? data.pages : []).map((item, i) => <div className={` ${categoryParam && categoryParam===item.slug ? 'bg-[#b8a497] text-white' : 'bg-[#f0eef0] text-gray-700'} w-full shrink-0 border-b border-gray-300 transition-all hover:bg-gray-200 hover:text-gray-700`} key={i}>
                             <CategoryCard name={item.name} image={item.image} id={item.id} slug={item.slug} />
                         </div>)
                     }

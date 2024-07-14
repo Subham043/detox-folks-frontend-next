@@ -4,7 +4,7 @@ import { TestimonialType } from "../../utils/types";
 
 export default function TestimonialCard({name, message, star, image}:TestimonialType){
     return <div>
-        <div className="w-full text-center bg-black px-5 py-5 rounded-md">
+        <div className="w-full text-center bg-[#8c6d52] px-5 py-5 rounded-md">
             <FaQuoteLeft className=" text-3xl text-white mx-auto mb-3" />
             <p className=" text-white italic mb-3">{message}</p>
             <h3 className=" text-white text-lg font-semibold uppercase">{name}</h3>

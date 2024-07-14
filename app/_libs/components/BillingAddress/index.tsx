@@ -6,7 +6,7 @@ export default function BillingAddress({title='Billing Address', selectionAvaila
 
     return <div className="w-full">
         <div className=" flex justify-between items-center mb-5">
-            <h3 className=" text-base md:text-xl text-black font-semibold">{title}</h3>
+            <h3 className=" text-base md:text-xl text-[#8c6d52] font-semibold">{title}</h3>
             <AddBillingAddressDialog />
         </div>
         <BillingAddressSection selectionAvailable={selectionAvailable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />

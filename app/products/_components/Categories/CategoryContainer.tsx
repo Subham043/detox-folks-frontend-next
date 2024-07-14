@@ -22,7 +22,7 @@ export default function CategoryContainer() {
         <div className="w-full block lg:hidden">
             <Dialog open={isOpen} onOpenChange={(open)=>setIsOpen(open)}>
                 <DialogTrigger asChild>
-                    <button className=" text-sm md:text-base py-1 px-3 pr-3 bg-black text-white text-center font-semibold rounded-sm transition-all hover:bg-gray-600 fixed bottom-5 -right-1 z-10 flex gap-1 items-center" onClick={()=>setIsOpen(true)}><MdCategory /> Categories</button>
+                    <button className=" text-sm md:text-base py-1 px-3 pr-3 bg-[#8c6d52] text-white text-center font-semibold rounded-sm transition-all hover:bg-gray-600 fixed bottom-5 -right-1 z-10 flex gap-1 items-center" onClick={()=>setIsOpen(true)}><MdCategory /> Categories</button>
                 </DialogTrigger>
                 <DialogContent className="p-0">
                     <div className=" w-full">

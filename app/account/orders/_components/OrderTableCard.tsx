@@ -19,19 +19,19 @@ export default function OrderTableCard({id, products, total_price, created_at, s
                 <p className=" text-base font-semibold">₹{total_price}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
-                <p className=" text-base font-semibold">{statuses[statuses.length-1].status}</p>
+                <p className=" text-base font-semibold">{statuses.length>0 ? statuses[statuses.length-1].status : ''}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center hidden lg:table-cell">
-                <p className=" text-base font-semibold">{payment.mode}</p>
+                <p className=" text-base font-semibold">{payment?.mode}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center hidden lg:table-cell">
-                <p className=" text-base font-semibold">{payment.status}</p>
+                <p className=" text-base font-semibold">{payment?.status}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <p className=" text-base font-semibold">{created_at}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
-                <Link href={`${page.account.orders}/${id}`} className=" mt-2 mx-auto w-full bg-black text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>VIEW</span> <FaLongArrowAltRight className=" text-lg mt-0.5" /></Link>
+                <Link href={`${page.account.orders}/${id}`} className=" mt-2 mx-auto w-full bg-[#8c6d52] text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold"><span>VIEW</span> <FaLongArrowAltRight className=" text-lg mt-0.5" /></Link>
             </td>
         </tr>
     </>

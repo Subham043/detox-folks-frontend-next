@@ -26,8 +26,8 @@ export default function PopularBlogs() {
         cancelRefetch: true
     })
 
-    return <div className=" w-full border rounded-sm overflow-hidden border-neutral-700">
-        <div className="py-2 bg-neutral-700 w-full text-center">
+    return <div className=" w-full border rounded-sm overflow-hidden border-[#8c6d52]">
+        <div className="py-2 bg-[#8c6d52] w-full text-center">
             <h4 className=" text-xl font-semibold text-white">Popular Blogs</h4>
         </div>
         <div className="bg-white w-full max-h-[35rem] overflow-hidden overflow-y-auto" ref={scrollRef}>
@@ -42,7 +42,7 @@ export default function PopularBlogs() {
             >
                 <div className="w-full max-w-full flex flex-wrap justify-start items-start">
                     {
-                        (data ? data.pages : []).map((item, i) => <div className={` bg-neutral-100 w-full shrink-0 border-b border-gray-300`} key={i}>
+                        (data ? data.pages : []).map((item, i) => <div className={` bg-[#f0eef0] w-full shrink-0 border-b border-gray-300 transition-all hover:bg-gray-200 hover:text-gray-700`} key={i}>
                             <PopularBlogCard name={item.name} image={item.image} slug={item.slug} description_unfiltered={item.description_unfiltered} />
                         </div>)
                     }

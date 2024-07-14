@@ -50,18 +50,18 @@ export default function SearchDialog(){
 
     return <Dialog open={isOpen} onOpenChange={(open)=>{setIsOpen(open); setSearch('')}}>
         <DialogTrigger asChild>
-            <button className=" flex justify-between items-center flex-1 px-3 py-3 rounded-lg border-black border-solid border bg-gray-100">
+            <button className=" flex justify-between items-center flex-1 px-3 py-3 rounded-lg border-[#8c6d52] border-solid border bg-[#ede1d736]">
                 <p className=" text-gray-600 text-sm">Search <ReactTyped strings={TypedString} typeSpeed={60} backSpeed={70} loop /></p>
-                <FaSearch />
+                <FaSearch className="text-[#8c6d52]" />
             </button>
         </DialogTrigger>
         <DialogContent className="p-0">
             <div className=" w-full">
-                <div className=" flex justify-between items-center w-full px-3 rounded-t-lg border-black border-solid border-b-2 bg-gray-100">
+                <div className=" flex justify-between items-center w-full px-3 rounded-t-lg border-[#8c6d52] border-solid border-b-2 bg-[#ede1d736]">
                     <FaSearch />
-                    <input type="text" onChange={(event) => searchHandler(event.target.value)} className=" text-gray-600 text-sm flex-1 px-4 py-4 bg-gray-100 focus-within:outline-none focus:outline-none focus-visible:outline-none" placeholder="Search anything ..."/>
+                    <input type="text" onChange={(event) => searchHandler(event.target.value)} className={` text-gray-600 text-sm flex-1 px-4 py-4 ${isOpen ? 'bg-white' : 'bg-[#ede1d736]'} focus-within:outline-none focus:outline-none focus-visible:outline-none`} placeholder="Search anything ..."/>
                 </div>
-                <div className="px-3 py-3 bg-gray-100 w-full max-h-96 overflow-hidden overflow-y-auto" ref={scrollRef}>
+                <div className="px-3 py-3 bg-[#ede1d736] w-full max-h-96 overflow-hidden overflow-y-auto" ref={scrollRef}>
                     <InfiniteScroll
                         pageStart={1}
                         initialLoad={true}

@@ -41,7 +41,7 @@ export default function MenuDrawer(){
     useEffect(() => closeSidebar(), [pathname]);
     return <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-            <button className="bg-black text-white px-3 py-2 rounded-sm"><IoMdMenu className="text-xl" /></button>
+            <button className="bg-[#8c6d52] text-white px-3 py-2 rounded-sm"><IoMdMenu className="text-xl" /></button>
         </SheetTrigger>
         <SheetContent className="p-0" side='left'>
             <SheetHeader>
@@ -58,19 +58,19 @@ export default function MenuDrawer(){
                 </div>
                 <div className="w-full pt-5 text-left px-3">
                     <ul>
-                        <li className="mb-4"><Link href={page.home} className="flex items-center gap-3 text-lg font-semibold text-black"><FaHome /> Home</Link></li>
-                        <li className="mb-4"><Link href={page.about} className="flex items-center gap-3 text-lg font-semibold text-black"><FaInfoCircle /> About Us</Link></li>
-                        <li className="mb-4"><Link href={page.products} className="flex items-center gap-3 text-lg font-semibold text-black"><FiPackage /> Products</Link></li>
-                        <li className="mb-4"><Link href={page.blogs} className="flex items-center gap-3 text-lg font-semibold text-black"><LiaBookSolid /> Blogs</Link></li>
-                        <li className="mb-4"><Link href={page.contact} className="flex items-center gap-3 text-lg font-semibold text-black"><FaHeadphones /> Contact Us</Link></li>
+                        <li className="mb-4"><Link href={page.home} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaHome /> Home</Link></li>
+                        <li className="mb-4"><Link href={page.about} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaInfoCircle /> About Us</Link></li>
+                        <li className="mb-4"><Link href={page.products} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FiPackage /> Products</Link></li>
+                        <li className="mb-4"><Link href={page.blogs} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><LiaBookSolid /> Blogs</Link></li>
+                        <li className="mb-4"><Link href={page.contact} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaHeadphones /> Contact Us</Link></li>
                         {
                             status==='unauthenticated' ? 
-                            <li className="mb-4"><Link href={page.auth.login} className="flex items-center gap-3 text-lg font-semibold text-black"><IoLogIn /> Login</Link></li> : 
+                            <li className="mb-4"><Link href={page.auth.login} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><IoLogIn /> Login</Link></li> : 
                             <>
-                                <li className="mb-4"><Link href={page.account.checkout} className="flex items-center gap-3 text-lg font-semibold text-black"><IoBagCheckOutline /> Checkout</Link></li>
-                                <li className="mb-4"><Link href={page.account.orders} className="flex items-center gap-3 text-lg font-semibold text-black"><FaClipboardList /> Order</Link></li>
-                                <li className="mb-4"><Link href={page.account.profile} className="flex items-center gap-3 text-lg font-semibold text-black"><FaUserCircle /> Profile</Link></li>
-                                <li className="mb-4"><button onClick={onLogout} disabled={loading} className="flex items-center gap-3 text-lg font-semibold text-black"><IoLogOutSharp /> Logout</button></li>
+                                <li className="mb-4"><Link href={page.account.checkout} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><IoBagCheckOutline /> Checkout</Link></li>
+                                <li className="mb-4"><Link href={page.account.orders} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaClipboardList /> Order</Link></li>
+                                <li className="mb-4"><Link href={page.account.profile} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaUserCircle /> Profile</Link></li>
+                                <li className="mb-4"><button onClick={onLogout} disabled={loading} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><IoLogOutSharp /> Logout</button></li>
                             </>
                         }
                     </ul>

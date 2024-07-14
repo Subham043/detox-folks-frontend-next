@@ -11,6 +11,6 @@ type CategoryCardProps = {
 export default function CategoryCard({name, image, slug, id}:CategoryCardProps) {
     return <Link href={`${page.products}?category=${slug}&category_id=${id}`} className=" w-full text-center">
         <Image src={image} width={200} height={200} alt={name} title={name} className="mx-auto" />
-        <h3 className="mt-3 text-base md:text-lg text-gray-700 font-semibold">{name}</h3>
+        <h3 className="mt-3 text-base md:text-lg text-[#8c6d52] font-semibold">{name}</h3>
     </Link>
 }

@@ -12,7 +12,7 @@ export default function AddBillingInformationDialog(){
     const [isOpen, setIsOpen] = useState<boolean>(false)
     return <Dialog open={isOpen} onOpenChange={(open)=>setIsOpen(open)}>
         <DialogTrigger asChild>
-            <button className=" text-sm md:text-base py-1 px-3 bg-black text-white text-center font-semibold rounded-sm transition-all hover:bg-gray-600" onClick={()=>setIsOpen(true)}>ADD INFO</button>
+            <button className=" text-sm md:text-base py-1 px-3 bg-[#8c6d52] text-white text-center font-semibold rounded-sm transition-all hover:bg-gray-600" onClick={()=>setIsOpen(true)}>ADD INFO</button>
         </DialogTrigger>
         <DialogContent className="p-0">
             <div className=" w-full px-4 py-3">

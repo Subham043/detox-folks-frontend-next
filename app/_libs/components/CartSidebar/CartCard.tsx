@@ -14,7 +14,7 @@ export default function CartCard({product, product_price, amount}:CartCardPropsT
         <Image src={product.image} alt={product.name} title={product.name} width={90} height={90} />
         <div className=" h-100 flex-1 flex flex-col justify-between h-100">
             <div className="w-full h-auto mb-2 text-left">
-                <Link href={`${page.products}/${product.slug}`} className=" w-full font-semibold">{product.name}</Link>
+                <Link href={`${page.products}/${product.slug}`} className=" w-full font-semibold text-[#8c6d52]">{product.name}</Link>
                 <p className=" w-full text-sm">Unit Price - ₹{product_price.discount_in_price}/{product.cart_quantity_specification}</p>
             </div>
             <div className=" w-full h-auto flex flex-wrap justify-between items-center">

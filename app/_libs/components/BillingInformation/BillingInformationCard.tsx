@@ -38,7 +38,7 @@ export default function BillingInformationCard(props:BillingInformationType & {s
         }
     }
 
-    return <div onClick={()=>selectionHandler(props.id)} className={`py-2 px-3 bg-gray-100 rounded-sm text-left w-full ${(props.selectionAvailable && props.selectedItem && props.selectedItem===props.id) ? 'border border-dashed border-gray-500' : 'cursor-pointer'} `}>
+    return <div onClick={()=>selectionHandler(props.id)} className={`py-2 px-3 bg-[#ede1d736] rounded-sm text-left w-full ${(props.selectionAvailable && props.selectedItem && props.selectedItem===props.id) ? 'border border-dashed border-gray-500' : 'cursor-pointer'} `}>
         <div className=" flex justify-between items-start gap-1">
             <h3 className="text-lg font-semibold flex gap-2 items-start"><FaUser className=" mt-1" /> {props.name}</h3>
             <DropdownMenu>

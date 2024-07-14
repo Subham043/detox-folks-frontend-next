@@ -12,7 +12,7 @@ export default function PolicyFooter() {
         queryFn: getFeatureQueryOptions.getFeatureQueryFn,
     })
 
-    return <div className="w-full bg-zinc-300">
+    return <div className="w-full bg-[#b8a497]">
         <div className="container mx-auto">
             <div className=" py-10 flex flex-wrap justify-between items-start gap-y-3">
                 {
@@ -21,13 +21,13 @@ export default function PolicyFooter() {
                             <Image
                                 src={item.image}
                                 alt={item.title}
-                                className="w-12 h-12 rounded-full object-contain bg-white border-2 border-double border-black"
+                                className="w-12 h-12 rounded-full object-contain bg-white border-2 border-double border-[#8c6d52]"
                                 width={45}
                                 height={45}
                             />
-                            <h4 className=" font-semibold text-lg">{item.title}</h4>
+                            <h4 className=" font-semibold text-lg text-white">{item.title}</h4>
                         </div>
-                        <p>
+                        <p className=" text-white">
                             {item.description}
                         </p>
                     </div>)

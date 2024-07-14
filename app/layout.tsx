@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-white`}>
         <Providers>
             <Header />
-            <div className="w-full bg-gray-100">
+            <div className="w-full bg-[#ede1d736]">
                 {children}
             </div>
             <Footer />

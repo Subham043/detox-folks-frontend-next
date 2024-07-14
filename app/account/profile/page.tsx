@@ -17,11 +17,11 @@ export default function Profile() {
             <div className="container mx-auto">
                 <div className="flex flex-wrap justify-between items-start">
                     <div className="w-full mb-5 lg:mb-0 lg:w-[48%] px-5 py-5 bg-white rounded-md box-border">
-                        <h3 className=" text-xl text-black font-semibold mb-5">Your Profile</h3>
+                        <h3 className=" text-xl text-[#8c6d52] font-semibold mb-5">Your Profile</h3>
                         <ProfileForm />
                     </div>
                     <div className="w-full mb-5 lg:mb-0 lg:w-[48%] px-5 py-5 bg-white rounded-md box-border">
-                        <h3 className=" text-xl text-black font-semibold mb-5">Password Setting</h3>
+                        <h3 className=" text-xl text-[#8c6d52] font-semibold mb-5">Password Setting</h3>
                         <PasswordForm />
                     </div>
                 </div>

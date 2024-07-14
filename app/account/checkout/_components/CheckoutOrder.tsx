@@ -18,21 +18,21 @@ export default function CheckoutOrder() {
                             </thead>
                             <tbody>
                                 <tr className="border dark:border-neutral-500">
-                                    <td className="whitespace-nowrap border-r px-6 py-4 text-left">
+                                    <td className="whitespace-nowrap border-r px-2 py-4 text-left">
                                         <h3 className=" text-base font-semibold">Sub Total</h3>
                                     </td>
-                                    <td className="whitespace-nowrap border-r px-6 py-4 text-right">
+                                    <td className="whitespace-nowrap border-r px-2 py-4 text-right">
                                         <h3 className=" text-base font-semibold">₹{cart.cart_subtotal}</h3>
                                     </td>
                                 </tr>
                                 {
                                     cart.cart_charges.map((item, i) => (
                                         <tr className="border dark:border-neutral-500" key={i}>
-                                            <td className="whitespace-nowrap border-r px-6 py-4 text-left">
+                                            <td className="whitespace-nowrap border-r px-2 py-4 text-left">
                                                 <h3 className=" text-base font-semibold">{item.charges_name}</h3>
                                                 <p className=" text-sm italic text-indigo-500">Add items worth <b>₹{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> <br/>more for free delivery.</p>
                                             </td>
-                                            <td className="whitespace-nowrap border-r px-6 py-4 text-right">
+                                            <td className="whitespace-nowrap border-r px-2 py-4 text-right">
                                                 <h3 className=" text-base font-semibold">₹{item.charges_in_amount}</h3>
                                             </td>
                                         </tr>
@@ -47,10 +47,10 @@ export default function CheckoutOrder() {
                                     </td>
                                 </tr> */}
                                 <tr className="border dark:border-neutral-500">
-                                    <td className="whitespace-nowrap border-r px-6 py-4 text-left">
+                                    <td className="whitespace-nowrap border-r px-2 py-4 text-left">
                                         <h3 className=" text-base font-semibold">Total</h3>
                                     </td>
-                                    <td className="whitespace-nowrap border-r px-6 py-4 text-right">
+                                    <td className="whitespace-nowrap border-r px-2 py-4 text-right">
                                         <h3 className=" text-base font-semibold">₹{cart.total_price}</h3>
                                     </td>
                                 </tr>

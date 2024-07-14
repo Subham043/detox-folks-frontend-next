@@ -70,7 +70,7 @@ export default function ForgotPassword() {
         </div>
         <div className="rounded-md bg-white w-full px-5 py-4 border border-gray-300 mt-3">
             <div className="text-center">
-                <Link href={page.auth.login} className="text-center text-gray-500 text-md">Remember your passowrd? <span className=" font-bold text-black">Login</span></Link>
+                <Link href={page.auth.login} className="text-center text-gray-500 text-md">Remember your passowrd? <span className=" font-bold text-[#8c6d52]">Login</span></Link>
             </div>
         </div>
     </> 

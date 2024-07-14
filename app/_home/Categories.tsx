@@ -20,7 +20,7 @@ export default function Categories() {
                 <h3 className="w-auto text-lg md:text-2xl font-semibold">
                     What are you looking for?
                 </h3>
-                <Link href={`${page.category}`} className="w-auto text-xs md:text-sm bg-black text-white text-center px-2 py-2 md:px-3 md:py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Show More</span> <FaArrowRightLong className="text-xs md:text-base" /></Link>
+                <Link href={`${page.category}`} className="w-auto text-xs md:text-sm bg-[#8c6d52] text-white text-center px-2 py-2 md:px-3 md:py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Show More</span> <FaArrowRightLong className="text-xs md:text-base" /></Link>
             </div>
             <div className="w-full flex flex-wrap justify-start items-start gap-y-5">
                 {

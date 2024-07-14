@@ -78,12 +78,12 @@ export default function Login() {
                 <IconButton Icon={GrLogin} text="LOGIN" loading={loading} />
             </form>
             <div className="text-center">
-                <Link href={page.auth.forgot_password} className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-black">Reset Here</span></Link>
+                <Link href={page.auth.forgot_password} className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-[#8c6d52]">Reset Here</span></Link>
             </div>
         </div>
         <div className="rounded-md bg-white w-full px-5 py-4 border border-gray-300 mt-3">
             <div className="text-center">
-                <Link href={page.auth.register} className="text-center text-gray-500 text-md">Don&apos;t Have Any Account? <span className=" font-bold text-black">Register Here</span></Link>
+                <Link href={page.auth.register} className="text-center text-gray-500 text-md">Don&apos;t Have Any Account? <span className=" font-bold text-[#8c6d52]">Register Here</span></Link>
             </div>
         </div>
     </> 

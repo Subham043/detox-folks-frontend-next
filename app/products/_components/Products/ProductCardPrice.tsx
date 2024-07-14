@@ -19,7 +19,7 @@ const PriceFactor = ({
         </PopoverTrigger>
         <PopoverContent className="p-0">
             <div className="p-1">
-                <div className=" bg-gray-100 px-1 py-2 rounded-sm">
+                <div className=" bg-[#ede1d736] px-1 py-2 rounded-sm">
                     <div className=" border-b border-dashed border-gray-500 pb-2">
                         <p className=" text-sm text-green-600 mb-1">Note: Prices Are Inclusive Of GST.</p>
                         <h3 className=" text-lg font-semibold">Bulk Offer:</h3>

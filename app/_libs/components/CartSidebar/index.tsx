@@ -21,9 +21,9 @@ export default function CartSidebar() {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
                 <button className="flex flex-wrap items-center gap-3">
-                    <div className=" bg-gray-100 rounded-full relative flex justify-center items-center w-11 h-11">
-                        <FaShoppingBasket />
-                        <span className="w-5 h-5 absolute bg-black text-white rounded-full -top-1.5 -right-0.5 text-sm flex justify-center items-center">{cart.cart.length}</span>
+                    <div className=" bg-[#ede1d7] rounded-full relative flex justify-center items-center w-11 h-11">
+                        <FaShoppingBasket className=" text-[#8c6d52]" />
+                        <span className="w-5 h-5 absolute bg-[#8c6d52] text-white rounded-full -top-1.5 -right-0.5 text-sm flex justify-center items-center">{cart.cart.length}</span>
                     </div>
                     <div className=" text-left hidden lg:block">
                         <p className=" text-xs">TOTAL PRICE</p>
@@ -35,8 +35,8 @@ export default function CartSidebar() {
                 <SheetHeader className="h-full flex-1">
                     <div className="w-full h-full flex flex-col justify-between">
                         <div className="w-full flex justify-center items-center gap-2 px-3 py-3 border-b border-solid border-gray-300">
-                            <FaShoppingBasket className="text-xl" />
-                            <h4 className=" text-base md:text-lg font-semibold">
+                            <FaShoppingBasket className="text-xl text-[#8c6d52]" />
+                            <h4 className=" text-base md:text-lg font-semibold text-[#8c6d52]">
                                 Total Item ({cart.cart.length})
                             </h4>
                         </div>
@@ -49,7 +49,7 @@ export default function CartSidebar() {
                             }
                         </div>
                         <div className=" text-center w-full px-3 py-3 border-t border-solid border-gray-300">
-                            <Link href={page.account.checkout} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-black text-white gap-4 transition-all hover:bg-gray-600">
+                            <Link href={page.account.checkout} className=" flex justify-between items-center py-3 px-2 rounded-md w-full bg-[#8c6d52] text-white gap-4 transition-all hover:bg-gray-600">
                                 <span className="flex-1 text-left border-r border-solid border-white">
                                     Checkout
                                 </span>
