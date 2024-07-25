@@ -5,7 +5,7 @@ import Slider from "react-slick";
 const settings = {
     arrows: false,
     dots: false,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -15,7 +15,10 @@ const settings = {
 };
 
 const banners = [
-    '/banner-0.webp',
+    '/banner-1.webp',
+    '/banner-2.webp',
+    '/banner-3.webp',
+    '/banner-4.webp',
     // '/banner-1.png',
     // '/banner-2.png',
     // '/banner-3.png',
@@ -29,7 +32,7 @@ export default function Banner(){
             <Slider {...settings}>
                 {
                     banners.map((item, i) => <picture key={i}>
-                        <source srcSet={(item.replace(".png", ".webp")).replace("/banner", "/mobile-banner")} media="(max-width: 600px)" />
+                        <source srcSet={(item.replace(".png", ".webp")).replace("/banner", "/banner")} media="(max-width: 600px)" />
                         <source srcSet={item} media="(max-width: 1920px)" />
                         <source srcSet={item} />
                         <Image

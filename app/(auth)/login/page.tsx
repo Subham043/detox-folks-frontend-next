@@ -1,88 +1,36 @@
 "use client";
 
-import IconButton from "@/app/_libs/components/IconButton";
-import Input from "@/app/_libs/components/Input";
 import Link from "next/link";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useToast } from "@/app/_libs/hooks/useToast";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { GrLogin } from "react-icons/gr";
-import { signIn } from "next-auth/react"
 import { page } from "@/app/_libs/utils/routes/pages";
-
-const schema = yup
-    .object({
-        email: yup.string().email().required(),
-        password: yup.string().required(),
-    })
-    .required();
+import LoginWithEmail from "./_components/LoginWithEmail";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_libs/components/ui/tabs";
+import LoginWithPhone from "./_components/LoginWithPhone";
 
 export default function Login() {
-    const [loading, setLoading] = useState(false);
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl") || page.account.profile;
-    const { toastError } = useToast();
-
-    const {
-        handleSubmit,
-        register,
-        getValues,
-        reset,
-        formState: { errors },
-    } = useForm({
-        resolver: yupResolver(schema),
-    });
-
-    const onSubmit = async () => {
-        setLoading(true);
-        try {
-            const res = await signIn('credentials', {
-                redirect: false,
-                email: getValues().email,
-                password: getValues().password,
-            });
-            if (!res?.error) {
-                // fetchCart()
-                // if(showLogin){
-                //     hideLogin();
-                // }else{
-                    router.push(callbackUrl);
-                // }
-                reset({
-                    email: "",
-                    password: "",
-                });
-            } else {
-                toastError("Invalid Credentials");
-            }
-        } catch (error: any) {
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     return <>
-        <div className="rounded-md bg-white w-full px-5 py-8 border border-gray-300">
-            <h4 className="text-center text-2xl font-bold mb-2">Welcome!</h4>
-            <p className="text-center text-gray-500 text-md mb-5">Use Your Credentials To Access</p>
-            <form className="mb-3" onSubmit={handleSubmit(onSubmit)}>
-                <Input Icon={MdEmail} type="email" register={register} errors={errors} name="email" placeholder="Email" />
-                <Input Icon={RiLockPasswordFill} type="password" register={register} errors={errors} name="password" placeholder="Password" />
-                <IconButton Icon={GrLogin} text="LOGIN" loading={loading} />
-            </form>
-            <div className="text-center">
-                <Link href={page.auth.forgot_password} className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-[#8c6d52]">Reset Here</span></Link>
-            </div>
+        <div className="rounded-md bg-white w-full py-3 border border-gray-300">
+            <h4 className="text-center text-2xl px-5 font-bold mb-2">Welcome!</h4>
+            <p className="text-center text-gray-500 px-5 text-md mb-5">Use Your Credentials To Access</p>
+            <Tabs defaultValue="email" className="w-full">
+                <TabsList className="w-full border-[0.5px] border-solid border-[#b8a497] bg-[#b8a497] text-white border-b-0 rounded-none">
+                    <TabsTrigger className="w-1/2" value="email">Login With Email</TabsTrigger>
+                    <TabsTrigger className="w-1/2" value="phone">Login With Phone</TabsTrigger>
+                </TabsList>
+                <TabsContent className="mt-0" value="email">
+                    <div className="w-full rounded-b-sm p-3 px-5">
+                        <LoginWithEmail />
+                    </div>
+                </TabsContent>
+                <TabsContent className="mt-0" value="phone">
+                    <div className="w-full rounded-b-sm p-3 px-5">
+                        <LoginWithPhone />
+                    </div>
+                </TabsContent>
+            </Tabs>
         </div>
         <div className="rounded-md bg-white w-full px-5 py-4 border border-gray-300 mt-3">
             <div className="text-center">
+                <Link href={page.auth.forgot_password} className="text-center text-gray-500 text-md">Forgot Your Password? <span className=" font-bold text-[#8c6d52]">Reset Here</span></Link><br/>
                 <Link href={page.auth.register} className="text-center text-gray-500 text-md">Don&apos;t Have Any Account? <span className=" font-bold text-[#8c6d52]">Register Here</span></Link>
             </div>
         </div>
