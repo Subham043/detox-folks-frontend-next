@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         type: { label: "Type", type: "text", placeholder: "type" },
-        username: { label: "Email", type: "text", placeholder: "email" },
+        email: { label: "Email", type: "text", placeholder: "email" },
         password: { label: "Password", type: "password" },
         phone: { label: "Phone", type: "number", placeholder: "Phone" },
         otp: { label: "OTP", type: "number", placeholder: "OTP" },
@@ -34,7 +34,7 @@ export const authOptions: NextAuthOptions = {
         let payload = {};
         if (loginType === "Email") {
           payload = {
-            email: credentials?.username,
+            email: credentials?.email,
             password: credentials?.password,
           };
         } else {
