@@ -30,7 +30,7 @@ export default function CheckoutOrder() {
                                         <tr className="border dark:border-neutral-500" key={i}>
                                             <td className="whitespace-nowrap border-r px-2 py-4 text-left">
                                                 <h3 className=" text-base font-semibold">{item.charges_name} {item.is_percentage && <>({item.charges_in_amount}%)</>}</h3>
-                                               {item.include_charges_for_cart_price_below!==0 && <p className=" text-sm italic text-indigo-500">Add items worth <b>₹{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> <br/>more for free delivery.</p>}
+                                               {(cart.cart_subtotal<item.include_charges_for_cart_price_below) && <p className=" text-sm italic text-indigo-500">Add items worth <b>₹{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> <br/> to avoid {item.charges_name}.</p>}
                                             </td>
                                             <td className="whitespace-nowrap border-r px-2 py-4 text-right">
                                                 <h3 className=" text-base font-semibold">₹{item.total_charge_in_amount}</h3>
