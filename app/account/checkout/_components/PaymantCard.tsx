@@ -50,7 +50,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
                 </div>
               </div>
           </button>
-          {/* <button onClick={()=>setSelectedPaymentMode('Online - CashFree')} className={`w-full border-b border-gray-300 text-left  ${selectedPaymentMode==='Online - CashFree' ? 'bg-[#ede1d736]' : ''}`}>
+          <button onClick={()=>setSelectedPaymentMode('Online - CashFree')} className={`w-full border-b border-gray-300 text-left  ${selectedPaymentMode==='Online - CashFree' ? 'bg-[#ede1d736]' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
                   <Image src={cashfree} alt="razoray" width={70} height={60} />
@@ -60,7 +60,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
                   </div>
                 </div>
               </div>
-          </button> */}
+          </button>
           <button onClick={()=>setSelectedPaymentMode('Cash On Delivery')} className={`w-full text-left  ${selectedPaymentMode==='Cash On Delivery' ? 'bg-[#ede1d736]' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
