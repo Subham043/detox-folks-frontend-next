@@ -19,8 +19,8 @@ export default function EditBillingAddressDialog({isOpen, setIsOpen, data}:EditB
     return <Dialog open={isOpen} onOpenChange={(open)=>setIsOpen(open)}>
         <DialogContent className="p-0">
             <div className=" w-full px-4 py-3">
-                <h3 className=" text-lg font-semibold">Edit Information</h3>
-                <BillingAddressForm setIsOpen={setIsOpen} type="update" data={data} />
+                <h3 className=" text-lg font-semibold">Edit Address</h3>
+                <BillingAddressForm setIsOpen={setIsOpen} isOpen={isOpen} type="update" data={data} />
             </div>
         </DialogContent>
     </Dialog>

@@ -17,7 +17,7 @@ export default function AddBillingAddressDialog(){
         <DialogContent className="p-0">
             <div className=" w-full px-4 py-3">
                 <h3 className=" text-lg font-semibold">Add Address</h3>
-                <BillingAddressForm setIsOpen={setIsOpen} type="create" data={undefined} />
+                <BillingAddressForm isOpen={isOpen} setIsOpen={setIsOpen} type="create" data={undefined} />
             </div>
         </DialogContent>
     </Dialog>

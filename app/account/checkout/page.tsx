@@ -1,9 +1,11 @@
 import Breadcrumb from "@/app/_libs/components/Breadcrumb";
 import CheckoutOrder from "./_components/CheckoutOrder";
 import dynamic from 'next/dynamic';
+const Spinner = dynamic(() => import('@/app/_libs/components/Spinner'));
 import { Metadata } from "next";
 const MultiStepCheckout = dynamic(() => import('./_components/MultiStepCheckout'), {
     ssr: false,
+    loading: () => <div className="w-full m-auto text-center"><Spinner type="default" color="black" /></div>
 });
 
 export const metadata:Metadata = {

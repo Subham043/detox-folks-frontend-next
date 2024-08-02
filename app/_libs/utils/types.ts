@@ -332,6 +332,7 @@ export interface BillingAddressType<> {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+  map_information: OlaAddres | null;
 }
 
 export interface BillingInformationType<> {
@@ -456,3 +457,13 @@ export interface BillingAddressResponseType<> {
 export interface SearchParamsType {
   [key: string]: string | undefined;
 }
+
+export type OlaAddres = {
+  description: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+};

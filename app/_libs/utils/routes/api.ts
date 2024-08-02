@@ -51,6 +51,8 @@ const routes = {
   feature: "/api/v1/feature",
   counter: "/api/v1/counter",
   global_search: "/api/v1/search",
+  map_autocomplete: "/api/v1/map/autocomplete",
+  map_reverse: "/api/v1/map/reverse",
 };
 
 export const api: typeof routes = routes;
