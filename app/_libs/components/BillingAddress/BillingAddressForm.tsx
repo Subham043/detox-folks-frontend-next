@@ -18,7 +18,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 const Spinner = dynamic(() => import('../Spinner'));
 const Map = dynamic(
   () => import('./Map'),
-  { ssr: false, loading: () => <div className="w-full m-auto text-center"><Spinner type="default" color="black" /></div> }
+  { ssr: false, loading: () => <div className="w-full m-auto text-center p-3"><Spinner type="default" color="black" /></div> }
 )
 
 type BillingAddressFormProps = {
