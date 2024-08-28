@@ -17,6 +17,7 @@ import Spinner from '@/app/_libs/components/Spinner';
 import { useRouter } from 'next/navigation';
 import { page } from '@/app/_libs/utils/routes/pages';
 import VerifyPaymentLoading from './VerifyPaymentLoading';
+import { Dialog, DialogContent } from '@/app/_libs/components/ui/dialog';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -187,31 +188,20 @@ export default function MultiStepCheckout() {
     const [includeGst, setIncludeGst] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [verifyPaymentLoading, setVerifyPaymentLoading] = useState<boolean>(false);
+    const [openPaymentWindow, setOpenPaymentWindow] = useState<{link:string, order_id:number}|null>(null);
 
-    const paymentWindow = (link:string, order_id:number) => {
-        if(typeof window === 'undefined') return;
-        const win = window.open(link, "_blank", "resizable=yes, scrollbars=yes, titlebar=yes, width=800, height=600");
-        if(win){
-            // Function to check the URL of the opened window
-            const checkInterval = setInterval(() => {
-                try {
-                    if (win.location.href.includes('?closeAppBrowser=true')) {
-                        win.close();
-                        clearInterval(checkInterval);
-                    }
-                } catch (e) {
-                    console.error('Error:', e);
-                    clearInterval(checkInterval);
-                }
-            }, 1000);
-            const timer = setInterval(function() { 
-                if(win.closed) {
-                    clearInterval(timer);
-                    verifyPayment(order_id);
-                }
-            }, 1000);
-        }
-    }
+    // const paymentWindow = (link:string, order_id:number) => {
+    //     if(typeof window === 'undefined') return;
+    //     const win = window.open(link, "_blank", "resizable=yes, scrollbars=yes, titlebar=yes, width=800, height=600");
+    //     if(win){
+    //         const timer = setInterval(function() { 
+    //             if(win.closed) {
+    //                 clearInterval(timer);
+    //                 verifyPayment(order_id);
+    //             }
+    //         }, 1000);
+    //     }
+    // }
 
     const verifyPayment = async (order_id:number) => {
         setVerifyPaymentLoading(true);
@@ -246,16 +236,20 @@ export default function MultiStepCheckout() {
               router.push(page.account.orders + `/${response.data?.order?.id}`);
             }
             if(selectedPaymentMode==='Online - Phonepe'){
-              paymentWindow(response.data?.order?.payment?.phone_pe_payment_link, response.data?.order?.id);
+            //   paymentWindow(response.data?.order?.payment?.phone_pe_payment_link, response.data?.order?.id);
+              setOpenPaymentWindow({link:response.data?.order?.payment?.phone_pe_payment_link, order_id: response.data?.order?.id});
             }
             if(selectedPaymentMode==='Online - Razorpay'){
-                paymentWindow(response.data?.order?.payment?.razorpay_payment_link, response.data?.order?.id);
+                // paymentWindow(response.data?.order?.payment?.razorpay_payment_link, response.data?.order?.id);
+                setOpenPaymentWindow({link: response.data?.order?.payment?.razorpay_payment_link, order_id: response.data?.order?.id});
             }
             if(selectedPaymentMode==='Online - PayU'){
-                paymentWindow(response.data?.order?.payment?.payu_payment_link, response.data?.order?.id);
+                // paymentWindow(response.data?.order?.payment?.payu_payment_link, response.data?.order?.id);
+                setOpenPaymentWindow({link: response.data?.order?.payment?.payu_payment_link, order_id: response.data?.order?.id});
             }
             if(selectedPaymentMode==='Online - CashFree'){
-                paymentWindow(response.data?.order?.payment?.cashfree_payment_link, response.data?.order?.id);
+                // paymentWindow(response.data?.order?.payment?.cashfree_payment_link, response.data?.order?.id);
+                setOpenPaymentWindow({link: response.data?.order?.payment?.cashfree_payment_link, order_id: response.data?.order?.id});
             }
           } catch (error: any) {
             console.log(error);
@@ -297,5 +291,24 @@ export default function MultiStepCheckout() {
             </div>
         </div>
         <VerifyPaymentLoading isOpen={verifyPaymentLoading} setIsOpen={setVerifyPaymentLoading} />
+        <Dialog 
+            open={openPaymentWindow!==null} 
+            onOpenChange={(open)=>{ 
+                if(open===false && openPaymentWindow){
+                    verifyPayment(openPaymentWindow.order_id);
+                    setOpenPaymentWindow(null);
+                }
+            }}>
+            <DialogContent className=' p-0 min-w-full w-full h-screen' style={{ minHeight: 'calc(100vh - 10%)'}}>
+                <div className='w-full h-screen'>
+                    <div className=" w-full px-4 py-3">
+                        <h3 className=" text-lg font-semibold">Make Payment</h3>
+                    </div>
+                    <div className=" w-full overflow-hidden overflow-y-scroll" style={{height: 'calc(100vh - 7%)'}}>
+                        {openPaymentWindow && <iframe src={openPaymentWindow.link} frameBorder="0" className=' w-full h-full' allowFullScreen></iframe>}
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
     </div>
 }
