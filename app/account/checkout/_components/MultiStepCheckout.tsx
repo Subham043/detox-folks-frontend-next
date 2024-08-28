@@ -192,6 +192,18 @@ export default function MultiStepCheckout() {
         if(typeof window === 'undefined') return;
         const win = window.open(link, "_blank", "resizable=yes, scrollbars=yes, titlebar=yes, width=800, height=600");
         if(win){
+            // Function to check the URL of the opened window
+            const checkInterval = setInterval(() => {
+                try {
+                    if (win.location.href.includes('?closeAppBrowser=true')) {
+                        win.close();
+                        clearInterval(checkInterval);
+                    }
+                } catch (e) {
+                    console.error('Error:', e);
+                    clearInterval(checkInterval);
+                }
+            }, 1000);
             const timer = setInterval(function() { 
                 if(win.closed) {
                     clearInterval(timer);
