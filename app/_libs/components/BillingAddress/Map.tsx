@@ -110,7 +110,7 @@ export default function Map({ isEdit, isModalOpen, displayMap, currentLocation, 
      setLocationPermission(true);
      return;
    }
-   if(displayMap){
+   if(!isEdit && displayMap){
      setCurrentLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
      reverseGeocodingHandler({ lat: position.coords.latitude, lng: position.coords.longitude });
      setLocationPermission(true);
