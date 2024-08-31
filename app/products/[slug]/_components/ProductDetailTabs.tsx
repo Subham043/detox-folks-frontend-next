@@ -19,8 +19,8 @@ export default function ProductDetailTabs({
                         <tbody>
                             {
                                 product_specifications.map((item, i) => <tr className="" key={i}>
-                                    <th className="whitespace-nowrap border-r border-[#8c6d52] px-6 py-4 text-left" scope="row">{item.title}</th>
-                                    <td className="whitespace-nowrap px-6 py-4 text-right">{item.description}</td>
+                                    <th className="whitespace-nowrap border-r border-r-[#8c6d52] border-b border-b-[#8c6d52] px-6 py-4 text-left w-1/2" scope="row">{item.title}</th>
+                                    <td className="whitespace-nowrap px-6 py-4 text-right border-b border-b-[#8c6d52]">{item.description}</td>
                                 </tr>)
                             }
                         </tbody>

@@ -8,9 +8,9 @@ import ProductSubCategories from "./ProductSubCategories";
 import ShareProduct from "./ShareProduct";
 import { getProductQueryOptions } from "@/app/_libs/utils/query/getProductQuery";
 import { useCart } from "@/app/_libs/hooks/useCart";
-import ProductCardCartBtn from "./ProductCartBtn";
 import ProductSection from "../../_components/Products/ProductSection";
 import ProductSlider from "./ProductSlider";
+import ProductCardCartBtn2 from "../../_components/Products/ProductCardCartBtn2";
 
 type ProductDetailCardProps = { slug: string };
 
@@ -23,7 +23,7 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
         queryFn: () => getProductQueryOptions.getProductQueryFn(slug),
     })
 
-    const {quantity, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: data!.id, product_prices: data!.product_prices, min_cart_quantity: data!.min_cart_quantity, cart_quantity_interval: data!.cart_quantity_interval});
+    const {quantity, color, cartItemLoading, cart_product_item, incrementQuantity, changeQuantity, decrementQuantity} = useCart({id: data!.id, product_prices: data!.product_prices, min_cart_quantity: data!.min_cart_quantity, cart_quantity_interval: data!.cart_quantity_interval});
     
     return <>
         <div className="w-full py-10">
@@ -35,7 +35,9 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                     <div className="w-full lg:w-[48%] px-3 lg:px-10 py-5 lg:py-10 bg-white rounded-md box-border">
                         <h3 className=" text-xl md:text-2xl text-[#8c6d52] font-semibold mb-2">{data?.name}</h3>
                         <ProductPrice product_prices={data!.product_prices} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
-                        <ProductCardCartBtn quantity={quantity} min_cart_quantity={data!.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} />
+                        <div className=" w-full md:w-1/2">
+                            <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />
+                        </div>
                         <ProductCategories categories={data ? data.categories : []} />
                         <ProductSubCategories sub_categories={data ? data.sub_categories : []} />
                         <ShareProduct name={data!.name} slug={data!.slug} />
