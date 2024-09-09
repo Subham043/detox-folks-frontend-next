@@ -13,6 +13,7 @@ import { signOut, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useToast } from "../../hooks/useToast";
 import { useEffect, useState } from "react";
+import { GrCertificate } from "react-icons/gr";
 
 export default function MenuDrawer(){
     const pathname = usePathname();
@@ -61,7 +62,7 @@ export default function MenuDrawer(){
                         <li className="mb-4"><Link href={page.home} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaHome /> Home</Link></li>
                         <li className="mb-4"><Link href={page.about} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaInfoCircle /> About Us</Link></li>
                         <li className="mb-4"><Link href={page.products} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FiPackage /> Products</Link></li>
-                        <li className="mb-4"><Link href={page.certifications} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FiPackage /> Certifications</Link></li>
+                        <li className="mb-4"><Link href={page.certifications} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><GrCertificate /> Certifications</Link></li>
                         <li className="mb-4"><Link href={page.blogs} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><LiaBookSolid /> Blogs</Link></li>
                         <li className="mb-4"><Link href={page.contact} className="flex items-center gap-3 text-lg font-semibold text-[#8c6d52]"><FaHeadphones /> Contact Us</Link></li>
                         {
