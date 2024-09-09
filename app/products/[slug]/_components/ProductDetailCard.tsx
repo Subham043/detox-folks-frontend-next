@@ -36,7 +36,7 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                         <h3 className=" text-xl md:text-2xl text-[#8c6d52] font-semibold mb-2">{data?.name}</h3>
                         <ProductPrice product_prices={data!.product_prices} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
                         <div className=" w-full md:w-1/2">
-                            <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />
+                            <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} cart_quantity_interval={data!.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />
                         </div>
                         <ProductCategories categories={data ? data.categories : []} />
                         <ProductSubCategories sub_categories={data ? data.sub_categories : []} />

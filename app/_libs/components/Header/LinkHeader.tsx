@@ -11,6 +11,7 @@ export default function LinkHeader() {
                 <Link className=" font-semibold text-[#8c6d52]" href={page.home}>Home</Link>
                 <Link className=" font-semibold text-[#8c6d52]" href={page.about}>About Us</Link>
                 <Link className=" font-semibold text-[#8c6d52]" href={page.products}>Products</Link>
+                <Link className=" font-semibold text-[#8c6d52]" href={page.certifications}>Certifications</Link>
                 <Link className=" font-semibold text-[#8c6d52]" href={page.blogs}>Blogs</Link>
                 <Link className=" font-semibold text-[#8c6d52]" href={page.contact}>Contact Us</Link>
             </div>

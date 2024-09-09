@@ -2,6 +2,7 @@ const routes = {
   home: "/",
   about: "/about-us",
   category: "/category",
+  certifications: "/certifications",
   products: "/products",
   special_products: "/special-products",
   blogs: "/blogs",

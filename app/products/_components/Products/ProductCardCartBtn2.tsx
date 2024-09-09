@@ -11,6 +11,7 @@ type CartQuantityType = {
     quantity:number;
     color:string|null;
     min_cart_quantity:number;
+    cart_quantity_interval:number;
     loading:boolean;
     incrementQuantity:(color?: string | null)=>void;
     decrementQuantity:(color?: string | null)=>void;
@@ -72,7 +73,7 @@ function CartQuantityModalBtn({setIsOpen, loading, quantity, color, incrementQua
     </div>
 }
 
-function CartQuantityModal({isOpen, color, colors, setIsOpen, quantity, min_cart_quantity, loading, product_name, incrementQuantity, decrementQuantity, changeQuantity}:CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}){
+function CartQuantityModal({isOpen, color, colors, setIsOpen, quantity, min_cart_quantity, cart_quantity_interval, loading, product_name, incrementQuantity, decrementQuantity, changeQuantity}:CartQuantityType & {isOpen:boolean, setIsOpen: React.Dispatch<React.SetStateAction<boolean>>}){
     const [selectedColor, setSelectedColor] = useState<string|null>(null);
     const [quantityValue, setQuantityValue] = useState<number>(0);
     useEffect(() => {
@@ -80,6 +81,12 @@ function CartQuantityModal({isOpen, color, colors, setIsOpen, quantity, min_cart
     }, [color])
 
     const handleValueChange = (value: number) => {
+        if (!isNaN(value)) {
+            value = Math.round(value / cart_quantity_interval) * cart_quantity_interval;
+        } else {
+            value = min_cart_quantity;
+        }
+
         setQuantityValue(value);
     };
     const updateQuantity = () => {
@@ -102,6 +109,7 @@ function CartQuantityModal({isOpen, color, colors, setIsOpen, quantity, min_cart
                     <div className=" w-full px-3 pt-3">
                         <h5 className=" text-lg text-[#8c6d52] font-semibold text-ellipsis">{product_name}</h5>
                         <p className="text-sm text-green-700"><code className="text-black">Minimum Cart Quantity: </code>{min_cart_quantity}</p>
+                        <p className="text-sm text-black"><code className="text-red-700">Note: </code>You cannot update the cart quantity, if you decrease the quantity below {min_cart_quantity}. If you edit the quantity manually it will be rounded up to the nearest multiple of {cart_quantity_interval}.</p>
                     </div>
                     {colors.length>0 && <div className=" w-full px-3 border-t border-solid border-gray-200 pt-3 pb-3 mt-3">
                         <p className="text-sm font-bold mb-3">Pick a Color :</p>
@@ -132,13 +140,13 @@ function CartQuantityModal({isOpen, color, colors, setIsOpen, quantity, min_cart
     </>
 }
 
-export default function ProductCardCartBtn2({quantity, color, colors, product_id, product_name, min_cart_quantity, loading, incrementQuantity, decrementQuantity, changeQuantity}:CartQuantityType){
+export default function ProductCardCartBtn2({quantity, color, colors, product_id, product_name, min_cart_quantity, cart_quantity_interval, loading, incrementQuantity, decrementQuantity, changeQuantity}:CartQuantityType){
     const [isOpen, setIsOpen] = useState<boolean>(false);
     return <div>
         {quantity===0 ? 
             (colors.length===0 ? <AddBtn loading={loading} incrementQuantity={() => incrementQuantity(null)} /> : <AddBtn loading={loading} incrementQuantity={() => setIsOpen(true)} />) : 
             <CartQuantityModalBtn setIsOpen={setIsOpen} loading={loading} quantity={quantity} color={color} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />
         }
-        <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_id={product_id} product_name={product_name} quantity={quantity} min_cart_quantity={min_cart_quantity} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
+        <CartQuantityModal isOpen={isOpen} setIsOpen={setIsOpen} colors={colors} color={color} product_id={product_id} product_name={product_name} quantity={quantity} min_cart_quantity={min_cart_quantity} cart_quantity_interval={cart_quantity_interval} loading={loading} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} />
     </div>
 }

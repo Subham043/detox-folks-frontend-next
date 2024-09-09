@@ -22,7 +22,7 @@ export default function CartCard({product, product_price, amount}:CartCardPropsT
         </div>
         <div className=" w-full h-auto flex flex-wrap justify-between items-center mt-2">
             <div className=" w-2/3 md:w-3/4 lg:w-2/3">
-                <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
+                <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} cart_quantity_interval={product.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
             </div>
             <p className=" w-auto font-semibold">&#8377;{amount.toFixed(2)}</p>
         </div>

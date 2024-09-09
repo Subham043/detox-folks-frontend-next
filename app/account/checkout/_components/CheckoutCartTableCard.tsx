@@ -20,7 +20,7 @@ export default function CheckoutCartTableCard({product, product_price, amount}:C
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <div className=" max-w-52 min-w-52 mx-auto">
-                    <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
+                    <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={product.min_cart_quantity} cart_quantity_interval={product.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product.product_colors ?? []} product_id={product.id} product_name={product.name} />
                 </div>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">

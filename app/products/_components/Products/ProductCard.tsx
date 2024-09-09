@@ -16,7 +16,7 @@ export default function ProductCard({ id, name, image, slug, product_prices, pro
             </Link>
             <ProductCardPrice product_prices={product_prices} cart_product_item={cart_product_item} cart_quantity_specification={cart_quantity_specification} />
             <div className="mt-2">
-                <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={min_cart_quantity} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product_colors ?? []} product_id={id} product_name={name} />
+                <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={min_cart_quantity} cart_quantity_interval={cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={product_colors ?? []} product_id={id} product_name={name} />
             </div>
         </div>
     </div>
