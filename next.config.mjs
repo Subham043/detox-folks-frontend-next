@@ -4,7 +4,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/account/checkout",
+        source: "/(.*)?",
         headers: [
           {
             key: "X-Frame-Options",
