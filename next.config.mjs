@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: "/account/checkout",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "ALLOW-FROM https://server-api.parcelcounter.in/",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

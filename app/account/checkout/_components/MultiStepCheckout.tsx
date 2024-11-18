@@ -183,7 +183,7 @@ export default function MultiStepCheckout() {
     const [activeStep, setActiveStep] = useState<number>(0);
     const [selectedBillingInformation, setSelectedBillingInformation] = useState<number|undefined>();
     const [selectedBillingAddress, setSelectedBillingAddress] = useState<number|undefined>();
-    const [selectedPaymentMode, setSelectedPaymentMode] = useState<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>('Online - Phonepe');
+    const [selectedPaymentMode, setSelectedPaymentMode] = useState<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>('Online - PayU');
     const [acceptTerms, setAcceptTerms] = useState<boolean>(true);
     const [includeGst, setIncludeGst] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
