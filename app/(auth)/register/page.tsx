@@ -20,7 +20,7 @@ import { signIn } from "next-auth/react";
 
 const schema = yup
   .object({
-    email: yup.string().email().required(),
+    email: yup.string().email().notRequired(),
     name: yup.string().required(),
     password: yup.string().required(),
     phone: yup
@@ -122,7 +122,7 @@ export default function Register() {
             <p className="text-center text-gray-500 text-md mb-5">Setup A New Account In A Minute</p>
             <form className="mb-3" onSubmit={handleSubmit(onSubmit)}>
                 <Input Icon={FaUser} placeholder="Name" register={register} errors={errors} name="name" />
-                <Input Icon={MdEmail} type="email" placeholder="Email" register={register} errors={errors} name="email" />
+                <Input Icon={MdEmail} type="email" placeholder="Email (Optional)" register={register} errors={errors} name="email" />
                 <Input Icon={FaPhoneAlt} placeholder="Phone" register={register} errors={errors} name="phone" />
                 <Input Icon={RiLockPasswordFill} type="password" placeholder="Password" register={register} errors={errors} name="password" />
                 <Input Icon={RiLockPasswordFill} type="password" placeholder="Confirm Password" register={register} errors={errors} name="confirm_password" />
