@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/app/_libs/hooks/useToast";
 import { axiosPublic } from "@/app/_libs/utils/axios";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -16,7 +16,6 @@ import { MdEmail } from "react-icons/md";
 import { GrLogin } from "react-icons/gr";
 import { api } from "@/app/_libs/utils/routes/api";
 import { page } from "@/app/_libs/utils/routes/pages";
-import { signIn } from "next-auth/react";
 
 const schema = yup
   .object({
@@ -39,8 +38,7 @@ const schema = yup
 export default function Register() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl") || page.account.profile;
+    const callbackUrl = page.auth.login;
     const { toastSuccess, toastError, toastInfo } = useToast();
 
     const {
@@ -58,24 +56,15 @@ export default function Register() {
         setLoading(true);
         try {
           await axiosPublic.post(api.register, {...getValues()});
-          const res = await signIn('credentials', {
-            redirect: false,
-            email: getValues().email,
-            password: getValues().password,
-          }); 
-          toastSuccess("Registration completed successfully."); 
-          if (!res?.error) {
-            router.push(callbackUrl);
-            reset({
-              email: "",
-              name: "",
-              password: "",
-              confirm_password: "",
-              phone: "",
-            });
-          } else {
-            toastError("Invalid Credentials");
-          }                 
+          router.push(callbackUrl);
+          reset({
+            email: "",
+            name: "",
+            password: "",
+            confirm_password: "",
+            phone: "",
+          });
+          toastSuccess("Registration completed successfully.");                 
         } catch (error: any) {
           console.log(error);
           if (error?.response?.data?.message) {
