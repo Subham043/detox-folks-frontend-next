@@ -11,10 +11,10 @@ export default function Login() {
         <div className="rounded-md bg-white w-full py-3 border border-gray-300">
             <h4 className="text-center text-2xl px-5 font-bold mb-2">Welcome!</h4>
             <p className="text-center text-gray-500 px-5 text-md mb-5">Use Your Credentials To Access</p>
-            <Tabs defaultValue="email" className="w-full">
+            <Tabs defaultValue="phone" className="w-full">
                 <TabsList className="w-full border-[0.5px] border-solid border-[#b8a497] bg-[#b8a497] text-white border-b-0 rounded-none">
-                    <TabsTrigger className="w-1/2" value="email">Login With Email</TabsTrigger>
                     <TabsTrigger className="w-1/2" value="phone">Login With Phone</TabsTrigger>
+                    <TabsTrigger className="w-1/2" value="email">Login With Email</TabsTrigger>
                 </TabsList>
                 <TabsContent className="mt-0" value="email">
                     <div className="w-full rounded-b-sm p-3 px-5">
