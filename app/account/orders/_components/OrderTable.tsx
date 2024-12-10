@@ -44,6 +44,7 @@ export default function OrderTable() {
                                                 <th scope="col" className="border-r px-6 py-4">Order ID</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Products</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Amount</th>
+                                                <th scope="col" className="border-r px-6 py-4 text-center">Delivery Slot</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center">Order Status</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Payment Mode</th>
                                                 <th scope="col" className="border-r px-6 py-4 text-center hidden lg:table-cell">Payment Status</th>

@@ -5,7 +5,7 @@ import { page } from "@/app/_libs/utils/routes/pages";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 type OrderTableCardPropsType = OrderType
-export default function OrderTableCard({id, products, total_price, created_at, statuses, payment}:OrderTableCardPropsType) {
+export default function OrderTableCard({id, products, total_price, delivery_slot, created_at, statuses, payment}:OrderTableCardPropsType) {
     const productNames = useMemo(() => products.map(item => item.name).join(', '), [products]);
     return <>
         <tr className=" border-b dark:border-neutral-500 even:bg-white odd:bg-neutral-100">
@@ -17,6 +17,9 @@ export default function OrderTableCard({id, products, total_price, created_at, s
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <p className=" text-base font-semibold">₹{total_price}</p>
+            </td>
+            <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+                <p className=" text-base font-semibold">{delivery_slot || 'N/A'}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <p className=" text-base font-semibold">{statuses.length>0 ? statuses[statuses.length-1].status : ''}</p>

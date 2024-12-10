@@ -99,6 +99,10 @@ export default function OrderDetail({ slug, searchParams }: {
                                                     <th className="text-left pb-2">Payment Status</th>
                                                     <td className="text-right pb-2 text-neutral-600">{data?.payment.status}</td>
                                                 </tr>
+                                                <tr>
+                                                    <th className="text-left pb-2">Delivery Slot</th>
+                                                    <td className="text-right pb-2 text-neutral-600">{data?.delivery_slot || 'N/A'}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

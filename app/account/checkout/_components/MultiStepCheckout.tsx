@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { page } from '@/app/_libs/utils/routes/pages';
 import VerifyPaymentLoading from './VerifyPaymentLoading';
 import { Dialog, DialogContent } from '@/app/_libs/components/ui/dialog';
+import DeliverySlot from './DeliverySlot';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -88,7 +89,30 @@ const BillingAddressStep = ({setActiveStep, selectedBillingAddress, setSelectedB
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
                     <button onClick={()=>setActiveStep(1)} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Billing Information</span></button>
-                    {selectedBillingAddress && <button onClick={()=>setActiveStep(3)} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Payment</span> <FaLongArrowAltRight /></button>}
+                    {selectedBillingAddress && <button onClick={()=>setActiveStep(3)} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Delivery Slot</span> <FaLongArrowAltRight /></button>}
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+const DeliverySlotStep = ({setActiveStep, selectedDeliverySlot, setSelectedDeliverySlot}:{
+    setActiveStep: Dispatch<SetStateAction<number>>,
+    selectedDeliverySlot:'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM', 
+    setSelectedDeliverySlot: Dispatch<SetStateAction<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>>,
+}) => {
+    return <div className='w-full'>
+        <div className=' px-3 lg:px-5'>
+            <DeliverySlot
+                selectedDeliverySlot={selectedDeliverySlot} 
+                setSelectedDeliverySlot={setSelectedDeliverySlot} 
+            />
+        </div>
+        <div className=' border-t border-dashed border-gray-400 pt-3'>
+            <div className=' px-3 lg:px-5 pb-5'>
+                <div className={` flex flex-wrap justify-between items-center mt-2`}>
+                    <button onClick={()=>setActiveStep(2)} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
+                    {selectedDeliverySlot && <button onClick={()=>setActiveStep(4)} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><span>Payment</span> <FaLongArrowAltRight /></button>}
                 </div>
             </div>
         </div>
@@ -126,7 +150,7 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
                 <div className={` flex flex-wrap justify-between items-center mt-2`}>
-                    <button onClick={()=>setActiveStep(2)} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Billing Address</span></button>
+                    <button onClick={()=>setActiveStep(3)} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600"><FaLongArrowAltLeft /> <span>Delivery Slot</span></button>
                     {acceptTerms && <button onClick={paymentHandler} disabled={paymentLoading} className="  w-auto lg:w-1/5 bg-[#8c6d52] text-sm text-white text-center px-1 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600">
                         {paymentLoading ? <Spinner type='small' /> : <><BiSelectMultiple /> <span>Place Order</span></>}
                     </button>}
@@ -136,7 +160,7 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
     </div>
 }
 
-const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
+const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, selectedDeliverySlot, setSelectedDeliverySlot, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
     activeStep:number, 
     setActiveStep: Dispatch<SetStateAction<number>>,
     selectedBillingInformation:number|undefined, 
@@ -145,6 +169,8 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
     setSelectedBillingAddress: Dispatch<SetStateAction<number|undefined>>,
     selectedPaymentMode: 'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree',
     setSelectedPaymentMode: Dispatch<SetStateAction<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>>,
+    selectedDeliverySlot:'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM', 
+    setSelectedDeliverySlot: Dispatch<SetStateAction<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>>,
     acceptTerms: boolean,
     setAcceptTerms: Dispatch<SetStateAction<boolean>>,
     includeGst: boolean,
@@ -160,6 +186,8 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
         case 2:
             return <BillingAddressStep setActiveStep={setActiveStep} selectedBillingAddress={selectedBillingAddress} setSelectedBillingAddress={setSelectedBillingAddress} />
         case 3:
+            return <DeliverySlotStep setActiveStep={setActiveStep} selectedDeliverySlot={selectedDeliverySlot} setSelectedDeliverySlot={setSelectedDeliverySlot} />
+        case 4:
             return <PaymentStep 
                         setActiveStep={setActiveStep} 
                         selectedPaymentMode={selectedPaymentMode} 
@@ -184,6 +212,7 @@ export default function MultiStepCheckout() {
     const [selectedBillingInformation, setSelectedBillingInformation] = useState<number|undefined>();
     const [selectedBillingAddress, setSelectedBillingAddress] = useState<number|undefined>();
     const [selectedPaymentMode, setSelectedPaymentMode] = useState<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>('Online - PayU');
+    const [selectedDeliverySlot, setSelectedDeliverySlot] = useState<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>('Morning: 9:00 AM - 11:00 AM');
     const [acceptTerms, setAcceptTerms] = useState<boolean>(true);
     const [includeGst, setIncludeGst] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
@@ -227,6 +256,7 @@ export default function MultiStepCheckout() {
               billing_information_id: selectedBillingInformation, 
               order_mode: 'WEBSITE', 
               mode_of_payment: selectedPaymentMode, 
+              delivery_slot: selectedDeliverySlot, 
               accept_terms: acceptTerms ? 1 : 0, 
               include_gst: includeGst ? 1 : 0
             });
@@ -267,6 +297,7 @@ export default function MultiStepCheckout() {
                 <Step label="Order Summary" />
                 <Step label="Billing Information" />
                 <Step label="Delivery Address" />
+                <Step label="Delivery Slot" />
                 <Step label="Payment" />
             </Stepper>
         </div>
@@ -281,6 +312,8 @@ export default function MultiStepCheckout() {
                     setSelectedBillingAddress={setSelectedBillingAddress} 
                     selectedPaymentMode={selectedPaymentMode} 
                     setSelectedPaymentMode={setSelectedPaymentMode} 
+                    selectedDeliverySlot={selectedDeliverySlot} 
+                    setSelectedDeliverySlot={setSelectedDeliverySlot} 
                     acceptTerms={acceptTerms}
                     setAcceptTerms={setAcceptTerms}
                     includeGst={includeGst}

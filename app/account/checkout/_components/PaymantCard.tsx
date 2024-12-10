@@ -1,9 +1,9 @@
 import Image from "next/image";
 import cash from "../../../../public/money.webp";
-import phonepe from "../../../../public/phonepe.webp";
-import razorpay from "../../../../public/razorpay.webp";
+// import phonepe from "../../../../public/phonepe.webp";
+// import razorpay from "../../../../public/razorpay.webp";
 import payu from "../../../../public/payu.webp";
-import cashfree from "../../../../public/cashfree.webp";
+// import cashfree from "../../../../public/cashfree.webp";
 import { Dispatch, SetStateAction } from "react";
 
 export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode}:{

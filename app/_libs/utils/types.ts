@@ -418,6 +418,7 @@ export interface OrderType<> {
   total_charges: number;
   total_price: number;
   total_tax: number;
+  delivery_slot: string|null;
   created_at: string;
   updated_at: string;
   charges: OrderChargeType[];
