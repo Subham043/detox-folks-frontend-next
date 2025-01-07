@@ -37,6 +37,11 @@ export const authOptions: NextAuthOptions = {
             email: credentials?.email,
             password: credentials?.password,
           };
+        }else if (loginType === "PhonePassword") {
+          payload = {
+            phone: credentials?.phone,
+            password: credentials?.password,
+          };
         } else {
           payload = {
             phone: credentials?.phone,
@@ -45,7 +50,7 @@ export const authOptions: NextAuthOptions = {
         }
         try {
           const response = await axiosPrivate.post(
-            loginType === "Email" ? api.login : api.login_phone,
+            loginType === "Email" ? api.login : (loginType === "PhonePassword" ? api.login_phone_password : api.login_phone),
             {
               ...payload,
             }

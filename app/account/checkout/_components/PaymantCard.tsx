@@ -6,7 +6,8 @@ import payu from "../../../../public/payu.webp";
 // import cashfree from "../../../../public/cashfree.webp";
 import { Dispatch, SetStateAction } from "react";
 
-export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode}:{
+export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode, allowCOD}:{
+  allowCOD: boolean,
   selectedPaymentMode: 'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree',
   setSelectedPaymentMode: Dispatch<SetStateAction<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>>,
 }) {
@@ -61,7 +62,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
                 </div>
               </div>
           </button> */}
-          <button onClick={()=>setSelectedPaymentMode('Cash On Delivery')} className={`w-full text-left  ${selectedPaymentMode==='Cash On Delivery' ? 'bg-[#ede1d736]' : ''}`}>
+          {allowCOD && <button onClick={()=>setSelectedPaymentMode('Cash On Delivery')} className={`w-full text-left  ${selectedPaymentMode==='Cash On Delivery' ? 'bg-[#ede1d736]' : ''}`}>
               <div className=" w-full px-3 py-3">
                 <div className=" w-full flex flex-wrap justify-start items-center gap-5">
                   <Image src={cash} alt="cash" width={70} height={60} />
@@ -71,7 +72,7 @@ export default function PaymantCard({selectedPaymentMode, setSelectedPaymentMode
                   </div>
                 </div>
               </div>
-          </button>
+          </button>}
         </div>
     </div>
   )

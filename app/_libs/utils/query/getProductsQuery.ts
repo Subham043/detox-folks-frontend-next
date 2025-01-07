@@ -20,7 +20,7 @@ const getProductsQueryFn: (params: {
     const sub_category_filter = sub_category_id.length>0 ? `&filter[has_sub_categories]=${sub_category_id}` : '';
     const response = await axiosPublic.get(
         api.products +
-        `?page=${pageParam}&total=${getQueryTotalCount}&sort=id${category_filter}${sub_category_filter}${filter}`
+        `?page=${pageParam}&total=${getQueryTotalCount}&sort=name${category_filter}${sub_category_filter}${filter}`
     );
     return response.data as ProductResponseType;
 }

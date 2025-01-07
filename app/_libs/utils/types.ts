@@ -345,6 +345,20 @@ export interface BillingAddressType<> {
   map_information: OlaAddres | null;
 }
 
+export interface DeliverySlotResponseType<> {
+  message: string;
+  delivery_slot: DeliverySlotType[];
+}
+
+export interface DeliverySlotType<> {
+  id: number;
+  name: string;
+  is_cod_allowed: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface BillingInformationType<> {
   id: number;
   name: string;

@@ -5,23 +5,30 @@ import { page } from "@/app/_libs/utils/routes/pages";
 import LoginWithEmail from "./_components/LoginWithEmail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_libs/components/ui/tabs";
 import LoginWithPhone from "./_components/LoginWithPhone";
+import LoginWithPhonePassword from "./_components/LoginWithPhonePassword";
 
 export default function Login() {
     return <>
         <div className="rounded-md bg-white w-full py-3 border border-gray-300">
             <h4 className="text-center text-2xl px-5 font-bold mb-2">Welcome!</h4>
             <p className="text-center text-gray-500 px-5 text-md mb-5">Use Your Credentials To Access</p>
-            <Tabs defaultValue="phone" className="w-full">
+            <Tabs defaultValue="phone_otp" className="w-full">
                 <TabsList className="w-full border-[0.5px] border-solid border-[#b8a497] bg-[#b8a497] text-white border-b-0 rounded-none">
-                    <TabsTrigger className="w-1/2" value="phone">Login With Phone</TabsTrigger>
-                    <TabsTrigger className="w-1/2" value="email">Login With Email</TabsTrigger>
+                    <TabsTrigger className="w-1/2" value="phone_otp">Phone & OTP</TabsTrigger>
+                    <TabsTrigger className="w-1/2" value="phone_password">Phone & Password</TabsTrigger>
+                    <TabsTrigger className="w-1/2" value="email_password">Email</TabsTrigger>
                 </TabsList>
-                <TabsContent className="mt-0" value="email">
+                <TabsContent className="mt-0" value="email_password">
                     <div className="w-full rounded-b-sm p-3 px-5">
                         <LoginWithEmail />
                     </div>
                 </TabsContent>
-                <TabsContent className="mt-0" value="phone">
+                <TabsContent className="mt-0" value="phone_password">
+                    <div className="w-full rounded-b-sm p-3 px-5">
+                        <LoginWithPhonePassword />
+                    </div>
+                </TabsContent>
+                <TabsContent className="mt-0" value="phone_otp">
                     <div className="w-full rounded-b-sm p-3 px-5">
                         <LoginWithPhone />
                     </div>

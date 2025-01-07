@@ -7,6 +7,7 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa';
 import { BiSelectMultiple } from 'react-icons/bi';
 import BillingInformation from '@/app/_libs/components/BillingInformation';
 import BillingAddress from '@/app/_libs/components/BillingAddress';
+import DeliverySlot from '@/app/_libs/components/DeliverySlot';
 import PaymantCard from './PaymantCard';
 import { useCartProvider } from '@/app/_libs/context/CartProvider';
 import { axiosPublic } from '@/app/_libs/utils/axios';
@@ -18,7 +19,7 @@ import { useRouter } from 'next/navigation';
 import { page } from '@/app/_libs/utils/routes/pages';
 import VerifyPaymentLoading from './VerifyPaymentLoading';
 import { Dialog, DialogContent } from '@/app/_libs/components/ui/dialog';
-import DeliverySlot from './DeliverySlot';
+// import DeliverySlot from './DeliverySlot';
 
 const styleConfig = {
     activeBgColor: '#848484',
@@ -96,17 +97,20 @@ const BillingAddressStep = ({setActiveStep, selectedBillingAddress, setSelectedB
     </div>
 }
 
-const DeliverySlotStep = ({setActiveStep, selectedDeliverySlot, setSelectedDeliverySlot}:{
+const DeliverySlotStep = ({setActiveStep, selectedDeliverySlot, setSelectedDeliverySlot, allowCOD, setAllowCOD}:{
     setActiveStep: Dispatch<SetStateAction<number>>,
-    selectedDeliverySlot:'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM', 
-    setSelectedDeliverySlot: Dispatch<SetStateAction<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>>,
+    selectedDeliverySlot:string|undefined, 
+    setSelectedDeliverySlot: Dispatch<SetStateAction<string|undefined>>,
+    allowCOD: boolean,
+    setAllowCOD: Dispatch<SetStateAction<boolean>>,
 }) => {
     return <div className='w-full'>
         <div className=' px-3 lg:px-5'>
-            <DeliverySlot
+            {/* <DeliverySlot
                 selectedDeliverySlot={selectedDeliverySlot} 
                 setSelectedDeliverySlot={setSelectedDeliverySlot} 
-            />
+            /> */}
+            <DeliverySlot selectionAvailable={true} selectedItem={selectedDeliverySlot} setSelectedItem={setSelectedDeliverySlot} allowCOD={allowCOD} setAllowCOD={setAllowCOD} />
         </div>
         <div className=' border-t border-dashed border-gray-400 pt-3'>
             <div className=' px-3 lg:px-5 pb-5'>
@@ -119,12 +123,13 @@ const DeliverySlotStep = ({setActiveStep, selectedDeliverySlot, setSelectedDeliv
     </div>
 }
 
-const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
+const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode, acceptTerms, setAcceptTerms, allowCOD, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
     setActiveStep: Dispatch<SetStateAction<number>>,
     selectedPaymentMode: 'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree',
     setSelectedPaymentMode: Dispatch<SetStateAction<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>>,
     acceptTerms: boolean,
     setAcceptTerms: Dispatch<SetStateAction<boolean>>,
+    allowCOD: boolean,
     includeGst: boolean,
     setIncludeGst: Dispatch<SetStateAction<boolean>>,
     paymentHandler: () => Promise<void>,
@@ -134,7 +139,8 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
         <div className=' px-3 lg:px-5'>
             <PaymantCard
                 selectedPaymentMode={selectedPaymentMode} 
-                setSelectedPaymentMode={setSelectedPaymentMode} 
+                setSelectedPaymentMode={setSelectedPaymentMode}
+                allowCOD={allowCOD}
             />
             <div className=' w-full mb-5'>
                 <label className=" w-full flex flex-wrap justify-start items-center gap-5 mt-5 cursor-pointer">
@@ -160,7 +166,7 @@ const PaymentStep = ({setActiveStep, selectedPaymentMode, setSelectedPaymentMode
     </div>
 }
 
-const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, selectedDeliverySlot, setSelectedDeliverySlot, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, paymentHandler, paymentLoading}:{
+const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation, setSelectedBillingInformation, selectedBillingAddress, setSelectedBillingAddress, selectedPaymentMode, selectedDeliverySlot, setSelectedDeliverySlot, setSelectedPaymentMode, acceptTerms, setAcceptTerms, includeGst, setIncludeGst, allowCOD, setAllowCOD, paymentHandler, paymentLoading}:{
     activeStep:number, 
     setActiveStep: Dispatch<SetStateAction<number>>,
     selectedBillingInformation:number|undefined, 
@@ -169,12 +175,14 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
     setSelectedBillingAddress: Dispatch<SetStateAction<number|undefined>>,
     selectedPaymentMode: 'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree',
     setSelectedPaymentMode: Dispatch<SetStateAction<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>>,
-    selectedDeliverySlot:'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM', 
-    setSelectedDeliverySlot: Dispatch<SetStateAction<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>>,
+    selectedDeliverySlot:string|undefined, 
+    setSelectedDeliverySlot: Dispatch<SetStateAction<string|undefined>>,
     acceptTerms: boolean,
     setAcceptTerms: Dispatch<SetStateAction<boolean>>,
     includeGst: boolean,
     setIncludeGst: Dispatch<SetStateAction<boolean>>,
+    allowCOD: boolean,
+    setAllowCOD: Dispatch<SetStateAction<boolean>>,
     paymentHandler: () => Promise<void>
     paymentLoading: boolean,
 }) => {
@@ -186,7 +194,7 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
         case 2:
             return <BillingAddressStep setActiveStep={setActiveStep} selectedBillingAddress={selectedBillingAddress} setSelectedBillingAddress={setSelectedBillingAddress} />
         case 3:
-            return <DeliverySlotStep setActiveStep={setActiveStep} selectedDeliverySlot={selectedDeliverySlot} setSelectedDeliverySlot={setSelectedDeliverySlot} />
+            return <DeliverySlotStep setActiveStep={setActiveStep} selectedDeliverySlot={selectedDeliverySlot} setSelectedDeliverySlot={setSelectedDeliverySlot} allowCOD={allowCOD} setAllowCOD={setAllowCOD} />
         case 4:
             return <PaymentStep 
                         setActiveStep={setActiveStep} 
@@ -197,6 +205,7 @@ const ActiveComponent = ({activeStep, setActiveStep, selectedBillingInformation,
                         includeGst={includeGst}
                         setIncludeGst={setIncludeGst}
                         paymentHandler={paymentHandler}
+                        allowCOD={allowCOD}
                         paymentLoading={paymentLoading}
                     />
         default:
@@ -212,10 +221,11 @@ export default function MultiStepCheckout() {
     const [selectedBillingInformation, setSelectedBillingInformation] = useState<number|undefined>();
     const [selectedBillingAddress, setSelectedBillingAddress] = useState<number|undefined>();
     const [selectedPaymentMode, setSelectedPaymentMode] = useState<'Cash On Delivery'|'Online - Phonepe'|'Online - Razorpay'|'Online - PayU'|'Online - CashFree'>('Online - PayU');
-    const [selectedDeliverySlot, setSelectedDeliverySlot] = useState<'Morning: 9:00 AM - 11:00 AM'|'Evening: 6:00 PM - 8:00 PM'|'Afternoon: 2:00 PM - 4:00 PM'>('Morning: 9:00 AM - 11:00 AM');
+    const [selectedDeliverySlot, setSelectedDeliverySlot] = useState<string|undefined>();
     const [acceptTerms, setAcceptTerms] = useState<boolean>(true);
     const [includeGst, setIncludeGst] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
+    const [allowCOD, setAllowCOD] = useState<boolean>(true);
     const [verifyPaymentLoading, setVerifyPaymentLoading] = useState<boolean>(false);
     const [openPaymentWindow, setOpenPaymentWindow] = useState<{link:string, order_id:number}|null>(null);
 
@@ -318,6 +328,8 @@ export default function MultiStepCheckout() {
                     setAcceptTerms={setAcceptTerms}
                     includeGst={includeGst}
                     setIncludeGst={setIncludeGst}
+                    allowCOD={allowCOD}
+                    setAllowCOD={setAllowCOD}
                     paymentHandler={paymentHandler}
                     paymentLoading={loading}
                 />

@@ -110,7 +110,7 @@ export default function Register() {
             <h4 className="text-center text-2xl font-bold mb-2">Join Now!</h4>
             <p className="text-center text-gray-500 text-md mb-5">Setup A New Account In A Minute</p>
             <form className="mb-3" onSubmit={handleSubmit(onSubmit)}>
-                <Input Icon={FaUser} placeholder="Name" register={register} errors={errors} name="name" />
+                <Input Icon={FaUser} placeholder="Name / Hotel Name" register={register} errors={errors} name="name" />
                 <Input Icon={MdEmail} type="email" placeholder="Email (Optional)" register={register} errors={errors} name="email" />
                 <Input Icon={FaPhoneAlt} placeholder="Phone" register={register} errors={errors} name="phone" />
                 <Input Icon={RiLockPasswordFill} type="password" placeholder="Password" register={register} errors={errors} name="password" />
