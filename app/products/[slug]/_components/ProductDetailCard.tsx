@@ -11,6 +11,7 @@ import { useCart } from "@/app/_libs/hooks/useCart";
 import ProductSection from "../../_components/Products/ProductSection";
 import ProductSlider from "./ProductSlider";
 import ProductCardCartBtn2 from "../../_components/Products/ProductCardCartBtn2";
+import ReviewButton from "./Reviews/ReviewButton";
 
 type ProductDetailCardProps = { slug: string };
 
@@ -35,13 +36,18 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                     <div className="w-full lg:w-[48%] px-3 lg:px-10 py-5 lg:py-10 bg-white rounded-md box-border">
                         <h3 className=" text-xl md:text-2xl text-[#8c6d52] font-semibold mb-2">{data?.name}</h3>
                         <ProductPrice product_prices={data!.product_prices} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
-                        <div className=" w-full md:w-1/2">
-                            <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} cart_quantity_interval={data!.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />
+                        <div className=" w-full flex flex-wrap items-center">
+                            <div className="w-1/2 px-1">
+                                <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} cart_quantity_interval={data!.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />
+                            </div>
+                            <div className="w-1/2 px-1">
+                                <ReviewButton slug={slug} />
+                            </div>
                         </div>
                         <ProductCategories categories={data ? data.categories : []} />
                         <ProductSubCategories sub_categories={data ? data.sub_categories : []} />
                         <ShareProduct name={data!.name} slug={data!.slug} />
-                        <ProductDetailTabs description={data ? data.description : ''} product_specifications={data ? data.product_specifications : []} />
+                        <ProductDetailTabs description={data ? data.description : ''} product_specifications={data ? data.product_specifications : []} slug={slug} />
                     </div>
                 </div>
                 <div className="w-full mt-8">

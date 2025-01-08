@@ -20,7 +20,7 @@ type CartQuantityType = {
 }
 
 function AddBtn({loading, incrementQuantity}:{loading:boolean, incrementQuantity:()=>void}){
-    return <button title="Add to Cart" disabled={loading} onClick={()=>incrementQuantity()} className=" mt-2 mx-auto w-full bg-[#8c6d52] text-sm text-white text-center px-3 py-2 rounded-sm border-none flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600">
+    return <button title="Add to Cart" disabled={loading} onClick={()=>incrementQuantity()} className=" mt-2 mx-auto w-full bg-[#8c6d52] text-sm text-white text-center px-3 py-2 rounded-sm border-[#8c6d52] border flex justify-center items-center gap-2 font-semibold transition-all hover:bg-gray-600">
         {loading ? <Spinner type="small" />: <><FaBasketShopping /> <span>ADD</span></>}
     </button>
 }

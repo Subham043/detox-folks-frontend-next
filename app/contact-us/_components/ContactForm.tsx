@@ -47,7 +47,7 @@ export default function ContactForm(){
     const onSubmit = async () => {
         setLoading(true);
         try {
-          const response = await axiosPublic.post(api.enquiry, {...getValues(), page_url: 'http://localhost'+pathname});
+          const response = await axiosPublic.post(api.enquiry, {...getValues(), page_url: 'https://parcelcounter.in'+pathname});
           toastSuccess(response.data.message);            
           reset({
             name: "",

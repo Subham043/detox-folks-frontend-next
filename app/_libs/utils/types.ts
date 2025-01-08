@@ -455,6 +455,19 @@ export interface GlobalSearchType<> {
   image: string;
 }
 
+export interface ProductReviewResponseType<> {
+  meta: MetaType;
+  data: ProductReviewType[];
+}
+
+export interface ProductReviewType<> {
+  id: number;
+  rating: number;
+  comment: string|null;
+  user_name: string;
+  created_at: string;
+}
+
 export interface GlobalSearchResponseType<> {
   meta: MetaType;
   data: GlobalSearchType[];
