@@ -65,14 +65,6 @@ export default function LoginWithPhone() {
         return 'OTPCredential' in window && typeof AbortController !== "undefined" && otpReading;
     }
 
-    async function readSMS(controller: AbortController) {
-        const content: any = await navigator.credentials.get({ signal: controller.signal, otp: { transport: ['sms']}} as any)
-        if (!content || !content.code) {
-            throw new Error('Unable to read otp');
-        }
-        return content.code;
-    }
-
     useEffect(() => {
     if (isSupported()) {
       const ac = new AbortController()
