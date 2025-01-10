@@ -5,10 +5,9 @@ import Input from "@/app/_libs/components/Input";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useToast } from "@/app/_libs/hooks/useToast";
-import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GrLogin } from "react-icons/gr";
 import { signIn } from "next-auth/react"
@@ -16,6 +15,15 @@ import { page } from "@/app/_libs/utils/routes/pages";
 import { FaPhoneAlt } from "react-icons/fa";
 import { axiosPublic } from "@/app/_libs/utils/axios";
 import { api } from "@/app/_libs/utils/routes/api";
+
+type CredentialRequestOptions = {
+  otp: OTPOptions
+  signal: AbortSignal
+}
+
+type OTPOptions = {
+  transport: string[]
+}
 
 const schema = yup
     .object({
@@ -35,6 +43,7 @@ const schema = yup
 export default function LoginWithPhone() {
     const [loading, setLoading] = useState(false);
     const [otpLoading, setOtpLoading] = useState(false);
+    const [otpReading, setOtpReading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get("callbackUrl") || page.account.profile;
@@ -45,11 +54,46 @@ export default function LoginWithPhone() {
         register,
         getValues,
         reset,
+        setValue,
         formState: { errors },
         setError,
     } = useForm({
         resolver: yupResolver(schema),
     });
+
+    function isSupported() {
+        return 'OTPCredential' in window && typeof AbortController !== "undefined" && otpReading;
+    }
+
+    async function readSMS(controller: AbortController) {
+        const content: any = await navigator.credentials.get({ signal: controller.signal, otp: { transport: ['sms']}} as any)
+        if (!content || !content.code) {
+            throw new Error('Unable to read otp');
+        }
+        return content.code;
+    }
+
+    useEffect(() => {
+    if (isSupported()) {
+      const ac = new AbortController()
+      const o: CredentialRequestOptions = {
+        otp: { transport: ['sms'] },
+        signal: ac.signal,
+      }
+      navigator.credentials
+        .get(o)
+        .then((otp: any) => {
+          if (otp) {
+            setValue('otp', otp.code)
+          }
+          setOtpReading(false)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [otpReading])
 
     const onSubmit = async () => {
         setLoading(true);
@@ -97,8 +141,9 @@ export default function LoginWithPhone() {
         });
         setOtpLoading(true);
         try {
-          await axiosPublic.post(api.login_phone_otp, {phone: getValues().phone});
-          toastSuccess("Otp sent successfully.");                 
+          await axiosPublic.post(api.login_phone_otp_web, {phone: getValues().phone});
+          toastSuccess("Otp sent successfully.");
+          setOtpReading(true);               
         } catch (error: any) {
           console.log(error);
           if (error?.response?.data?.message) {
