@@ -7,13 +7,13 @@ import { getCartQueryOptions, useCartMutation } from "../utils/query/getCartQuer
 export type CartType = {
     cart: CartDataType[];
     cart_charges: CartChargeType[];
-    tax: CartTaxType;
+    tax_charges: CartTaxType[];
     coupon_applied: CartCouponType|null;
     cart_subtotal: number;
     discount_price: number;
     total_charges: number;
+    total_taxes: number;
     total_price: number;
-    total_tax: number;
 }
 
   
@@ -29,20 +29,13 @@ const cartDefaultValues: CartContextType = {
     cart: {
       cart:[],
       cart_charges:[],
-      tax: {
-        id:0,
-        created_at: "",
-        updated_at: "",
-        tax_in_percentage: 0,
-        tax_name: "",
-        tax_slug: "",
-      },
+      tax_charges:[],
       coupon_applied: null,
       cart_subtotal: 0, 
       discount_price: 0, 
       total_charges: 0, 
+      total_taxes: 0,
       total_price: 0, 
-      total_tax: 0
     },
     updateCart: (cartData: CartType) => {},
     fetchCart: () => {},
@@ -85,20 +78,13 @@ export default function CartProvider({
         cart: (status==='authenticated' && data) ? {...data} : {
           cart:[], 
           cart_charges:[], 
-          tax: {
-            id:0,
-            created_at: "",
-            updated_at: "",
-            tax_in_percentage: 0,
-            tax_name: "",
-            tax_slug: "",
-          },
+          tax_charges:[], 
           coupon_applied: null,
           cart_subtotal:0, 
           discount_price: 0, 
           total_charges: 0, 
+          total_taxes: 0,
           total_price: 0, 
-          total_tax: 0
         },
         cartLoading: isLoading,
         fetchCart: refetch,

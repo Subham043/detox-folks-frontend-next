@@ -249,7 +249,9 @@ export interface CartTaxType<> {
   tax_name: string;
   tax_slug: string;
   id: number;
-  tax_in_percentage: number;
+  tax_value: number;
+  is_active: boolean;
+  total_tax_in_amount: number;
 }
 
 export interface CartCouponType<> {
@@ -382,6 +384,16 @@ export interface OrderChargeType<> {
   is_percentage: boolean;
 }
 
+export interface OrderTaxType<> {
+  created_at: string;
+  updated_at: string;
+  tax_slug: string;
+  tax_name: string;
+  id: number;
+  tax_value: number;
+  total_tax_in_amount: number;
+}
+
 export interface OrderStatusType<> {
   created_at: string;
   updated_at: string;
@@ -430,12 +442,14 @@ export interface OrderType<> {
   tax_name: string;
   tax_slug: string;
   total_charges: number;
+  total_taxes: number;
   total_price: number;
   total_tax: number;
-  delivery_slot: string|null;
+  delivery_slot: string | null;
   created_at: string;
   updated_at: string;
   charges: OrderChargeType[];
+  taxes: OrderTaxType[];
   statuses: OrderStatusType[];
   products: OrderProductType[];
   payment: {

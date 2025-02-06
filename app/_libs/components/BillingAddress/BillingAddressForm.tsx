@@ -60,6 +60,7 @@ export default function BillingAddressForm({setIsOpen, type, data, isOpen}:Billi
         register,
         getValues,
         setError,
+        setValue,
         reset,
         formState: { errors },
       } = useForm({
@@ -150,6 +151,17 @@ export default function BillingAddressForm({setIsOpen, type, data, isOpen}:Billi
         }
 
     }, [data, type, isOpen])
+
+    useEffect(()=>{
+        if(mapAddress){
+            const arr = mapAddress.description.split(",").reverse();
+            setValue("country", arr[0] ?? '');
+            setValue("pin", arr[1] ?? '');
+            setValue("state", arr[2] ?? '');
+            setValue("city", arr[3] ?? '');
+            setValue("address", mapAddress.description ?? '');
+        }
+    }, [mapAddress])
 
     return <>
         {

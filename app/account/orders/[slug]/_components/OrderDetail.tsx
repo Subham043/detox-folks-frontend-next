@@ -161,6 +161,14 @@ export default function OrderDetail({ slug, searchParams }: {
                                                                     <h3 className=" text-base text-black font-semibold">₹{data.subtotal}</h3>
                                                                 </td>
                                                             </tr>
+                                                            {data?.taxes.map((item, i) =><tr className=" border-b dark:border-neutral-500" key={i}>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
+                                                                    <p className=" text-black font-semibold">{item.tax_name} ({item.tax_value}%)</p>
+                                                                </td>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-right">
+                                                                    <h3 className=" text-base text-black font-semibold">₹{item.total_tax_in_amount}</h3>
+                                                                </td>
+                                                            </tr>)}
                                                             {data?.charges.map((item, i) =><tr className=" border-b dark:border-neutral-500" key={i}>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
                                                                     <p className=" text-black font-semibold">{item.charges_name}</p>

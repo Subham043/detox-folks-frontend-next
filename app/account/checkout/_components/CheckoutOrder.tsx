@@ -5,6 +5,8 @@ import { useCartProvider } from "@/app/_libs/context/CartProvider"
 export default function CheckoutOrder() {
     const {cart} = useCartProvider()
 
+    console.log(cart);
+
     return <>
         <div className="flex flex-col overflow-x-auto">
             <div className="sm:-mx-6 lg:-mx-8">
@@ -25,6 +27,18 @@ export default function CheckoutOrder() {
                                         <h3 className=" text-base font-semibold">₹{cart.cart_subtotal}</h3>
                                     </td>
                                 </tr>
+                                {
+                                    cart.tax_charges.map((item, i) => (
+                                        <tr className="border dark:border-neutral-500" key={i}>
+                                            <td className="whitespace-nowrap border-r px-2 py-4 text-left">
+                                                <h3 className=" text-base font-semibold">{item.tax_name} ({item.tax_value}%)</h3>
+                                            </td>
+                                            <td className="whitespace-nowrap border-r px-2 py-4 text-right">
+                                                <h3 className=" text-base font-semibold">₹{item.total_tax_in_amount}</h3>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
                                 {
                                     cart.cart_charges.map((item, i) => (
                                         <tr className="border dark:border-neutral-500" key={i}>
