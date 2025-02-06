@@ -5,8 +5,6 @@ import { useCartProvider } from "@/app/_libs/context/CartProvider"
 export default function CheckoutOrder() {
     const {cart} = useCartProvider()
 
-    console.log(cart);
-
     return <>
         <div className="flex flex-col overflow-x-auto">
             <div className="sm:-mx-6 lg:-mx-8">
