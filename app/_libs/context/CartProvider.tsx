@@ -1,18 +1,16 @@
 import { createContext, useContext } from "react";
 import { useSession } from "next-auth/react";
-import { CartType as CartDataType, CartChargeType, CartTaxType, CartCouponType } from "@/app/_libs/utils/types";
+import { CartType as CartDataType, CartChargeType, CartCouponType } from "@/app/_libs/utils/types";
 import { useQuery } from "@tanstack/react-query";
 import { getCartQueryOptions, useCartMutation } from "../utils/query/getCartQuery";
 
 export type CartType = {
     cart: CartDataType[];
     cart_charges: CartChargeType[];
-    tax_charges: CartTaxType[];
     coupon_applied: CartCouponType|null;
     cart_subtotal: number;
     discount_price: number;
     total_charges: number;
-    total_taxes: number;
     total_price: number;
 }
 
@@ -29,12 +27,10 @@ const cartDefaultValues: CartContextType = {
     cart: {
       cart:[],
       cart_charges:[],
-      tax_charges:[],
       coupon_applied: null,
       cart_subtotal: 0, 
       discount_price: 0, 
       total_charges: 0, 
-      total_taxes: 0,
       total_price: 0, 
     },
     updateCart: (cartData: CartType) => {},
@@ -78,12 +74,10 @@ export default function CartProvider({
         cart: (status==='authenticated' && data) ? {...data} : {
           cart:[], 
           cart_charges:[], 
-          tax_charges:[], 
           coupon_applied: null,
           cart_subtotal:0, 
           discount_price: 0, 
           total_charges: 0, 
-          total_taxes: 0,
           total_price: 0, 
         },
         cartLoading: isLoading,

@@ -123,7 +123,10 @@ export default function OrderDetail({ slug, searchParams }: {
                                                 <thead className="border bg-[#8c6d52] font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                                                     <tr>
                                                         <th scope="col" className="border-r px-6 py-4">Product</th>
-                                                        <th scope="col" className="border-r px-6 py-4 text-center">Price</th>
+                                                        <th scope="col" className="border-r px-6 py-4 text-center">Price<br/>(Before Tax)</th>
+                                                        <th scope="col" className="border-r px-6 py-4 text-center">Taxes</th>
+                                                        <th scope="col" className="border-r px-6 py-4 text-center">Total Tax</th>
+                                                        <th scope="col" className="border-r px-6 py-4 text-center">Price<br/>(After Tax)</th>
                                                         <th scope="col" className="border-r px-6 py-4 text-center">Quantity</th>
                                                         <th scope="col" className="border-r px-6 py-4 text-right">Total</th>
                                                     </tr>
@@ -142,53 +145,60 @@ export default function OrderDetail({ slug, searchParams }: {
                                                                     </div>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-center">
-                                                                    <p className=" text-neutral-500 font-semibold">₹{item.discount_in_price}/{item.unit}</p>
+                                                                    <p className=" text-neutral-500 font-semibold">₹{item.discounted_price === 0 ? item.discount_in_price.toFixed(2) : item.discounted_price.toFixed(2)}/{item.unit}</p>
+                                                                </td>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+                                                                    {item.taxes.length>0 ? <div className="mt-1">
+                                                                        {
+                                                                            item.taxes.map(tx => <div key={tx.id} className="mb-2">
+                                                                                <span className=" bg-[#ede1d7c9] px-1 py-1 text-[#8c6d52] rounded-md">{tx.tax_name}({tx.tax_value}%)</span>
+                                                                                </div>)
+                                                                        }
+                                                                    </div> : <p className=" text-neutral-500 font-semibold">N/A</p>}
+                                                                </td>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+                                                                    <p className=" text-neutral-500 font-semibold">₹{item.tax_in_price.toFixed(2)}</p>
+                                                                </td>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-center">
+                                                                    <p className=" text-neutral-500 font-semibold">₹{item.discount_in_price.toFixed(2)}/{item.unit}</p>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                                                                     <p className=" text-neutral-500 font-semibold">{item.quantity} {item.unit}</p>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                                                    <h3 className=" text-base font-semibold">₹{item.amount}</h3>
+                                                                    <h3 className=" text-base font-semibold">₹{item.amount.toFixed(2)}</h3>
                                                                 </td>
                                                             </tr>)
                                                             
                                                         }
                                                             <tr className=" border-b dark:border-neutral-500">
-                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={6}>
                                                                     <p className=" text-black font-semibold">Sub Total</p>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                                                    <h3 className=" text-base text-black font-semibold">₹{data.subtotal}</h3>
+                                                                    <h3 className=" text-base text-black font-semibold">₹{data.subtotal.toFixed(2)}</h3>
                                                                 </td>
                                                             </tr>
-                                                            {data?.taxes.map((item, i) =><tr className=" border-b dark:border-neutral-500" key={i}>
-                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
-                                                                    <p className=" text-black font-semibold">{item.tax_name} ({item.tax_value}%)</p>
-                                                                </td>
-                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                                                    <h3 className=" text-base text-black font-semibold">₹{item.total_tax_in_amount}</h3>
-                                                                </td>
-                                                            </tr>)}
                                                             {data?.charges.map((item, i) =><tr className=" border-b dark:border-neutral-500" key={i}>
-                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={6}>
                                                                     <p className=" text-black font-semibold">{item.charges_name}</p>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                                                    <h3 className=" text-base text-black font-semibold">₹{item.total_charge_in_amount}</h3>
+                                                                    <h3 className=" text-base text-black font-semibold">₹{item.total_charge_in_amount.toFixed(2)}</h3>
                                                                 </td>
                                                             </tr>)}
                                                             <tr className=" border-b dark:border-neutral-500">
-                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={3}>
+                                                                <td className="whitespace-nowrap border-r px-6 py-4 text-left" colSpan={6}>
                                                                     <p className=" text-black font-semibold">Total</p>
                                                                 </td>
                                                                 <td className="whitespace-nowrap border-r px-6 py-4 text-right">
-                                                                    <h3 className=" text-base text-black font-semibold">₹{data.total_price}</h3>
+                                                                    <h3 className=" text-base text-black font-semibold">₹{data.total_price.toFixed(2)}</h3>
                                                                 </td>
                                                             </tr>
                                                         </>
                                                         :
                                                         <tr className=" border-b dark:border-neutral-500">
-                                                            <td className="whitespace-nowrap border-r px-6 py-4 text-center" colSpan={3}>
+                                                            <td className="whitespace-nowrap border-r px-6 py-4 text-center" colSpan={6}>
                                                                 <p>No items available!</p>
                                                             </td>
                                                         </tr>

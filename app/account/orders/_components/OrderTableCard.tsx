@@ -16,7 +16,7 @@ export default function OrderTableCard({id, products, total_price, delivery_slot
                 <Link href={`${page.account.orders}/${id}`} className=" text-base font-semibold line-clamp-2">{productNames}</Link>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
-                <p className=" text-base font-semibold">₹{total_price}</p>
+                <p className=" text-base font-semibold">₹{total_price.toFixed(2)}</p>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
                 <p className=" text-base font-semibold">{delivery_slot || 'N/A'}</p>

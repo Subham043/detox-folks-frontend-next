@@ -14,7 +14,9 @@ export default function CheckoutCartTableCard({product, product_price, amount}:C
                     <Image src={product.image} alt={product.name} title={product.name} width={70} height={70} />
                     <div className=" flex-1">
                         <h3 className=" text-base font-semibold">{product.name}</h3>
-                        <p className=" text-neutral-500 font-semibold">₹{product_price.discount_in_price}/{product.cart_quantity_specification}</p>
+                        <p className=" text-neutral-500 font-semibold">
+                            ₹{product_price.discount_in_price.toFixed(2)}/{product.cart_quantity_specification}
+                        </p>
                     </div>
                 </div>
             </td>
@@ -24,7 +26,7 @@ export default function CheckoutCartTableCard({product, product_price, amount}:C
                 </div>
             </td>
             <td className="whitespace-nowrap border-r px-6 py-4 text-center">
-                <h3 className=" text-base font-semibold">₹{amount}</h3>
+                <h3 className=" text-base font-semibold">₹{amount.toFixed(2)}</h3>
             </td>
         </tr>
     </>

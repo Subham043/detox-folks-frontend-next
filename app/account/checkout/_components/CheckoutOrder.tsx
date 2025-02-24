@@ -13,7 +13,7 @@ export default function CheckoutOrder() {
                         <table className="min-w-full text-left text-sm font-light">
                             <thead className=" bg-green-600 text-white dark:bg-neutral-900">
                                 <tr>
-                                    <th scope="col" colSpan={2} className="px-6 py-4 text-center tracking-widest font-normal">Note: Prices are inclusive of GST.</th>
+                                    <th scope="col" colSpan={2} className="px-6 py-4 text-center tracking-widest font-normal">Note: Prices are inclusive of TAX.</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -22,21 +22,9 @@ export default function CheckoutOrder() {
                                         <h3 className=" text-base font-semibold">Sub Total</h3>
                                     </td>
                                     <td className="whitespace-nowrap border-r px-2 py-4 text-right">
-                                        <h3 className=" text-base font-semibold">₹{cart.cart_subtotal}</h3>
+                                        <h3 className=" text-base font-semibold">₹{cart.cart_subtotal.toFixed(2)}</h3>
                                     </td>
                                 </tr>
-                                {
-                                    cart.tax_charges.map((item, i) => (
-                                        <tr className="border dark:border-neutral-500" key={i}>
-                                            <td className="whitespace-nowrap border-r px-2 py-4 text-left">
-                                                <h3 className=" text-base font-semibold">{item.tax_name} ({item.tax_value}%)</h3>
-                                            </td>
-                                            <td className="whitespace-nowrap border-r px-2 py-4 text-right">
-                                                <h3 className=" text-base font-semibold">₹{item.total_tax_in_amount}</h3>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
                                 {
                                     cart.cart_charges.map((item, i) => (
                                         <tr className="border dark:border-neutral-500" key={i}>
@@ -45,7 +33,7 @@ export default function CheckoutOrder() {
                                                {(cart.cart_subtotal<item.include_charges_for_cart_price_below) && <p className=" text-sm italic text-indigo-500">Add items worth <b>₹{(item.include_charges_for_cart_price_below-cart.cart_subtotal).toFixed(2)}</b> <br/> to avoid {item.charges_name}.</p>}
                                             </td>
                                             <td className="whitespace-nowrap border-r px-2 py-4 text-right">
-                                                <h3 className=" text-base font-semibold">₹{item.total_charge_in_amount}</h3>
+                                                <h3 className=" text-base font-semibold">₹{item.total_charge_in_amount.toFixed(2)}</h3>
                                             </td>
                                         </tr>
                                     ))
@@ -63,7 +51,7 @@ export default function CheckoutOrder() {
                                         <h3 className=" text-base font-semibold">Total</h3>
                                     </td>
                                     <td className="whitespace-nowrap border-r px-2 py-4 text-right">
-                                        <h3 className=" text-base font-semibold">₹{cart.total_price}</h3>
+                                        <h3 className=" text-base font-semibold">₹{cart.total_price.toFixed(2)}</h3>
                                     </td>
                                 </tr>
                             </tbody>

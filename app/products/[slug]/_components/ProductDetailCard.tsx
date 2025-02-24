@@ -35,7 +35,7 @@ export default function ProductDetailCard({slug}:ProductDetailCardProps) {
                     </div>
                     <div className="w-full lg:w-[48%] px-3 lg:px-10 py-5 lg:py-10 bg-white rounded-md box-border">
                         <h3 className=" text-xl md:text-2xl text-[#8c6d52] font-semibold mb-2">{data?.name}</h3>
-                        <ProductPrice product_prices={data!.product_prices} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
+                        <ProductPrice product_prices={data!.product_prices} taxes={data!.taxes} cart_product_item={cart_product_item} cart_quantity_specification={data!.cart_quantity_specification} />
                         <div className=" w-full flex flex-wrap items-center">
                             <div className="w-1/2 px-1">
                                 <ProductCardCartBtn2 quantity={quantity} color={color} min_cart_quantity={data!.min_cart_quantity} cart_quantity_interval={data!.cart_quantity_interval} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} changeQuantity={changeQuantity} loading={cartItemLoading} colors={data!.product_colors ?? []} product_id={data!.id} product_name={data!.name} />

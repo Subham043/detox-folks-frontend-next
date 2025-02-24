@@ -56,7 +56,7 @@ export function useCart({
           setCartItemLoading(true);
           try {
             const response = await axiosPublic.post(api.cart_create, data);
-            updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], tax_charges: [...response.data.tax_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price, total_taxes: response.data.total_taxes});
+            updateCart({cart: [...cart.cart, response.data.cart], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price});
             toastSuccess("Item added to cart.");
           } catch (error: any) {
             console.log(error);
@@ -82,14 +82,11 @@ export function useCart({
             const updatedCartValue = {
               cart: [...old_cart], 
               cart_charges: [...response.data.cart_charges], 
-              tax_charges: [...response.data.tax_charges], 
               coupon_applied: response.data.coupon_applied,
               cart_subtotal:response.data.cart_subtotal, 
               discount_price: response.data.discount_price, 
               total_charges: response.data.total_charges, 
-              total_taxes: response.data.total_taxes, 
               total_price: response.data.total_price, 
-              total_tax: response.data.total_tax
             }
             updateCart({...updatedCartValue});
             // toastSuccess("Item quantity updated in cart.");
@@ -110,7 +107,7 @@ export function useCart({
         try {
           const response = await axiosPublic.delete(api.cart_delete + `/${data}`);
             const removedItemArray = cart.cart.filter(item => item.id !== data);
-            updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], tax_charges: [...response.data.tax_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_taxes: response.data.total_taxes, total_price: response.data.total_price});
+            updateCart({cart: [...removedItemArray], cart_charges: [...response.data.cart_charges], coupon_applied: response.data.coupon_applied, cart_subtotal:response.data.cart_subtotal, discount_price: response.data.discount_price, total_charges: response.data.total_charges, total_price: response.data.total_price});
             toastSuccess("Item removed from cart.");
         } catch (error: any) {
           console.log(error);

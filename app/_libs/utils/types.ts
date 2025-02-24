@@ -167,6 +167,8 @@ export interface ProductImageType<> {
 export interface ProductPriceType<> {
   id: number;
   discount: number;
+  discounted_price: number;
+  tax_in_price: number;
   discount_in_price: number;
   min_quantity: number;
   price: number;
@@ -197,6 +199,7 @@ export interface ProductType<> {
   min_cart_quantity: number;
   sub_categories: SubCategoryType[];
   categories: CategoryType[];
+  taxes: OrderProductTaxType[];
   product_specifications: ProductSpecificationType[];
   product_colors: ProductColorType[];
   product_prices: ProductPriceType[];
@@ -241,17 +244,6 @@ export interface CartChargeType<> {
   total_charge_in_amount: number;
   is_active: boolean;
   is_percentage: boolean;
-}
-
-export interface CartTaxType<> {
-  created_at: string;
-  updated_at: string;
-  tax_name: string;
-  tax_slug: string;
-  id: number;
-  tax_value: number;
-  is_active: boolean;
-  total_tax_in_amount: number;
 }
 
 export interface CartCouponType<> {
@@ -384,14 +376,13 @@ export interface OrderChargeType<> {
   is_percentage: boolean;
 }
 
-export interface OrderTaxType<> {
+export interface OrderProductTaxType<> {
   created_at: string;
   updated_at: string;
   tax_slug: string;
   tax_name: string;
   id: number;
   tax_value: number;
-  total_tax_in_amount: number;
 }
 
 export interface OrderStatusType<> {
@@ -405,6 +396,8 @@ export interface OrderProductType<> {
   id: number;
   amount: number;
   discount: number;
+  discounted_price: number;
+  tax_in_price: number;
   discount_in_price: number;
   min_quantity: number;
   price: number;
@@ -414,6 +407,7 @@ export interface OrderProductType<> {
   unit: string;
   name: string;
   image: string;
+  taxes: OrderProductTaxType[];
   created_at: string;
   updated_at: string;
 }
@@ -442,14 +436,11 @@ export interface OrderType<> {
   tax_name: string;
   tax_slug: string;
   total_charges: number;
-  total_taxes: number;
   total_price: number;
-  total_tax: number;
   delivery_slot: string | null;
   created_at: string;
   updated_at: string;
   charges: OrderChargeType[];
-  taxes: OrderTaxType[];
   statuses: OrderStatusType[];
   products: OrderProductType[];
   payment: {

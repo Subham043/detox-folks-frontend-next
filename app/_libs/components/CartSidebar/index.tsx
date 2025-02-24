@@ -27,7 +27,7 @@ export default function CartSidebar() {
                     </div>
                     <div className=" text-left hidden lg:block">
                         <p className=" text-xs">TOTAL PRICE</p>
-                        <p className=" text-md font-semibold">&#8377;{cart.cart_subtotal}</p>
+                        <p className=" text-md font-semibold">&#8377;{cart.cart_subtotal.toFixed(2)}</p>
                     </div>
                 </button>
             </SheetTrigger>
@@ -54,7 +54,7 @@ export default function CartSidebar() {
                                     Checkout
                                 </span>
                                 <span className=" w-auto text-right">
-                                    &#8377;{cart.cart_subtotal}
+                                    &#8377;{cart.cart_subtotal.toFixed(2)}
                                 </span>
                             </Link>
                         </div>
