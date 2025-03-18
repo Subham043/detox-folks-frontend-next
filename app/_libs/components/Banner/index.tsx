@@ -15,12 +15,12 @@ const settings = {
 };
 
 const banners = [
-    '/banner-0001.webp',
-    '/banner-0002.webp',
-    '/banner-0003.webp',
-    '/banner-0004.webp',
-    '/banner-0005.webp',
-    '/banner-0006.webp',
+    '/bn1.webp',
+    '/bn2.webp',
+    '/bn3.webp',
+    '/bn4.webp',
+    '/bn5.webp',
+    '/bn6.webp',
     // '/banner-1.png',
     // '/banner-2.png',
     // '/banner-3.png',
