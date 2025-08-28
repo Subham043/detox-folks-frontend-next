@@ -10,7 +10,7 @@ const settings = {
     slidesToScroll: 1
 };
 
-export default function ProductSlider({images} : {images:string[]}){
+export default function ProductImageSlider({images} : {images:string[]}){
     return <div className="w-full">
         <div className="container mx-auto">
             <Slider {...settings}>

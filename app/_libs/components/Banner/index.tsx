@@ -1,6 +1,8 @@
 'use client';
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Slider from "react-slick";
+import { getHomePageBannerQueryOptions } from "../../utils/query/getHomePageBannerQuery";
 
 const settings = {
     arrows: false,
@@ -29,17 +31,24 @@ const banners = [
 ];
 
 export default function Banner(){
+    const {
+        data
+    } = useQuery({
+        queryKey: getHomePageBannerQueryOptions.getHomePageBannerQueryKey,
+        queryFn: () => getHomePageBannerQueryOptions.getHomePageBannerQueryFn()
+    })
+
     return <div className="w-full pt-5">
         <div className="container mx-auto">
             <Slider {...settings}>
                 {
-                    banners.map((item, i) => <picture key={i}>
-                        <source srcSet={(item.replace(".png", ".webp")).replace("/banner", "/banner")} media="(max-width: 600px)" />
-                        <source srcSet={item} media="(max-width: 1920px)" />
-                        <source srcSet={item} />
+                    (data ? data : []).map((item, i) => <picture key={i}>
+                        <source srcSet={item.desktop_image} media="(max-width: 600px)" />
+                        <source srcSet={item.desktop_image} media="(max-width: 1920px)" />
+                        <source srcSet={item.desktop_image} />
                         <Image
-                            src={item}
-                            alt={"Parcelcounter Banner_"+(i+1)}
+                            src={item.desktop_image}
+                            alt={item.image_alt}
                             className="mx-auto object-contain"
                             width={1280}
                             height={480}

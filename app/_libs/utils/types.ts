@@ -2,13 +2,10 @@ import { ReactNode } from "react";
 
 export interface BannerType<> {
   id: number;
-  title: string;
-  description: string;
-  button_link: string;
-  button_text: string;
-  banner_image_alt: string;
-  banner_image_title: string;
-  banner_image: string;
+  image_alt: string;
+  image_title: string;
+  desktop_image: string;
+  mobile_image: string;
   is_draft: boolean;
   created_at: string;
   updated_at: string;
@@ -164,6 +161,14 @@ export interface ProductImageType<> {
   updated_at: string;
 }
 
+export interface ProductVideoType<> {
+  id: number;
+  video: string;
+  video_link: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface ProductPriceType<> {
   id: number;
   discount: number;
@@ -197,6 +202,10 @@ export interface ProductType<> {
   cart_quantity_specification: string;
   cart_quantity_interval: number;
   min_cart_quantity: number;
+  available_stock: number;
+  min_stock: number;
+  purchase_price: number;
+  stock_status: "OUT OF STOCK" | "FEW ITEMS LEFT" | "IN STOCK";
   sub_categories: SubCategoryType[];
   categories: CategoryType[];
   taxes: OrderProductTaxType[];
@@ -204,6 +213,7 @@ export interface ProductType<> {
   product_colors: ProductColorType[];
   product_prices: ProductPriceType[];
   product_images: ProductImageType[];
+  product_videos: ProductVideoType[];
 }
 
 export interface ProductResponseType<> {

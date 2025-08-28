@@ -25,35 +25,37 @@ const PriceFactor = ({
                                     <th scope="col" colSpan={2} className="px-2 py-1 text-center tracking-widest font-normal">Price Break Down</th>
                                 </tr>
                             </thead>
-                            <tr className="border dark:border-neutral-500">
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
-                                    Price
-                                </td>
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
-                                    ₹{discounted_price.toFixed(2)}
-                                </td>
-                            </tr>
-                            <tr className="border dark:border-neutral-500">
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
-                                    Tax Applied<br/>
-                                    {taxes.length>0 && <div className="mt-1 flex gap-1">
-                                        {
-                                            taxes.map(tx => <span className=" bg-[#ede1d7c9] px-1 py-1 text-[#8c6d52] rounded-md" key={tx.id}>{tx.tax_name}({tx.tax_value}%)</span>)
-                                        }
-                                    </div>}
-                                </td>
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
-                                    ₹{tax_in_price.toFixed(2)}
-                                </td>
-                            </tr>
-                            <tr className="border dark:border-neutral-500">
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
-                                    Total
-                                </td>
-                                <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
-                                    ₹{price.toFixed(2)}
-                                </td>
-                            </tr>
+                            <tbody>
+                                <tr className="border dark:border-neutral-500">
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
+                                        Price
+                                    </td>
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
+                                        ₹{discounted_price.toFixed(2)}
+                                    </td>
+                                </tr>
+                                <tr className="border dark:border-neutral-500">
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
+                                        Tax Applied<br/>
+                                        {taxes.length>0 && <div className="mt-1 flex gap-1">
+                                            {
+                                                taxes.map(tx => <span className=" bg-[#ede1d7c9] px-1 py-1 text-[#8c6d52] rounded-md" key={tx.id}>{tx.tax_name}({tx.tax_value}%)</span>)
+                                            }
+                                        </div>}
+                                    </td>
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
+                                        ₹{tax_in_price.toFixed(2)}
+                                    </td>
+                                </tr>
+                                <tr className="border dark:border-neutral-500">
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-left text-xs">
+                                        Total
+                                    </td>
+                                    <td className="whitespace-nowrap border-r px-2 py-1 text-right text-xs">
+                                        ₹{price.toFixed(2)}
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
             </div>
             <div className="border-t border-dashed border-gray-500 py-2 pt-1">

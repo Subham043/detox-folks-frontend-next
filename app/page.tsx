@@ -9,6 +9,7 @@ import { getCategoriesQueryOptions } from "./_libs/utils/query/getCategoriesQuer
 import ProductSection from "./_home/ProductSection";
 import Testimonials from "./_home/Testimonials";
 import { Metadata } from "next";
+import { getHomePageBannerQueryOptions } from "./_libs/utils/query/getHomePageBannerQuery";
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
@@ -25,10 +26,16 @@ export default async function Home() {
       queryKey: getCategoriesQueryOptions.getCategoriesQueryKey,
       queryFn: () => getCategoriesQueryOptions.getCategoriesQueryFn({pageParam: 1})
   })
+
+  await queryClient.prefetchQuery({
+      queryKey: getHomePageBannerQueryOptions.getHomePageBannerQueryKey,
+      queryFn: () => getHomePageBannerQueryOptions.getHomePageBannerQueryFn()
+  })
+  
   return (
       <>
-        <Banner />
         <HydrationBoundary state={dehydrate(queryClient)}>
+          <Banner />
           <Categories />
         </HydrationBoundary>
         <ProductSection slug="is_featured" />
